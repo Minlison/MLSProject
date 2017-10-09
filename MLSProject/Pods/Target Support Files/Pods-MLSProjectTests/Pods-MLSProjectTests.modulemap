@@ -1,0 +1,6 @@
+framework module Pods_MLSProjectTests {
+  umbrella header "Pods-MLSProjectTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

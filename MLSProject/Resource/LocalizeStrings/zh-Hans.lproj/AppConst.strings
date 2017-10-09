@@ -1,0 +1,10 @@
+/* 
+  AppConst.strings
+  MLSProject
+
+  Created by MinLison on 2017/9/8.
+  Copyright © 2017年 minlison. All rights reserved.
+*/
+"App_Sure" = "确定";
+"App_Refresh" = "刷新";
+"App_NeworkError" = "加载失败，请检查网络链接！";

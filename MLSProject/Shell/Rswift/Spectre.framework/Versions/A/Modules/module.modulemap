@@ -1,0 +1,4 @@
+framework module Spectre {
+    header "Spectre-Swift.h"
+    requires objc
+}

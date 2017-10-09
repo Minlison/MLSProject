@@ -1,0 +1,4 @@
+framework module RswiftCore {
+    header "RswiftCore-Swift.h"
+    requires objc
+}

@@ -1,0 +1,6 @@
+framework module WZProtocolInterceptor {
+  umbrella header "WZProtocolInterceptor-umbrella.h"
+
+  export *
+  module * { export * }
+}

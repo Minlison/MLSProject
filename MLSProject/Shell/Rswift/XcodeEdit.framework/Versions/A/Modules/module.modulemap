@@ -1,0 +1,4 @@
+framework module XcodeEdit {
+    header "XcodeEdit-Swift.h"
+    requires objc
+}

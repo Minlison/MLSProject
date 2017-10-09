@@ -1,0 +1,190 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.43.0"
+
+default_platform :ios
+
+# 日志
+def iOS_message(msg)
+puts "iOS #{msg}".blue
+end
+
+platform :ios do
+  before_all do
+  end
+
+  lane :iOS_Command do |options|
+
+
+# prepare config
+work_path = File.expand_path("..", Dir.pwd)
+iOS_message "work_path:#{work_path}"
+
+ft_name = File.basename(work_path)
+iOS_message "ft_name:#{ft_name}"
+
+project_path = "#{work_path}/ChengziZdd.xcodeproj"
+iOS_message "project_path:#{project_path}"
+
+workspace_path =  "#{work_path}/ChengziZdd.xcworkspace"
+iOS_message "workspace_path:#{workspace_path}"
+
+target = options[:'target'].gsub('/', '_')
+iOS_message "project_type:#{target}"
+raise "missing config target!" unless target
+
+build_type = options[:'build_type']
+iOS_message "build_type:#{build_type}"
+raise "missing config build_type!" unless build_type
+
+change_text = options[:'change_text']
+if change_text.empty?
+  change_text = "#{build_type}---版本更新"
+end
+iOS_message "change_text:#{change_text}"
+
+output_root_path = "#{Dir.home}/app_builder/build_result/ios"
+iOS_message "output_root_path:#{output_root_path}"
+
+date_now = Time.new.strftime("%Y%m%d_%H%M%S")
+iOS_message "date_now:#{date_now}"
+
+dest_dir = "#{ft_name}/#{target}/#{build_type}_#{date_now}"
+iOS_message "dest_dir:#{dest_dir}"
+
+output_dir = "#{output_root_path}/#{dest_dir}"
+iOS_message "output_dir:#{output_dir}"
+FileUtils.mkpath output_dir
+
+build_timestamp = Time.new.strftime("%y%m%d%H%M")
+if build_type == "iOS_store"
+build_no = "#{build_timestamp}"
+else
+build_no = "#{build_timestamp}"
+end
+iOS_message "build_no:#{build_no}"
+
+build_version = get_version_number(xcodeproj: project_path)
+iOS_message "build_version:#{build_version}"
+
+file_name = "#{build_type}_#{build_version}_#{build_no}"
+iOS_message "file_name:#{file_name}"
+
+archive_path = "#{output_dir}/#{file_name}.xcarchive"
+iOS_message "archive_path:#{archive_path}"
+
+# parse build type
+plist_path = ""
+case target
+when 'ChengziZdd'
+  plist_path = "#{work_path}/ChengziZdd/Info.plist"
+# when 'ChengziZdd'
+#   plist_path = "#{work_path}/ChengziZdd/chengzivrPro.plist"
+end
+
+
+configuration = ""
+export_method = ""
+ipa_name = ""
+
+case build_type
+when 'release'
+configuration = "Release"
+export_method = "app-store"
+ipa_name = "#{file_name}_release.ipa"
+when 'adhoc_online'
+configuration = "ADHocOnline"
+export_method = "ad-hoc"
+ipa_name = "#{file_name}_adhoc_online.ipa"
+when 'adhoc_test'
+configuration = "ADHoc"
+export_method = "ad-hoc"
+ipa_name = "#{file_name}_adhoc_test.ipa"
+end
+
+iOS_message "configuration:#{configuration}"
+iOS_message "export_method:#{export_method}"
+iOS_message "ipa_name:#{ipa_name}"
+
+
+# set build no
+increment_build_number(
+                       build_number: build_no,
+                       xcodeproj: project_path,
+                       )
+
+set_info_plist_value(path: "#{plist_path}", key: "CFBundleVersion", value: "#{build_no}")
+
+bundle_version = get_info_plist_value(path: "#{plist_path}", key: "CFBundleShortVersionString")
+iOS_message "bundle_version:#{bundle_version}"
+
+# build
+xcodebuild(
+           workspace: workspace_path,
+           scheme: target,
+           configuration: configuration,
+           archive: true,
+           archive_path: archive_path,
+           clean: true,
+           build: true,
+           destination: "generic/platform=iOS",
+           )
+
+# export IPA  export_method, must be: ["app-store", "ad-hoc", "package", "enterprise", "development", "developer-id"
+gym(
+    export_method: export_method,
+    output_name: ipa_name,
+    archive_path: archive_path,
+    configuration: configuration,
+    scheme: target,
+    output_directory: output_dir,
+    silent: false,
+    include_symbols: true,
+    skip_build_archive: true,
+    )
+
+# 上传至 fir
+    # sh "fir publish #{output_dir}/#{ipa_name} -T d15e850df1f0b1a4f4d0f0836fc283cb"
+# 上传至蒲公英 需要安装 fastlane 插件.
+# fastlane add_plugin pgyer
+# pgyer(api_key: "a9a4ead0f4079dd308f09e2ea6d5d4a6", user_key: "3074db88f6fb298c5c3844156f4a9cc7")
+# fastlane add_plugin pgyer
+case build_type
+when 'release'
+  # not upload
+when 'adhoc_online'
+pgyer(api_key: "1c527da083a984f88293768185b3fc7b", user_key: "52967464e2a10d222f83655cf5de448a", update_description: change_text)
+when 'adhoc_test'
+pgyer(api_key: "1c527da083a984f88293768185b3fc7b", user_key: "52967464e2a10d222f83655cf5de448a", update_description: change_text)
+end
+
+end
+
+
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+
+  end
+
+  error do |lane, exception|
+    puts "#{exception}".red
+  end
+end

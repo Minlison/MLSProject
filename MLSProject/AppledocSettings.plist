@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--company-id</key>
+	<string>com.chengzivr</string>
+	<key>--ignore</key>
+	<array>
+		<string>./ChengziZdd/ThirdCode</string>
+		<string>./Pods</string>
+		<string>./Templates</string>
+		<string>./ChengziZdd/ThirdLib</string>
+		<string>./ChengziZdd/ThirdUI</string>
+		<string>./Shell</string>
+		<string>./fastlane</string>
+		<string>./docs</string>
+	</array>
+	<key>--logformat</key>
+	<integer>1</integer>
+	<key>--print-settings</key>
+	<true/>
+	<key>--project-company</key>
+	<string>橙子-围观</string>
+	<key>--project-name</key>
+	<string>ChengziZdd</string>
+	<key>--repeat-first-par</key>
+	<false/>
+	<key>--templates</key>
+	<string>./Templates</string>
+	<key>--verbose</key>
+	<string>6</string>
+	<key>--publish-docset</key>
+	<false/>
+	<key>--output</key>
+	<string>./docs</string>
+	<key>--docset-install-path</key>
+	<string>./docs/czdocset</string>
+	<key>--keep-undocumented-objects</key>
+	<true/>
+	<key>--keep-undocumented-members</key>
+	<true/>
+	<key>--search-undocumented-doc</key>
+	<true/>
+	<key>--keep-intermediate-files</key>
+	<true/>
+	<key>--preprocess-headerdoc</key>
+	<true/>
+	<key>--print-information-block-titles</key>
+	<true/>
+	<key>--merge-categories</key>
+	<true/>
+	<key>--merge-category-comment</key>
+	<true/>
+	<key>--use-code-order</key>
+	<false/>
+	<key>--create-docset</key>
+	<true/>
+	<key>--clean-output</key>
+	<true/>
+</dict>
+</plist>
