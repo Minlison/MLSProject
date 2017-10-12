@@ -1,9 +1,9 @@
 //
 //  ConfigMoudle.m
-//  ChengziZdd
+//  MLSProject
 //
 //  Created by MinLison on 2017/8/31.
-//  Copyright © 2017年 chengzivr. All rights reserved.
+//  Copyright © 2017年 MinLison. All rights reserved.
 //
 
 #import "ConfigMoudle.h"
