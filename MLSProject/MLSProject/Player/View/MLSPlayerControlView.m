@@ -65,7 +65,7 @@
 }
 
 /// MARK: - Setter Method
-- (void)setError:(NSError *)error confirm:(void (^)())block
+- (void)setError:(NSError *)error confirm:(void (^)(void))block
 {
         self.error = YES;
         [self showAnimation:YES];

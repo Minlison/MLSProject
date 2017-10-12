@@ -238,12 +238,14 @@
 {
         DebugAssert(!self.isExecuting, @"开始请求后, 不允许添加参数");
         [self.params jk_setObj:obj forKey:key];
+        [self clearMemoryStoreData];
 }
 
 - (void)paramDelForKey:(NSString *)key
 {
         DebugAssert(!self.isExecuting, @"开始请求后, 不允许删除参数");
         [self.params removeObjectForKey:key];
+        [self clearMemoryStoreData];
 }
 
 /// MARK: - 拦截 start 方法, 获取 sign
@@ -284,7 +286,12 @@
         self._failedBlock = nil;
         [super clearCompletionBlock];
 }
-
+- (void)clearMemoryStoreData
+{
+        _decryptResponseData = nil;
+        _decryptResponseObject = nil;
+        _decryptResponseString = nil;
+}
 /// MARK: -- YTKNetwork SubClass Hold
 - (nullable id)requestArgument
 {
@@ -336,6 +343,10 @@
 - (long long)cacheVersion
 {
         return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] longLongValue];
+}
+- (id)cacheSensitiveData
+{
+        return self.encryptParams;
 }
 - (NSString *)description
 {

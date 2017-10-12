@@ -11,13 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, HLNetWorkStatus) {
-    HLNetWorkStatusNotReachable = 0,
-    HLNetWorkStatusUnknown = 1,
-    HLNetWorkStatusWWAN2G = 2,
-    HLNetWorkStatusWWAN3G = 3,
-    HLNetWorkStatusWWAN4G = 4,
-    
-    HLNetWorkStatusWiFi = 9,
+        HLNetWorkStatusNotReachable = 0,
+        HLNetWorkStatusUnknown = 1,
+        HLNetWorkStatusWWAN2G = 2,
+        HLNetWorkStatusWWAN3G = 3,
+        HLNetWorkStatusWWAN4G = 4,
+        
+        HLNetWorkStatusWiFi = 9,
 };
 
 FOUNDATION_EXTERN NSString *kNetWorkReachabilityChangedNotification;
@@ -45,6 +45,9 @@ FOUNDATION_EXTERN NSString *kNetWorkReachabilityStatusKey;
 
 - (void)stopNotifier;
 
+- (BOOL)isWifi;
+- (BOOL)isWLAN;
+- (BOOL)isReachabile;
 
 - (void)setReachabilityStatusChangeBlock:(nullable void (^)(HLNetWorkStatus status))block;
 
@@ -54,3 +57,4 @@ FOUNDATION_EXTERN NSString *kNetWorkReachabilityStatusKey;
 @end
 
 NS_ASSUME_NONNULL_END
+

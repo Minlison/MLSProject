@@ -41,6 +41,11 @@ typedef void (^MLSPlayeRegetPlayUrlCallBackBlock)(MLSPlayerModel *model, MLSUrlB
 @property(nonatomic, copy) NSString *name;
 
 /**
+ 视频大小, 字节
+ */
+@property(nonatomic, copy) NSString *size;
+
+/**
  视频连接
  */
 @property(nonatomic, copy) NSString *videoUrl;

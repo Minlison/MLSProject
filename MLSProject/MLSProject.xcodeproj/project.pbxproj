@@ -393,7 +393,7 @@
 		F3A6615A1F8B7C6600E70C97 /* CEHorizontalSwipeInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A661471F8B7C6600E70C97 /* CEHorizontalSwipeInteractionController.m */; };
 		F3A6615B1F8B7C6600E70C97 /* CEPinchInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A661491F8B7C6600E70C97 /* CEPinchInteractionController.m */; };
 		F3A6615C1F8B7C6600E70C97 /* CEVerticalSwipeInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A6614B1F8B7C6600E70C97 /* CEVerticalSwipeInteractionController.m */; };
-		F3A6615F1F8B7D1900E70C97 /* MLSPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A6615D1F8B7D1800E70C97 /* MLSPhotoLoadingView.m */; };
+		F3C6744A1F8F0E3300D9AC14 /* MLSPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3C674481F8F0E3300D9AC14 /* MLSPhotoLoadingView.m */; };
 		F3E9103E1F8B86CC00503293 /* MLSPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E90D841F8B86CB00503293 /* MLSPlayerViewController.m */; };
 		F3E910401F8B86CC00503293 /* MLSPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E90D891F8B86CB00503293 /* MLSPlayerView.m */; };
 		F3E911101F8B86CD00503293 /* MLSPlayerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E910121F8B86CC00503293 /* MLSPlayerModel.m */; };
@@ -1278,8 +1278,8 @@
 		F3A661491F8B7C6600E70C97 /* CEPinchInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEPinchInteractionController.m; sourceTree = "<group>"; };
 		F3A6614A1F8B7C6600E70C97 /* CEVerticalSwipeInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEVerticalSwipeInteractionController.h; sourceTree = "<group>"; };
 		F3A6614B1F8B7C6600E70C97 /* CEVerticalSwipeInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEVerticalSwipeInteractionController.m; sourceTree = "<group>"; };
-		F3A6615D1F8B7D1800E70C97 /* MLSPhotoLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MLSPhotoLoadingView.m; path = ../../../../../../../Desktop/WeiGuan/trunk/ChengziZdd/ChengziZdd/ThirdCode/SDPhotoBrowser/MLSPhotoLoadingView.m; sourceTree = "<group>"; };
-		F3A6615E1F8B7D1800E70C97 /* MLSPhotoLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MLSPhotoLoadingView.h; path = ../../../../../../../Desktop/WeiGuan/trunk/ChengziZdd/ChengziZdd/ThirdCode/SDPhotoBrowser/MLSPhotoLoadingView.h; sourceTree = "<group>"; };
+		F3C674481F8F0E3300D9AC14 /* MLSPhotoLoadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLSPhotoLoadingView.m; sourceTree = "<group>"; };
+		F3C674491F8F0E3300D9AC14 /* MLSPhotoLoadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLSPhotoLoadingView.h; sourceTree = "<group>"; };
 		F3E90D831F8B86CB00503293 /* MLSPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSPlayerViewController.h; sourceTree = "<group>"; };
 		F3E90D841F8B86CB00503293 /* MLSPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSPlayerViewController.m; sourceTree = "<group>"; };
 		F3E90D881F8B86CB00503293 /* MLSPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSPlayerView.h; sourceTree = "<group>"; };
@@ -2970,8 +2970,8 @@
 		F3A65F091F8B791800E70C97 /* SDPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				F3A6615E1F8B7D1800E70C97 /* MLSPhotoLoadingView.h */,
-				F3A6615D1F8B7D1800E70C97 /* MLSPhotoLoadingView.m */,
+				F3C674491F8F0E3300D9AC14 /* MLSPhotoLoadingView.h */,
+				F3C674481F8F0E3300D9AC14 /* MLSPhotoLoadingView.m */,
 				F3A65F0A1F8B791800E70C97 /* MLSSheetView.h */,
 				F3A65F0B1F8B791800E70C97 /* MLSSheetView.m */,
 				F3A661251F8B7C3E00E70C97 /* MLSTipPicModel.h */,
@@ -3846,7 +3846,6 @@
 				F3A65FED1F8B791800E70C97 /* MKMapView+JKZoomLevel.m in Sources */,
 				F3A65C341F8B783C00E70C97 /* MainServiceProtocol.m in Sources */,
 				F3A660271F8B791800E70C97 /* UIImageView+JKFaceAwareFill.m in Sources */,
-				F3A6615F1F8B7D1900E70C97 /* MLSPhotoLoadingView.m in Sources */,
 				F3A6607A1F8B791900E70C97 /* UIView+SDExtension.m in Sources */,
 				F3A65FD11F8B791800E70C97 /* NSString+JKEmoji.m in Sources */,
 				F3A65F921F8B791800E70C97 /* IMY_NJKWebViewProgress.m in Sources */,
@@ -4072,6 +4071,7 @@
 				F3A660571F8B791900E70C97 /* UIViewController+JKBackButtonItemTitle.m in Sources */,
 				F3A6605E1F8B791900E70C97 /* UIWebView+JKCanvas.m in Sources */,
 				F3A65FE51F8B791800E70C97 /* NSURLConnection+JKSelfSigned.m in Sources */,
+				F3C6744A1F8F0E3300D9AC14 /* MLSPhotoLoadingView.m in Sources */,
 				F3A65FAF1F8B791800E70C97 /* NSDictionary+JKJSONString.m in Sources */,
 				F3A65C351F8B783C00E70C97 /* MainService.m in Sources */,
 				F3A660871F8B791900E70C97 /* XHLaunchAdButton.m in Sources */,

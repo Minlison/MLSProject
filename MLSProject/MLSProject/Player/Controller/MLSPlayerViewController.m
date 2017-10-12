@@ -13,6 +13,10 @@
 
 #define MLSPlayerModelRetryMaxCount 3
 
+#define MLSPlayerError(c,des,reason) [NSError errorWithDomain:@"MLSPlayerErrorDomain" code:c userInfo:@{NSLocalizedDescriptionKey : des, NSLocalizedFailureReasonErrorKey : reason}]
+#define MLSPlayerDefaultError MLSPlayerError(0,@"播放错误\n请稍后重试",@"")
+#define MLSPlayerNoWifiError MLSPlayerError(0,@"无网络连接\n请检查网络设置后重试",@"")
+
 @interface MLSPlayerViewController () <MLSPlayerControlViewDelegate>
 @property(nonatomic, strong) IJKFFMoviePlayerController *player;
 @property(nonatomic, strong, readwrite) MLSPlayerViewModel <MLSPlayerModel *>* viewModel;
@@ -52,7 +56,7 @@
         [IJKFFMoviePlayerController setLogLevel:k_IJK_LOG_INFO];
 #endif
         
-        [self _InitPlayer];
+        [self _RetryCurrent];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -80,6 +84,7 @@
         MLSPlayerModel *currentModel = self.viewModel.current;
         @weakify(self);
         @weakify(currentModel);
+        NSError *error = [self.networkReachability isReachabile] ? MLSPlayerDefaultError : MLSPlayerNoWifiError;
         if (currentModel.retryCount < MLSPlayerModelRetryMaxCount)
         {
                 currentModel.retryCount += 1;
@@ -91,7 +96,7 @@
                                 
                                 if (!url)
                                 {
-                                        [self _SetControlViewErrorWithClickBack:[NSError appErrorWithCode:0 msg:@"播放失败" remark:@"网络错误"]];
+                                        [self _SetControlViewErrorWithClickBack:error];
                                         return;
                                 }
                                 currentModel.videoUrl = url;
@@ -100,41 +105,52 @@
                 }
                 else
                 {
-                        [self _SetControlViewErrorWithClickBack:[NSError appErrorWithCode:0 msg:@"播放失败" remark:@"网络错误"]];
+                        [self _SetControlViewErrorWithClickBack:error];
                 }
         }
         else
         {
-                [self _SetControlViewErrorWithClickBack:[NSError appErrorWithCode:0 msg:@"播放失败" remark:@"网络错误"]];
+                [self _SetControlViewErrorWithClickBack:error];
         }
 }
 - (void)_SetControlViewErrorWithClickBack:(NSError *)error
 {
-        @weakify(self);
-        [self.currentControlView setError:error confirm:^{
-                @strongify(self);
-                [self backButtonDidClick:nil];
-        }];
+        [self.currentControlView setError:error confirm:nil];
 }
 - (void)_RePlayCurrent
 {
         if ( ![self.viewModel current] ||  ![self _InitPlayer] )
         {
-                [self backButtonDidClick:nil];
+                [self _CallPlayBackEndWithError:MLSPlayerDefaultError];
+        }
+        else
+        {
+                [self.player prepareToPlay];
         }
 }
 - (void)_PlayNext
 {
         if ( ![self.viewModel next] ||  ![self _InitPlayer])
         {
-                [self backButtonDidClick:nil];
+                [self _CallPlayBackEndWithError:MLSPlayerDefaultError];
+        }
+        else
+        {
+                [self.player prepareToPlay];
         }
 }
 - (BOOL)_InitPlayer
 {
+        [self _JudgeNetworkStatus];
+        
         [self _DestroyPlayer];
         
         [self _SetUPPlayerControlView];
+        
+        if ([self.networkReachability isWLAN] && !self.allowCellerNetwork)
+        {
+                return NO;
+        }
         
         if ( [self _CreatePlayer] )
         {
@@ -152,10 +168,37 @@
         @weakify(self);
         [self.networkReachability setReachabilityStatusChangeBlock:^(HLNetWorkStatus status) {
                 @strongify(self);
-                self.currentControlView.allowCeller = self.allowCellerNetwork;
-                self.currentControlView.noNetwork = (status == HLNetWorkStatusNotReachable);
-                self.currentControlView.currentUseCellar = (status != HLNetWorkStatusWiFi && status != HLNetWorkStatusNotReachable);
+                [self _JudgeNetworkStatus];
         }];
+        [self.networkReachability startNotifier];
+}
+- (void)_JudgeNetworkStatus
+{
+        if ( ![self.networkReachability isReachabile] )
+        {
+                [self.player pause];
+        }
+        
+        if ([self.networkReachability isWifi])
+        {
+                [self.player play];
+        }
+        
+        if ([self.networkReachability isWLAN])
+        {
+                if (self.allowCellerNetwork)
+                {
+                        [self.player play];
+                }
+                else
+                {
+                        [self.player stop];
+                }
+        }
+        self.currentControlView.playModel = self.viewModel.current;
+        self.currentControlView.allowCeller = self.allowCellerNetwork;
+        self.currentControlView.noNetwork = ![self.networkReachability isReachabile];
+        self.currentControlView.currentUseCellar = [self.networkReachability isWLAN];
 }
 
 - (BOOL)_CreatePlayer
@@ -174,8 +217,10 @@
                 [self.player shutdownWithWait];
         }
         IJKFFOptions *options = [IJKFFOptions optionsByDefault];
+        [options setPlayerOptionIntValue:1 forKey:@"videotoolbox"];
         self.player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:url withOptions:options];
         [self.player setPauseInBackground:YES];
+        self.player.shouldAutoplay = YES;
         self.player.scalingMode = IJKMPMovieScalingModeAspectFit;
         
         [self.controllerView setPlayerView:self.player.view];
@@ -301,10 +346,24 @@
         
         if (reason == IJKMPMovieFinishReasonPlaybackError)
         {
-                error = [NSError errorWithDomain:@"MLSPlayerErrorDomain" code:-1 userInfo:@{NSLocalizedDescriptionKey : @"视频播放失败"}];
+                error = MLSPlayerDefaultError;
+                if ([self.networkReachability currentReachabilityStatus] == HLNetWorkStatusNotReachable)
+                {
+                        error = MLSPlayerNoWifiError;
+                }
         }
         
         [self _CallPlayBackEndWithError:error];
+        
+        if ( ![self.networkReachability isReachabile] )
+        {
+                return;
+        }
+        
+        if ([self.networkReachability isWLAN] && !self.allowCellerNetwork)
+        {
+                return;
+        }
         
         switch (reason)
         {
@@ -427,13 +486,12 @@
 /// MARK: Remove Movie Notification Handlers
 - (void)_RemoveMovieNotificationObservers
 {
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerLoadStateDidChangeNotification object:self.player];
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerPlaybackDidFinishNotification object:self.player];
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMediaPlaybackIsPreparedToPlayDidChangeNotification object:self.player];
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:IJKMPMoviePlayerPlaybackStateDidChangeNotification object:self.player];
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-        
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:IJKMPMoviePlayerLoadStateDidChangeNotification object:self.player];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:IJKMPMoviePlayerPlaybackDidFinishNotification object:self.player];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:IJKMPMediaPlaybackIsPreparedToPlayDidChangeNotification object:self.player];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:IJKMPMoviePlayerPlaybackStateDidChangeNotification object:self.player];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
 }
 
 /// MARK: - Player Control View Delegate
@@ -487,6 +545,7 @@
 - (void)playerControl:(UIView<MLSPlayerControlProtocol> *)control allowCellerNetwork:(BOOL)allowCellerNetwork
 {
         self.allowCellerNetwork = allowCellerNetwork;
+        [self _RetryCurrent];
 }
 
 
