@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Aspects (1.4.1)
   - BeeHive (1.5.1)
   - CocoaLumberjack (3.3.0):
     - CocoaLumberjack/Default (= 3.3.0)
@@ -28,6 +29,7 @@ PODS:
     - FBRetainCycleDetector (~> 0.1)
   - FBRetainCycleDetector (0.1.3)
   - FDFullscreenPopGesture (1.1)
+  - FDStackView (1.0)
   - FormatterKit (1.8.2):
     - FormatterKit/AddressFormatter (= 1.8.2)
     - FormatterKit/ArrayFormatter (= 1.8.2)
@@ -58,6 +60,7 @@ PODS:
     - FormatterKit/Resources
   - FormatterKit/URLRequestFormatter (1.8.2):
     - FormatterKit/Resources
+  - Harpy (4.1.6)
   - Masonry (1.1.0)
   - MJRefresh (3.1.14)
   - Nimble (7.0.2)
@@ -246,6 +249,8 @@ PODS:
   - SDWebImage (4.1.2):
     - SDWebImage/Core (= 4.1.2)
   - SDWebImage/Core (4.1.2)
+  - STPopup (1.8.3)
+  - TTTAttributedLabel (2.0.0)
   - WZProtocolInterceptor (0.1.0)
   - YTKNetwork (2.0.4):
     - AFNetworking (~> 3.0)
@@ -254,12 +259,15 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
+  - Aspects
   - BeeHive
   - CocoaLumberjack
   - CRToast
   - FBMemoryProfiler
   - FDFullscreenPopGesture
+  - FDStackView
   - FormatterKit
+  - Harpy
   - Masonry
   - MJRefresh
   - Nimble
@@ -267,12 +275,15 @@ DEPENDENCIES:
   - Quick
   - SAMKeychain
   - SDWebImage
+  - STPopup
+  - TTTAttributedLabel
   - WZProtocolInterceptor
   - YTKNetwork
   - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   BeeHive: b135a33b3519814ec5d117318d205e10c997450f
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
@@ -280,7 +291,9 @@ SPEC CHECKSUMS:
   FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
   FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FormatterKit: 4b8f29acc9b872d5d12a63efb560661e8f2e1b98
+  Harpy: '00136386df1e2bb7554a5bef5d56529c9c33739a'
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
@@ -288,10 +301,12 @@ SPEC CHECKSUMS:
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
+  STPopup: da1167250a01584af7bcccb898653185f223ec46
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   WZProtocolInterceptor: 56c395e4b3323140421eba99546be362aabc041e
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: cf0112cf1b2dee95b1f580aecc3024056870e165
+PODFILE CHECKSUM: 01e287dc9512e1bfb5d9f29c60a459046bd3f412
 
 COCOAPODS: 1.2.1

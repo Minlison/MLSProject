@@ -77,6 +77,7 @@
 #import "AppUnit.h"
 #import "MLSFont.h"
 #import "MLSEnum.h"
+#import "AppConfigConstString.h"
 
 #import "RouterMoudle.h"
 

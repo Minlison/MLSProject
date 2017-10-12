@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		5E71C5CAEB6B9B2019FF5569 /* Pods_MLSProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80AE8581525463F0066D2ED8 /* Pods_MLSProject.framework */; };
 		B5DCE96E2A5E9EBDF2E81B4D /* Pods_MLSProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B05C4F1F26398333AABC4D59 /* Pods_MLSProjectTests.framework */; };
+		F329FBD01F8F138600546A69 /* MLSUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBBE1F8F138600546A69 /* MLSUpdateViewController.m */; };
+		F329FBD11F8F138600546A69 /* MLSUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBC11F8F138600546A69 /* MLSUpdateView.m */; };
+		F329FBD21F8F138600546A69 /* MLSUpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBC41F8F138600546A69 /* MLSUpdateModel.m */; };
+		F329FBD31F8F138600546A69 /* MLSUpdateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBC91F8F138600546A69 /* MLSUpdateRequest.m */; };
+		F329FBD41F8F138600546A69 /* MLSUpdateViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBCC1F8F138600546A69 /* MLSUpdateViewModel.m */; };
+		F329FBDE1F8F144500546A69 /* AppConfigConstString.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBDA1F8F144500546A69 /* AppConfigConstString.m */; };
+		F329FBE51F8F150800546A69 /* UpdateMoudle.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBE41F8F150800546A69 /* UpdateMoudle.m */; };
+		F329FBEE1F8F191500546A69 /* BaseMoudle.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBED1F8F191500546A69 /* BaseMoudle.m */; };
+		F329FBF11F8F191D00546A69 /* ConfigMoudle.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBF01F8F191D00546A69 /* ConfigMoudle.m */; };
+		F329FC071F8F197300546A69 /* QDThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBF51F8F197300546A69 /* QDThemeManager.m */; };
+		F329FC081F8F197300546A69 /* QMUIConfigurationTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBF81F8F197300546A69 /* QMUIConfigurationTemplate.m */; };
+		F329FC091F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBFA1F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.m */; };
+		F329FC0A1F8F197300546A69 /* QMUIConfigurationTemplateGrass.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBFC1F8F197300546A69 /* QMUIConfigurationTemplateGrass.m */; };
+		F329FC0B1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FBFE1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.m */; };
+		F329FC0C1F8F197300546A69 /* QDCommonUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FC021F8F197300546A69 /* QDCommonUI.m */; };
+		F329FC0D1F8F197300546A69 /* QDUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FC041F8F197300546A69 /* QDUIHelper.m */; };
+		F329FC0E1F8F197300546A69 /* UIImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F329FC061F8F197300546A69 /* UIImageEffects.m */; };
+		F329FC0F1F8F221500546A69 /* R.generated.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C171F8B694900E70C97 /* R.generated.m */; };
 		F34E4E5A1F7BB8310005CF57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F34E4E591F7BB8310005CF57 /* AppDelegate.m */; };
 		F34E4E621F7BB8310005CF57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F34E4E611F7BB8310005CF57 /* Assets.xcassets */; };
 		F34E4E681F7BB8310005CF57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F34E4E671F7BB8310005CF57 /* main.m */; };
@@ -21,7 +39,6 @@
 		F3A65C361F8B783C00E70C97 /* MLSNoNetworkView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C2C1F8B783C00E70C97 /* MLSNoNetworkView.m */; };
 		F3A65C371F8B783C00E70C97 /* MLSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C2E1F8B783C00E70C97 /* MLSLoadingView.m */; };
 		F3A65C381F8B783C00E70C97 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C311F8B783C00E70C97 /* MainViewController.m */; };
-		F3A65C3C1F8B786700E70C97 /* BaseMoudle.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C3B1F8B786700E70C97 /* BaseMoudle.m */; };
 		F3A65C7E1F8B789A00E70C97 /* MLSSecurityTools.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C401F8B789A00E70C97 /* MLSSecurityTools.m */; };
 		F3A65C7F1F8B789A00E70C97 /* MLSSignManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C421F8B789A00E70C97 /* MLSSignManager.m */; };
 		F3A65C801F8B789A00E70C97 /* EncryptTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A65C451F8B789A00E70C97 /* EncryptTool.m */; };
@@ -481,6 +498,44 @@
 		E1BC2552F4A34ADAED4E18D9 /* Pods-MLSProjectTests.adhoctest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLSProjectTests.adhoctest.xcconfig"; path = "Pods/Target Support Files/Pods-MLSProjectTests/Pods-MLSProjectTests.adhoctest.xcconfig"; sourceTree = "<group>"; };
 		E239061C49EA2961A22E9C56 /* Pods-MLSProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLSProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLSProject/Pods-MLSProject.release.xcconfig"; sourceTree = "<group>"; };
 		E2CA31A09EB4A9306CB1171A /* Pods-MLSProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLSProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLSProject/Pods-MLSProject.debug.xcconfig"; sourceTree = "<group>"; };
+		F329FBBD1F8F138600546A69 /* MLSUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateViewController.h; sourceTree = "<group>"; };
+		F329FBBE1F8F138600546A69 /* MLSUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSUpdateViewController.m; sourceTree = "<group>"; };
+		F329FBC01F8F138600546A69 /* MLSUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateView.h; sourceTree = "<group>"; };
+		F329FBC11F8F138600546A69 /* MLSUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSUpdateView.m; sourceTree = "<group>"; };
+		F329FBC31F8F138600546A69 /* MLSUpdateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateModel.h; sourceTree = "<group>"; };
+		F329FBC41F8F138600546A69 /* MLSUpdateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSUpdateModel.m; sourceTree = "<group>"; };
+		F329FBC61F8F138600546A69 /* MLSUpdateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateProtocol.h; sourceTree = "<group>"; };
+		F329FBC81F8F138600546A69 /* MLSUpdateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateRequest.h; sourceTree = "<group>"; };
+		F329FBC91F8F138600546A69 /* MLSUpdateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSUpdateRequest.m; sourceTree = "<group>"; };
+		F329FBCB1F8F138600546A69 /* MLSUpdateViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateViewModel.h; sourceTree = "<group>"; };
+		F329FBCC1F8F138600546A69 /* MLSUpdateViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSUpdateViewModel.m; sourceTree = "<group>"; };
+		F329FBCD1F8F138600546A69 /* MLSUpdateEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSUpdateEnum.h; sourceTree = "<group>"; };
+		F329FBDA1F8F144500546A69 /* AppConfigConstString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppConfigConstString.m; sourceTree = "<group>"; };
+		F329FBDD1F8F144500546A69 /* AppConfigConstString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfigConstString.h; sourceTree = "<group>"; };
+		F329FBE31F8F150800546A69 /* UpdateMoudle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateMoudle.h; sourceTree = "<group>"; };
+		F329FBE41F8F150800546A69 /* UpdateMoudle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateMoudle.m; sourceTree = "<group>"; };
+		F329FBEC1F8F191500546A69 /* BaseMoudle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMoudle.h; sourceTree = "<group>"; };
+		F329FBED1F8F191500546A69 /* BaseMoudle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMoudle.m; sourceTree = "<group>"; };
+		F329FBEF1F8F191D00546A69 /* ConfigMoudle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigMoudle.h; sourceTree = "<group>"; };
+		F329FBF01F8F191D00546A69 /* ConfigMoudle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigMoudle.m; sourceTree = "<group>"; };
+		F329FBF41F8F197300546A69 /* QDThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDThemeManager.h; sourceTree = "<group>"; };
+		F329FBF51F8F197300546A69 /* QDThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDThemeManager.m; sourceTree = "<group>"; };
+		F329FBF61F8F197300546A69 /* QDThemeProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDThemeProtocol.h; sourceTree = "<group>"; };
+		F329FBF71F8F197300546A69 /* QMUIConfigurationTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplate.h; sourceTree = "<group>"; };
+		F329FBF81F8F197300546A69 /* QMUIConfigurationTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplate.m; sourceTree = "<group>"; };
+		F329FBF91F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplateGrapefruit.h; sourceTree = "<group>"; };
+		F329FBFA1F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplateGrapefruit.m; sourceTree = "<group>"; };
+		F329FBFB1F8F197300546A69 /* QMUIConfigurationTemplateGrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplateGrass.h; sourceTree = "<group>"; };
+		F329FBFC1F8F197300546A69 /* QMUIConfigurationTemplateGrass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplateGrass.m; sourceTree = "<group>"; };
+		F329FBFD1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfigurationTemplatePinkRose.h; sourceTree = "<group>"; };
+		F329FBFE1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIConfigurationTemplatePinkRose.m; sourceTree = "<group>"; };
+		F329FBFF1F8F197300546A69 /* QMUIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIConfiguration.h; sourceTree = "<group>"; };
+		F329FC011F8F197300546A69 /* QDCommonUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDCommonUI.h; sourceTree = "<group>"; };
+		F329FC021F8F197300546A69 /* QDCommonUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDCommonUI.m; sourceTree = "<group>"; };
+		F329FC031F8F197300546A69 /* QDUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QDUIHelper.h; sourceTree = "<group>"; };
+		F329FC041F8F197300546A69 /* QDUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QDUIHelper.m; sourceTree = "<group>"; };
+		F329FC051F8F197300546A69 /* UIImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageEffects.h; sourceTree = "<group>"; };
+		F329FC061F8F197300546A69 /* UIImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageEffects.m; sourceTree = "<group>"; };
 		F34E4E551F7BB8310005CF57 /* MLSProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLSProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34E4E581F7BB8310005CF57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F34E4E591F7BB8310005CF57 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -508,8 +563,6 @@
 		F3A65C2E1F8B783C00E70C97 /* MLSLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSLoadingView.m; sourceTree = "<group>"; };
 		F3A65C301F8B783C00E70C97 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		F3A65C311F8B783C00E70C97 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		F3A65C3A1F8B786700E70C97 /* BaseMoudle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMoudle.h; sourceTree = "<group>"; };
-		F3A65C3B1F8B786700E70C97 /* BaseMoudle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMoudle.m; sourceTree = "<group>"; };
 		F3A65C3F1F8B789A00E70C97 /* MLSSecurityTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSSecurityTools.h; sourceTree = "<group>"; };
 		F3A65C401F8B789A00E70C97 /* MLSSecurityTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLSSecurityTools.m; sourceTree = "<group>"; };
 		F3A65C411F8B789A00E70C97 /* MLSSignManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLSSignManager.h; sourceTree = "<group>"; };
@@ -1359,6 +1412,125 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F329FBBB1F8F138600546A69 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBCD1F8F138600546A69 /* MLSUpdateEnum.h */,
+				F329FBE31F8F150800546A69 /* UpdateMoudle.h */,
+				F329FBE41F8F150800546A69 /* UpdateMoudle.m */,
+				F329FBBC1F8F138600546A69 /* Controllers */,
+				F329FBBF1F8F138600546A69 /* ControllerViews */,
+				F329FBC21F8F138600546A69 /* Models */,
+				F329FBC51F8F138600546A69 /* Protocol */,
+				F329FBC71F8F138600546A69 /* Requests */,
+				F329FBCA1F8F138600546A69 /* ViewModel */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		F329FBBC1F8F138600546A69 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBBD1F8F138600546A69 /* MLSUpdateViewController.h */,
+				F329FBBE1F8F138600546A69 /* MLSUpdateViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F329FBBF1F8F138600546A69 /* ControllerViews */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBC01F8F138600546A69 /* MLSUpdateView.h */,
+				F329FBC11F8F138600546A69 /* MLSUpdateView.m */,
+			);
+			path = ControllerViews;
+			sourceTree = "<group>";
+		};
+		F329FBC21F8F138600546A69 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBC31F8F138600546A69 /* MLSUpdateModel.h */,
+				F329FBC41F8F138600546A69 /* MLSUpdateModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F329FBC51F8F138600546A69 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBC61F8F138600546A69 /* MLSUpdateProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		F329FBC71F8F138600546A69 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBC81F8F138600546A69 /* MLSUpdateRequest.h */,
+				F329FBC91F8F138600546A69 /* MLSUpdateRequest.m */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		F329FBCA1F8F138600546A69 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBCB1F8F138600546A69 /* MLSUpdateViewModel.h */,
+				F329FBCC1F8F138600546A69 /* MLSUpdateViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F329FBEB1F8F191500546A69 /* MoudleSetup */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBEC1F8F191500546A69 /* BaseMoudle.h */,
+				F329FBED1F8F191500546A69 /* BaseMoudle.m */,
+			);
+			path = MoudleSetup;
+			sourceTree = "<group>";
+		};
+		F329FBF21F8F197300546A69 /* QMUIConfigurationTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBF31F8F197300546A69 /* Configuration */,
+				F329FBFF1F8F197300546A69 /* QMUIConfiguration.h */,
+				F329FC001F8F197300546A69 /* Utils */,
+			);
+			path = QMUIConfigurationTemplate;
+			sourceTree = "<group>";
+		};
+		F329FBF31F8F197300546A69 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				F329FBF41F8F197300546A69 /* QDThemeManager.h */,
+				F329FBF51F8F197300546A69 /* QDThemeManager.m */,
+				F329FBF61F8F197300546A69 /* QDThemeProtocol.h */,
+				F329FBF71F8F197300546A69 /* QMUIConfigurationTemplate.h */,
+				F329FBF81F8F197300546A69 /* QMUIConfigurationTemplate.m */,
+				F329FBF91F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.h */,
+				F329FBFA1F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.m */,
+				F329FBFB1F8F197300546A69 /* QMUIConfigurationTemplateGrass.h */,
+				F329FBFC1F8F197300546A69 /* QMUIConfigurationTemplateGrass.m */,
+				F329FBFD1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.h */,
+				F329FBFE1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.m */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		F329FC001F8F197300546A69 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F329FC011F8F197300546A69 /* QDCommonUI.h */,
+				F329FC021F8F197300546A69 /* QDCommonUI.m */,
+				F329FC031F8F197300546A69 /* QDUIHelper.h */,
+				F329FC041F8F197300546A69 /* QDUIHelper.m */,
+				F329FC051F8F197300546A69 /* UIImageEffects.h */,
+				F329FC061F8F197300546A69 /* UIImageEffects.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		F34E4E4C1F7BB8310005CF57 = {
 			isa = PBXGroup;
 			children = (
@@ -1441,6 +1613,7 @@
 		F3A65C071F8B65A700E70C97 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F329FBF21F8F197300546A69 /* QMUIConfigurationTemplate */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1448,6 +1621,7 @@
 		F3A65C081F8B65A700E70C97 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F329FBBB1F8F138600546A69 /* Update */,
 				F3A660DC1F8B7AB000E70C97 /* User */,
 				F3A65C201F8B783C00E70C97 /* Main */,
 			);
@@ -1476,7 +1650,8 @@
 		F3A65C181F8B6D1F00E70C97 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				F3A65C391F8B786700E70C97 /* MoudleSetup */,
+				F329FBEF1F8F191D00546A69 /* ConfigMoudle.h */,
+				F329FBF01F8F191D00546A69 /* ConfigMoudle.m */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -1559,18 +1734,10 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		F3A65C391F8B786700E70C97 /* MoudleSetup */ = {
-			isa = PBXGroup;
-			children = (
-				F3A65C3A1F8B786700E70C97 /* BaseMoudle.h */,
-				F3A65C3B1F8B786700E70C97 /* BaseMoudle.m */,
-			);
-			path = MoudleSetup;
-			sourceTree = "<group>";
-		};
 		F3A65C3D1F8B789A00E70C97 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				F329FBEB1F8F191500546A69 /* MoudleSetup */,
 				F3A65C3E1F8B789A00E70C97 /* Encrypt */,
 				F3A65C481F8B789A00E70C97 /* Extension */,
 				F3A65C4B1F8B789A00E70C97 /* Filter */,
@@ -3295,6 +3462,8 @@
 				F3A660F91F8B7AEA00E70C97 /* RequestKeyValueString.m */,
 				F3A660FA1F8B7AEA00E70C97 /* RequestUrlString.h */,
 				F3A660FB1F8B7AEA00E70C97 /* RequestUrlString.m */,
+				F329FBDD1F8F144500546A69 /* AppConfigConstString.h */,
+				F329FBDA1F8F144500546A69 /* AppConfigConstString.m */,
 			);
 			path = ConstString;
 			sourceTree = "<group>";
@@ -3794,6 +3963,7 @@
 				F3A660311F8B791800E70C97 /* UINavigationController+JKStackManager.m in Sources */,
 				F3A661551F8B7C6600E70C97 /* CEReversibleAnimationController.m in Sources */,
 				F3A65FDB1F8B791800E70C97 /* NSString+JKSize.m in Sources */,
+				F329FBD01F8F138600546A69 /* MLSUpdateViewController.m in Sources */,
 				F3A6609A1F8B791900E70C97 /* XWCoolAnimator+XWLines.m in Sources */,
 				F3A660521F8B791900E70C97 /* UIView+JKRecursion.m in Sources */,
 				F3A65FF61F8B791800E70C97 /* UIApplication+JKNetworkActivityIndicator.m in Sources */,
@@ -3804,6 +3974,7 @@
 				F3A65C841F8B789A00E70C97 /* BaseModel.m in Sources */,
 				F3A65FDD1F8B791800E70C97 /* NSString+JKTrims.m in Sources */,
 				F3A65FDE1F8B791800E70C97 /* NSString+JKURLEncode.m in Sources */,
+				F329FC071F8F197300546A69 /* QDThemeManager.m in Sources */,
 				F3A65C811F8B789A00E70C97 /* JoDes.m in Sources */,
 				F3A6607D1F8B791900E70C97 /* SDPhotoBrowser.m in Sources */,
 				F3A6609E1F8B791900E70C97 /* XWCoolAnimator+XWScanning.m in Sources */,
@@ -3811,6 +3982,7 @@
 				F3A65FE71F8B791800E70C97 /* NSURLRequest+JKParamsFromDictionary.m in Sources */,
 				F3A660461F8B791800E70C97 /* UITextView+JKInputLimit.m in Sources */,
 				F3A65FA61F8B791800E70C97 /* NSDate+JKCupertinoYankee.m in Sources */,
+				F329FC0D1F8F197300546A69 /* QDUIHelper.m in Sources */,
 				F3A660991F8B791900E70C97 /* XWCoolAnimator+XWFold.m in Sources */,
 				F3A65F781F8B791800E70C97 /* NSArray+SafeKit.m in Sources */,
 				F3A65FE11F8B791800E70C97 /* NSTimer+JKAddition.m in Sources */,
@@ -3886,6 +4058,7 @@
 				F3A65F981F8B791800E70C97 /* NSManagedObjectContext+JKFetchRequestsConstructors.m in Sources */,
 				F3A6608F1F8B791900E70C97 /* UINavigationController+XWTransition.m in Sources */,
 				F3A6602E1F8B791800E70C97 /* UILabel+JKSuggestSize.m in Sources */,
+				F329FC0E1F8F197300546A69 /* UIImageEffects.m in Sources */,
 				F3A65F931F8B791800E70C97 /* NSFetchRequest+JKExtensions.m in Sources */,
 				F3A65F841F8B791800E70C97 /* EXTADT.m in Sources */,
 				F3A660761F8B791900E70C97 /* TADotView.m in Sources */,
@@ -3894,6 +4067,7 @@
 				F3A65FCA1F8B791800E70C97 /* NSObject+JKReflection.m in Sources */,
 				F3A661501F8B7C6600E70C97 /* CEFlipAnimationController.m in Sources */,
 				F3A660511F8B791900E70C97 /* UIView+JKNib.m in Sources */,
+				F329FC091F8F197300546A69 /* QMUIConfigurationTemplateGrapefruit.m in Sources */,
 				F3A660421F8B791800E70C97 /* UITextField+JKHistory.m in Sources */,
 				F3A65FD91F8B791800E70C97 /* NSString+JKRemoveEmoji.m in Sources */,
 				F3A660381F8B791800E70C97 /* UIResponder+JKFirstResponder.m in Sources */,
@@ -3901,6 +4075,7 @@
 				F3A661101F8B7AEA00E70C97 /* AppUnit.m in Sources */,
 				F3A660361F8B791800E70C97 /* UIPopoverController+iPhone.m in Sources */,
 				F3A65FA41F8B791800E70C97 /* NSData+JKPCM.m in Sources */,
+				F329FBD41F8F138600546A69 /* MLSUpdateViewModel.m in Sources */,
 				F34E4E681F7BB8310005CF57 /* main.m in Sources */,
 				F3A65F831F8B791800E70C97 /* SafeKitMacro.m in Sources */,
 				F3A660831F8B791900E70C97 /* WMPageController.m in Sources */,
@@ -3938,6 +4113,7 @@
 				F3A660A21F8B791900E70C97 /* XWFilterAnimator+XWBoxBlur.m in Sources */,
 				F3A660AB1F8B791900E70C97 /* XWFilterTransitionView.m in Sources */,
 				F3A6606B1F8B791900E70C97 /* JLRoutes.m in Sources */,
+				F329FBF11F8F191D00546A69 /* ConfigMoudle.m in Sources */,
 				F3A65C371F8B783C00E70C97 /* MLSLoadingView.m in Sources */,
 				F3A660861F8B791900E70C97 /* XHLaunchAd.m in Sources */,
 				F3A6606C1F8B791900E70C97 /* NSArray+ObjectiveSugar.m in Sources */,
@@ -3979,6 +4155,7 @@
 				F3A65FEF1F8B791800E70C97 /* CALayer+JKBorderColor.m in Sources */,
 				F3A660791F8B791900E70C97 /* SDCycleScrollView.m in Sources */,
 				F3A65FE81F8B791800E70C97 /* NSURLSession+JKSynchronousTask.m in Sources */,
+				F329FC081F8F197300546A69 /* QMUIConfigurationTemplate.m in Sources */,
 				F3A660061F8B791800E70C97 /* UIButton+JKSubmitting.m in Sources */,
 				F3A65FD41F8B791800E70C97 /* NSString+JKHTML.m in Sources */,
 				F3A65F791F8B791800E70C97 /* NSDictionary+SafeKit.m in Sources */,
@@ -4015,6 +4192,7 @@
 				F3E911161F8B86CD00503293 /* MLSPlayerControlView.m in Sources */,
 				F3A660811F8B791900E70C97 /* WMProgressView.m in Sources */,
 				F3A6602D1F8B791800E70C97 /* UILabel+JKAutoSize.m in Sources */,
+				F329FC0A1F8F197300546A69 /* QMUIConfigurationTemplateGrass.m in Sources */,
 				F3A65FB11F8B791800E70C97 /* NSDictionary+JKSafeAccess.m in Sources */,
 				F3A65FF21F8B791800E70C97 /* CATransaction+JKAnimateWithDuration.m in Sources */,
 				F3A6605F1F8B791900E70C97 /* UIWebView+JKJavaScript.m in Sources */,
@@ -4041,10 +4219,12 @@
 				F3A65FC51F8B791800E70C97 /* NSObject+JKBlocks.m in Sources */,
 				F3A660451F8B791800E70C97 /* UITextField+JKShake.m in Sources */,
 				F3A660841F8B791900E70C97 /* NSString+XHLaunchAd.m in Sources */,
+				F329FC0F1F8F221500546A69 /* R.generated.m in Sources */,
 				F3A65FCB1F8B791800E70C97 /* NSObject+JKRuntime.m in Sources */,
 				F3A660D81F8B79F000E70C97 /* NSDictionary+RouterParams.m in Sources */,
 				F3A65C851F8B789A00E70C97 /* ServerModel.m in Sources */,
 				F3A65F971F8B791800E70C97 /* NSManagedObjectContext+JKFetching.m in Sources */,
+				F329FBD11F8F138600546A69 /* MLSUpdateView.m in Sources */,
 				F3A661181F8B7AEA00E70C97 /* RequestUrlString.m in Sources */,
 				F3A661131F8B7AEA00E70C97 /* MLSTimeTransform.m in Sources */,
 				F3A65F7C1F8B791800E70C97 /* NSMutableString+SafeKit.m in Sources */,
@@ -4080,6 +4260,7 @@
 				F3A65C8D1F8B789A00E70C97 /* NSArray+Request.m in Sources */,
 				F3A6604E1F8B791800E70C97 /* UIView+JKDraggable.m in Sources */,
 				F3A660A51F8B791900E70C97 /* XWFilterAnimator+XWMask.m in Sources */,
+				F329FBEE1F8F191500546A69 /* BaseMoudle.m in Sources */,
 				F3A660141F8B791800E70C97 /* UIFont+JKTTF.m in Sources */,
 				F3A65FA21F8B791800E70C97 /* NSData+JKGzip.m in Sources */,
 				F3A65C951F8B789A00E70C97 /* BaseViewController.m in Sources */,
@@ -4101,6 +4282,7 @@
 				F3A6604D1F8B791800E70C97 /* UIView+JKCustomBorder.m in Sources */,
 				F3A660E41F8B7AB000E70C97 /* MLSUser.m in Sources */,
 				F3A661161F8B7AEA00E70C97 /* RequestKeyString.m in Sources */,
+				F329FC0B1F8F197300546A69 /* QMUIConfigurationTemplatePinkRose.m in Sources */,
 				F3E9111C1F8B86CD00503293 /* MLSPlayerMoudle.m in Sources */,
 				F3A661111F8B7AEA00E70C97 /* CoBaseUtils.m in Sources */,
 				F3A65FC41F8B791800E70C97 /* NSObject+JKAutoCoding.m in Sources */,
@@ -4121,6 +4303,8 @@
 				F3A65F961F8B791800E70C97 /* NSManagedObjectContext+JKExtensions.m in Sources */,
 				F3A65C891F8B789A00E70C97 /* BaseViewProtocol.m in Sources */,
 				F3E911191F8B86CD00503293 /* MLSStateView.m in Sources */,
+				F329FBD21F8F138600546A69 /* MLSUpdateModel.m in Sources */,
+				F329FBE51F8F150800546A69 /* UpdateMoudle.m in Sources */,
 				F3A65F941F8B791800E70C97 /* NSManagedObject+JKDictionary.m in Sources */,
 				F3A65FEA1F8B791800E70C97 /* NSUserDefaults+JKSafeAccess.m in Sources */,
 				F3A65FF81F8B791800E70C97 /* UIBarButtonItem+JKAction.m in Sources */,
@@ -4140,6 +4324,8 @@
 				F3A660721F8B791900E70C97 /* RegExCategories.m in Sources */,
 				F3A65FC71F8B791800E70C97 /* NSObject+JKEasyCopy.m in Sources */,
 				F3A65FC81F8B791800E70C97 /* NSObject+JKGCD.m in Sources */,
+				F329FC0C1F8F197300546A69 /* QDCommonUI.m in Sources */,
+				F329FBDE1F8F144500546A69 /* AppConfigConstString.m in Sources */,
 				F3A65C801F8B789A00E70C97 /* EncryptTool.m in Sources */,
 				F3A660551F8B791900E70C97 /* UIView+JKToast.m in Sources */,
 				F3A661121F8B7AEA00E70C97 /* MLSTimeFormatter.m in Sources */,
@@ -4153,7 +4339,6 @@
 				F3A660251F8B791800E70C97 /* UIImageView+JKAddition.m in Sources */,
 				F3A65FB01F8B791800E70C97 /* NSDictionary+JKMerge.m in Sources */,
 				F3A660A31F8B791900E70C97 /* XWFilterAnimator+XWCopyMachine.m in Sources */,
-				F3A65C3C1F8B786700E70C97 /* BaseMoudle.m in Sources */,
 				F3A6608A1F8B791900E70C97 /* XHLaunchAdDownloader.m in Sources */,
 				F3A660531F8B791900E70C97 /* UIView+JKScreenshot.m in Sources */,
 				F3A65FFE1F8B791800E70C97 /* UIBezierPath+JKThroughPointsBezier.m in Sources */,
@@ -4168,6 +4353,7 @@
 				F3A660071F8B791800E70C97 /* UIButton+JKTouchAreaInsets.m in Sources */,
 				F3A65F9B1F8B791800E70C97 /* NSArray+JKBlock.m in Sources */,
 				F3A65F991F8B791800E70C97 /* NSManagedObjectContext+JKObjectClear.m in Sources */,
+				F329FBD31F8F138600546A69 /* MLSUpdateRequest.m in Sources */,
 				F3A6611C1F8B7AEA00E70C97 /* NSLogger.m in Sources */,
 				F3A660441F8B791800E70C97 /* UITextField+JKSelect.m in Sources */,
 				F3A65F8B1F8B791800E70C97 /* NSInvocation+EXT.m in Sources */,

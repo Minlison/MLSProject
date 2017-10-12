@@ -26,11 +26,11 @@ def pods
 #	pod 'EBForeNotification' # 处于前台时展示跟系统完全一样的推送弹窗和声音
 #	pod 'KVOController' # KVO 暂时未用到
 	# pod 'lottie-ios' # 动画
-	#pod 'Aspects' # AOP 切面编程
-#    pod 'TTTAttributedLabel' # 属性字符串 label 暂时未用到
+    pod 'Aspects' # AOP 切面编程
+    pod 'TTTAttributedLabel' # 属性字符串 label 暂时未用到
     pod 'QMUIKit' # UI
     pod 'BeeHive' # 架构
-#    pod 'FDStackView' # stackView 适配
+    pod 'FDStackView' # stackView 适配
     pod 'CRToast' # 导航栏顶部提示
     #pod 'ChameleonFramework' # 颜色
     #pod 'FontAwesomeKit' # 字体
@@ -38,6 +38,8 @@ def pods
     pod 'SAMKeychain' # 钥匙串
     pod 'FBMemoryProfiler', :configurations => ['Debug']
     pod 'CocoaLumberjack'
+    pod 'STPopup'
+    pod 'Harpy'
 end
 
 def testPods

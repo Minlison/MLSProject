@@ -2,7 +2,7 @@
 //  UIViewController+TopTip.h
 //  minlison
 //
-//  Created by qcm on 16/12/23.
+//  Created by MinLison on 16/12/23.
 //  Copyright © 2016年 minlison. All rights reserved.
 //
 

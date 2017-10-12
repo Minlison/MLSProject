@@ -8,9 +8,16 @@
 
 /// NSObject no func and structs
 
-/// This `R.image` struct is generated, and contains static references to 52 images.
+/// This `R.image` struct is generated, and contains static references to 53 images.
 
 @interface UIImage (Image) 
+
+/// `[[UIImage imageNamed:@"icon_update"] imageWithRenderingMode:renderingMode]`
++ (UIImage *)icon_update;
+
+/// `[[UIImage imageNamed:@"icon_update"] imageWithRenderingMode:renderingMode]`
++ (UIImage *)icon_updateRenderingMode:(UIImageRenderingMode)renderingMode;
+
 
 /// `[[UIImage imageNamed:@"launchImage"] imageWithRenderingMode:renderingMode]`
 + (UIImage *)launchImageRenderingMode:(UIImageRenderingMode)renderingMode;
@@ -378,7 +385,7 @@
 
 
 
-/// This `R.string.appConst` struct is generated, and contains static references to 3 localization keys.
+/// This `R.string.appConst` struct is generated, and contains static references to 6 localization keys.
 
 @interface NSString (AppConst) 
 
@@ -394,10 +401,28 @@
 + (NSString *)app_NeworkError;
 
 
+/// Base translation: 升级
+/// 
+/// Locales: Base, en, zh-Hans
++ (NSString *)app_Update;
+
+
+/// Base translation: 新增功能:
+/// 
+/// Locales: Base, en, zh-Hans
++ (NSString *)app_UpdateNewFunction;
+
+
 /// Base translation: 确定
 /// 
 /// Locales: Base, en, zh-Hans
 + (NSString *)app_Sure;
+
+
+/// Base translation: 稍后
+/// 
+/// Locales: Base, en, zh-Hans
++ (NSString *)app_Latter;
 @end
 
 

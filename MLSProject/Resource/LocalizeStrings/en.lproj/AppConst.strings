@@ -8,3 +8,6 @@
 "App_Sure" = "确定";
 "App_Refresh" = "刷新";
 "App_NeworkError" = "加载失败，请检查网络链接！";
+"App_Latter" = "稍后";
+"App_Update" = "升级";
+"App_UpdateNewFunction" = "新增功能:";

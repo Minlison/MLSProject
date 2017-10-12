@@ -116,7 +116,7 @@
  @param error 错误信息
  @param block 点击确定回调, 如果为 nil, 则不显示确定按钮
  */
-- (void)setError:(NSError *)error confirm:(void (^)())block;
+- (void)setError:(NSError *)error confirm:(void (^)(void))block;
 @end
 
 #endif /* MLSPlayerControlProtocol_h */

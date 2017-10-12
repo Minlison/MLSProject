@@ -7,8 +7,19 @@
 
 /// NSObject no func and structs
 
-/// This `R.image` struct is generated, and contains static references to 52 images.
+/// This `R.image` struct is generated, and contains static references to 53 images.
 @implementation UIImage (Image) 
+
+/// `[[UIImage imageNamed:@"icon_update"] imageWithRenderingMode:renderingMode]`
++ (UIImage *)icon_update {
+     return [[UIImage imageNamed:@"icon_update"] imageWithRenderingMode:UIImageRenderingModeAutomatic];
+}
+
+/// `[[UIImage imageNamed:@"icon_update"] imageWithRenderingMode:renderingMode]`
++ (UIImage *)icon_updateRenderingMode:(UIImageRenderingMode)renderingMode {
+     return [[UIImage imageNamed:@"icon_update"] imageWithRenderingMode:renderingMode];
+}
+
 
 /// `[[UIImage imageNamed:@"launchImage"] imageWithRenderingMode:renderingMode]`
 + (UIImage *)launchImageRenderingMode:(UIImageRenderingMode)renderingMode {
@@ -584,7 +595,7 @@
 
 
 
-/// This `R.string.appConst` struct is generated, and contains static references to 3 localization keys.
+/// This `R.string.appConst` struct is generated, and contains static references to 6 localization keys.
 @implementation NSString (AppConst) 
 
 /// Base translation: 刷新
@@ -603,11 +614,35 @@
 }
 
 
+/// Base translation: 升级
+/// 
+/// Locales: Base, en, zh-Hans
++ (NSString *)app_Update {
+     return NSLocalizedStringWithDefaultValue(@"App_Update",@"AppConst",[NSBundle mainBundle],@"升级",@"");
+}
+
+
+/// Base translation: 新增功能:
+/// 
+/// Locales: Base, en, zh-Hans
++ (NSString *)app_UpdateNewFunction {
+     return NSLocalizedStringWithDefaultValue(@"App_UpdateNewFunction",@"AppConst",[NSBundle mainBundle],@"新增功能:",@"");
+}
+
+
 /// Base translation: 确定
 /// 
 /// Locales: Base, en, zh-Hans
 + (NSString *)app_Sure {
      return NSLocalizedStringWithDefaultValue(@"App_Sure",@"AppConst",[NSBundle mainBundle],@"确定",@"");
+}
+
+
+/// Base translation: 稍后
+/// 
+/// Locales: Base, en, zh-Hans
++ (NSString *)app_Latter {
+     return NSLocalizedStringWithDefaultValue(@"App_Latter",@"AppConst",[NSBundle mainBundle],@"稍后",@"");
 }
 @end
 

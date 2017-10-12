@@ -1,8 +1,8 @@
 //
-//  BBMarcoDefine.h
-//  BangBang
+//  MarcoDefine.h
+//  MLSProject
 //
-//  Created by qcm on 16/12/15.
+//  Created by MinLison on 16/12/15.
 //  Copyright © 2016年 . All rights reserved.
 //
 
@@ -64,6 +64,7 @@
 #define __TAB_BAR_HEIGHT__      (49)
 //屏幕适配
 #define __MLSWidth(w)      (w/375.0)*__MAIN_SCREEN_WIDTH__
+#define __MLSHeight(w)      (w/667.0)*__MAIN_SCREEN_HEIGHT__
 
 /// 版本判断
 #define IOS_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
