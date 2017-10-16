@@ -344,9 +344,9 @@
 {
         return [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] longLongValue];
 }
-- (id)cacheSensitiveData
+- (NSString *)cacheIdentifier
 {
-        return self.encryptParams;
+        return nil;
 }
 - (NSString *)description
 {
