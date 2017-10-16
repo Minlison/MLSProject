@@ -11,6 +11,7 @@
 #import "BaseLoadingView.h"
 @interface BaseViewController ()
 @property(nonatomic, assign, readwrite, getter=isLoading) BOOL loading;
+@property(nonatomic, assign) NSTimeInterval lastLoadingTimeInterval;
 @end
 
 @implementation BaseViewController
@@ -119,19 +120,38 @@
 /// Subclass Call Method
 - (void)setLoading:(BOOL)loading animation:(BOOL)animation
 {
-        self.loading = YES;
-        animation ? [self showEmptyViewWithLoading] : [self showEmptyViewWithLoading:NO image:nil text:nil detailText:nil buttonTitle:nil buttonAction:nil];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setLoading:animation:) object:nil];
+        self.lastLoadingTimeInterval = [[NSDate date] timeIntervalSince1970];
+        self.loading = loading;
+        if (loading)
+        {
+                animation ? [self showEmptyViewWithLoading] : [self showEmptyViewWithLoading:NO image:nil text:nil detailText:nil buttonTitle:nil buttonAction:nil];
+        }
+        else
+        {
+                [self setSuccess];
+        }
 }
-
 - (void)setError:(NSError *)error
 {
         self.loading = NO;
+        self.lastLoadingTimeInterval = [[NSDate date] timeIntervalSince1970];
         [self showEmptyViewWithLoading:NO image:[UIImage none_pic] text:error.localizedDescription?:[NSString app_NeworkError] detailText:nil buttonTitle:[NSString app_Refresh] buttonAction:@selector(reloadData)];
 }
 - (void)setSuccess
 {
         self.loading = NO;
-        [self hideEmptyView];
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setSuccess) object:nil];
+        NSTimeInterval subTimeInterval = [[NSDate date] timeIntervalSince1970] - self.lastLoadingTimeInterval;
+        if (subTimeInterval < self.minLoadingTime)
+        {
+                [self performSelector:@selector(setSuccess) withObject:nil afterDelay:(self.minLoadingTime - subTimeInterval)];
+        }
+        else
+        {
+                self.lastLoadingTimeInterval = [[NSDate date] timeIntervalSince1970];
+                [self hideEmptyView];
+        }
 }
 
 /// Subclass Holder

@@ -459,6 +459,7 @@
 - (void)restartWithRegetSign
 {
         [self cleanCacheSign];
+        self.request.ignoreCache = YES;
         self.signRequest.ignoreCache = YES;
         [self start];
 }

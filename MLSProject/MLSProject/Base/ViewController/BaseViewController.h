@@ -31,6 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, assign, readonly, getter=isLoading) BOOL loading;
 
 /**
+ 最小加载时间（防止加载过快，动画闪屏）
+ 默认 0.5
+ */
+@property(nonatomic, assign) NSTimeInterval minLoadingTime;
+
+/**
  控制器视图
  等价于 self.view
  */
