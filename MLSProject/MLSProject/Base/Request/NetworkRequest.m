@@ -255,6 +255,7 @@
 }
 - (void)_Start
 {
+        [self clearMemoryStoreData];
         if ( self.encryptTool )
         {
                 self.encryptParams = [self.encryptTool encryptParam:self.params];
@@ -291,6 +292,7 @@
         _decryptResponseData = nil;
         _decryptResponseObject = nil;
         _decryptResponseString = nil;
+        _encryptParams = nil;
 }
 /// MARK: -- YTKNetwork SubClass Hold
 - (nullable id)requestArgument
