@@ -149,7 +149,7 @@
 }
 - (SignRequest *)signRequest
 {
-        if (_signRequest == nil)
+        if (_signRequest == nil && [self needSign])
         {
                 NSString *version = [self methodVersion];
                 DebugAssert(version != nil, @"方法版本号没有设置");
