@@ -1,6 +1,6 @@
 //
 //  RouterServiceProtocol.h
-//  MLSProject
+//  MinLison
 //
 //  Created by MinLison on 2017/9/6.
 //  Copyright © 2017年 minlison. All rights reserved.
@@ -8,8 +8,8 @@
 
 #ifndef RouterServiceProtocol_h
 #define RouterServiceProtocol_h
-
-#import "BaseProtocol.h"
+#ifdef __OBJC__
+#import "BaseServiceProtocol.h"
 #import "RouterHandleProtocol.h"
 
 /*
@@ -17,9 +17,9 @@
  route url 的处理方式
  route url 的创建方式 使用宏定义 AppRouteWithURI() 来创建
  
- route url 的格式 scheme://uri?query
+ route url 的格式 scheme://uri?queryStr
  uri 会定义一系列常量,来指定控制器所对应的 uri, 保证不重复
- 后面接具体参数时, 以 url query 的方式传参数 url=https://www.baidu.com&cate_id=1  取值会出 url = https://www.baidu.com cate_id = 1
+ 后面接具体参数时, 以 url queryStr 的方式传参数 url=https://www.baidu.com&cate_id=1  取值会出 url = https://www.baidu.com cate_id = 1
  */
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,8 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
  @param uri  uri 唯一标识符, 是除了 scheme 之外的地址 例如 app://ac/b 中的 ac/b
  @return  增加 scheme 的地址
  */
-#define AppRouteStringWithURIFormat(uri,query,...) [NSString stringWithFormat:@"%@%@?"query,[AppShareRouterService routeScheme],uri,##__VA_ARGS__]
-#define AppRouteURLWithURIFormat(uri,query,...) [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?"query,[AppShareRouterService routeScheme],uri,##__VA_ARGS__]]
+#define AppRouteStringWithURIFormat(uri,queryStr,...) [NSString stringWithFormat:@"%@%@?" queryStr,[AppShareRouterService routeScheme],uri,##__VA_ARGS__]
+#define AppRouteURLWithURIFormat(uri,queryStr,...) [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?" queryStr,[AppShareRouterService routeScheme],uri,##__VA_ARGS__]]
 
 /**
  快速创建注册路由地址, 用于监听一个地址
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^RouterServiceCallBackBlock)( NSDictionary<NSString *, id>  * _Nullable parameters, UIViewController <JLRRouteDefinitionTargetController>* _Nullable targetVC);
 
-@protocol RouterServiceProtocol <BaseProtocol>
+@protocol RouterServiceProtocol <BaseServiceProtocol>
 
 /**
  路由 secheme
@@ -59,7 +59,7 @@ typedef void (^RouterServiceCallBackBlock)( NSDictionary<NSString *, id>  * _Nul
 /**
  注册控制器
 
- @param routePattern 路由地址
+ @param route 路由地址
  @param handlerClass 接收路由的 Class
  */
 - (void)addRoute:(NSString *)routePattern handlerClass:(Class)handlerClass;
@@ -114,7 +114,7 @@ typedef void (^RouterServiceCallBackBlock)( NSDictionary<NSString *, id>  * _Nul
  */
 - (BOOL)canHandleUrl:(NSURL *)routeUrl;
 @end
-
+#endif
 #endif /* RouterServiceProtocol_h */
 
 NS_ASSUME_NONNULL_END

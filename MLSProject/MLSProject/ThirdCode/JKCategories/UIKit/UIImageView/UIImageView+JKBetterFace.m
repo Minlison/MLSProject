@@ -28,7 +28,7 @@ void jk_hack_uiimageview_bf(){
 }
 
 - (void)jk_setBetterFaceImage:(UIImage *)image{
-        [self setJk_needsBetterFace:image?YES:NO];
+    [self setJk_needsBetterFace:image];
     if (![self jk_needsBetterFace]) {
         return;
     }

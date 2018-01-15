@@ -34,10 +34,10 @@ iOS_message "work_path:#{work_path}"
 ft_name = File.basename(work_path)
 iOS_message "ft_name:#{ft_name}"
 
-project_path = "#{work_path}/ChengziZdd.xcodeproj"
+project_path = "#{work_path}/MLSProject.xcodeproj"
 iOS_message "project_path:#{project_path}"
 
-workspace_path =  "#{work_path}/ChengziZdd.xcworkspace"
+workspace_path =  "#{work_path}/MLSProject.xcworkspace"
 iOS_message "workspace_path:#{workspace_path}"
 
 target = options[:'target'].gsub('/', '_')
@@ -50,7 +50,7 @@ raise "missing config build_type!" unless build_type
 
 change_text = options[:'change_text']
 if change_text.empty?
-  change_text = "#{build_type}---版本更新"
+  change_text = ""
 end
 iOS_message "change_text:#{change_text}"
 
@@ -68,11 +68,8 @@ iOS_message "output_dir:#{output_dir}"
 FileUtils.mkpath output_dir
 
 build_timestamp = Time.new.strftime("%y%m%d%H%M")
-if build_type == "iOS_store"
 build_no = "#{build_timestamp}"
-else
-build_no = "#{build_timestamp}"
-end
+
 iOS_message "build_no:#{build_no}"
 
 build_version = get_version_number(xcodeproj: project_path)
@@ -85,14 +82,7 @@ archive_path = "#{output_dir}/#{file_name}.xcarchive"
 iOS_message "archive_path:#{archive_path}"
 
 # parse build type
-plist_path = ""
-case target
-when 'ChengziZdd'
-  plist_path = "#{work_path}/ChengziZdd/Info.plist"
-# when 'ChengziZdd'
-#   plist_path = "#{work_path}/ChengziZdd/chengzivrPro.plist"
-end
-
+plist_path = "#{work_path}/MLSProject/Info.plist"
 
 configuration = ""
 export_method = ""
@@ -102,7 +92,7 @@ case build_type
 when 'release'
 configuration = "Release"
 export_method = "app-store"
-ipa_name = "#{file_name}_release.ipa"
+ipa_name = "#{target}.ipa"
 when 'adhoc_online'
 configuration = "ADHocOnline"
 export_method = "ad-hoc"
@@ -139,29 +129,43 @@ xcodebuild(
            clean: true,
            build: true,
            destination: "generic/platform=iOS",
+           include_bitcode:false,
            )
 
 # export IPA  export_method, must be: ["app-store", "ad-hoc", "package", "enterprise", "development", "developer-id"
 gym(
     export_method: export_method,
+    configuration:configuration,
     output_name: ipa_name,
     archive_path: archive_path,
-    configuration: configuration,
     scheme: target,
     output_directory: output_dir,
     silent: false,
     include_symbols: true,
     skip_build_archive: true,
+    clean:true,
+    include_bitcode:false,
+    destination: "generic/platform=iOS",
+    xport_options: { compileBitcode: false }
     )
 
 # 上传至 fir
-    # sh "fir publish #{output_dir}/#{ipa_name} -T d15e850df1f0b1a4f4d0f0836fc283cb"
+    # sh "fir publish #{output_dir}/#{ipa_name} -T token"
 # 上传至蒲公英 需要安装 fastlane 插件.
 # fastlane add_plugin pgyer
-# pgyer(api_key: "a9a4ead0f4079dd308f09e2ea6d5d4a6", user_key: "3074db88f6fb298c5c3844156f4a9cc7")
+# pgyer(api_key: "api_key", user_key: "user_key")
 # fastlane add_plugin pgyer
+
 case build_type
 when 'release'
+deliver(
+  # force: true, 
+  ipa:  "#{output_dir}/#{ipa_name}",
+  skip_screenshots: true,
+  skip_metadata: true,
+  skip_app_version_update: true,
+  # itc_provider: "abcde12345" # pass a specific value to the iTMSTransporter -itc_provider option
+)
   # not upload
 when 'adhoc_online'
 pgyer(api_key: "1c527da083a984f88293768185b3fc7b", user_key: "52967464e2a10d222f83655cf5de448a", update_description: change_text)

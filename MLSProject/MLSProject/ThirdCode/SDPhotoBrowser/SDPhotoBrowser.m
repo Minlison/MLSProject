@@ -31,6 +31,7 @@
         UIActivityIndicatorView *_indicatorView;
         BOOL _willDisappear;
         UIPageControl *_pageControl;
+        UIImageView *_backImageView;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -58,30 +59,29 @@
 
 - (void)setupToolbars
 {
+        UIImageView *backimagView = [[UIImageView alloc]init];
+        backimagView.image = [UIImage imageNamed:@"image_shadow"];
         // 1. 序标
         UILabel *indexLabel = [[UILabel alloc] init];
-        indexLabel.bounds = CGRectMake(0, 0,__MAIN_SCREEN_WIDTH__-40,100);
-        indexLabel.textAlignment = NSTextAlignmentCenter;
+        indexLabel.textAlignment = NSTextAlignmentLeft;
         indexLabel.textColor = [UIColor whiteColor];
-        indexLabel.font = [UIFont boldSystemFontOfSize:14];
+        indexLabel.font = [UIFont boldSystemFontOfSize:16];
+        [indexLabel setQmui_lineHeight:20];
         indexLabel.numberOfLines = 0;
-        
         UIPageControl *pageControl = [[UIPageControl alloc]init];
         pageControl.bounds = CGRectMake(0, 0, __MAIN_SCREEN_WIDTH__, 15);
-        
         indexLabel.clipsToBounds = YES;
-        if (self.models.count >= 1) {
-                
+        if (self.models.count >= 1)
+        {
                 pageControl.numberOfPages = self.imageCount;
-                
+                pageControl.hidden = !(self.imageCount-1);
                 MLSTipPicModel *model = self.models.firstObject;
-                
                 indexLabel.text = model.desc;
         }
-        
+        [self addSubview:backimagView];
         [self addSubview:indexLabel];
         [self addSubview:pageControl];
-        
+        _backImageView = backimagView;
         _indexLabel = indexLabel;
         _pageControl = pageControl;
         
@@ -91,9 +91,7 @@
 {
         int index = _scrollView.contentOffset.x / _scrollView.bounds.size.width;
         UIImageView *currentImageView = _scrollView.subviews[index];
-        
         UIImageWriteToSavedPhotosAlbum(currentImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-        
         UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
         indicator.center = self.center;
@@ -105,24 +103,36 @@
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 {
         [_indicatorView removeFromSuperview];
-        
-        UILabel *label = [[UILabel alloc] init];
-        label.textColor = [UIColor whiteColor];
-        label.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-        label.layer.cornerRadius = 3;
-        label.clipsToBounds = YES;
-        label.bounds = CGRectMake(0, 0, __MLSWidth(120.0f), __MLSWidth(96.0f));
-        label.center = self.center;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont boldSystemFontOfSize:14];
-        [[UIApplication sharedApplication].keyWindow addSubview:label];
-        [[UIApplication sharedApplication].keyWindow bringSubviewToFront:label];
-        if (error) {
-                label.text = SDPhotoBrowserSaveImageFailText;
+        UIImageView *tipView = [[UIImageView alloc]init];
+        tipView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        tipView.layer.cornerRadius = 3;
+        tipView.clipsToBounds = YES;
+        tipView.bounds = CGRectMake(0, 0, __WGWidth(120.0f), __WGWidth(96.0f));
+        tipView.center = self.center;
+        UIImageView *imgView = [[UIImageView alloc]init];
+        [tipView addSubview:imgView];
+        UILabel *tipLabel = [[UILabel alloc] init];
+        tipLabel.textColor = [UIColor whiteColor];
+        tipLabel.textAlignment = NSTextAlignmentCenter;
+        tipLabel.font = [UIFont boldSystemFontOfSize:14];
+        [tipView addSubview:tipLabel];
+        [[UIApplication sharedApplication].keyWindow addSubview:tipView];
+        [[UIApplication sharedApplication].keyWindow bringSubviewToFront:tipView];
+        if (error)
+        {
+                tipLabel.hidden = YES;
+                imgView.hidden = NO;
+                tipLabel.center = tipView.center;
+                tipLabel.text = SDPhotoBrowserSaveImageFailText;
         }   else {
-                label.text = SDPhotoBrowserSaveImageSuccessText;
+                imgView.frame = CGRectMake(__WGWidth(49), __WGWidth(27), __WGWidth(26), __WGWidth(20));
+                tipLabel.frame = CGRectMake(0, __WGWidth(66), __WGWidth(120), __WGWidth(20));
+                tipLabel.hidden = NO;
+                imgView.hidden = NO;
+                imgView.image = [UIImage imageNamed:@"image_icon_finish"];
+                tipLabel.text = SDPhotoBrowserSaveImageSuccessText;
+                [tipView performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1.0];
         }
-        [label performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:1.0];
 }
 
 - (void)setupScrollView
@@ -211,7 +221,15 @@
                 self.backgroundColor = [UIColor clearColor];
                 _indexLabel.alpha = 0;
                 _pageControl.alpha = 0;
+                _backImageView.alpha = 0;
+                
         } completion:^(BOOL finished) {
+                
+                if (self.delegate) {
+                        
+                        [self.delegate closeSuperViewController];
+                }
+                
                 [self removeFromSuperview];
         }];
 }
@@ -246,13 +264,13 @@
                         sheetView.alpha = 1;
                 }];
                 
-                [sheetView setClickBlock:^(MLSSheetViewClickType type){
+                [sheetView setClickBlock:^(CZSheetViewClickType type){
                         
-                        if (type == MLSSheetViewClickTypeSave){
+                        if (type == CZSheetViewClickTypeSave){
                                 
                                 [self saveImage];
                                 
-                        }else if(type == MLSSheetViewClickTypeCancle){
+                        }else if(type == CZSheetViewClickTypeCancle){
                                 
                                 //                [self photoClick:nil];
                                 
@@ -292,9 +310,27 @@
                 [self showFirstImage];
         }
         
-        _indexLabel.center = CGPointMake(self.bounds.size.width * 0.5,__MAIN_SCREEN_HEIGHT__*0.8);
         
-        _pageControl.center = CGPointMake(self.bounds.size.width * 0.5,__MAIN_SCREEN_HEIGHT__-__MLSWidth(20.0f));
+        [_backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.leading.trailing.bottom.equalTo(self);
+                
+                make.height.mas_equalTo(__MAIN_SCREEN_HEIGHT__*2/5);
+        }];
+  
+        [_indexLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+
+                make.bottom.equalTo(self.mas_bottom).offset(-__MAIN_SCREEN_HEIGHT__*0.05);
+
+                make.trailing.equalTo(self).offset(-20);
+
+                make.leading.equalTo(self).offset(20);
+                
+                make.height.mas_equalTo(120);
+
+        }];
+        
+        _pageControl.center = CGPointMake(self.bounds.size.width * 0.5,__MAIN_SCREEN_HEIGHT__-__WGWidth(20.0f));
         
 }
 
@@ -397,24 +433,18 @@
         
         [self setupImageOfImageViewForIndex:index];
         
-        if (!_willDisappear) {
-                
+        if (!_willDisappear)
+        {
                 MLSTipPicModel *model = self.models[index];
-                
                 _indexLabel.text = model.desc;
-                
                 _pageControl.currentPage = index;
                 
-                if (self.delegate){
-                        
+                if (self.delegate)
+                {
                         [self.delegate photoBrowser:self currentIndex:index];
                 }
-                
         }
-        
 }
-
-
 
 -(void)setModels:(NSArray<MLSTipPicModel *> *)models{
 

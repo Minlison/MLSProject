@@ -1,8 +1,8 @@
 //
 //  AppDelegate.m
-//  MLSProject
+//  MinLison
 //
-//  Created by MinLison on 2017/9/27.
+//  Created by MinLison on 2017/8/18.
 //  Copyright © 2017年 minlison. All rights reserved.
 //
 
@@ -10,11 +10,11 @@
 #import <BeeHive/BeeHive.h>
 #import <BeeHive/BHTimeProfiler.h>
 #import "MainMoudle.h"
-#ifdef DEBUG
+
+#ifdef FBMemoryProfiler
 #import <FBMemoryProfiler/FBMemoryProfiler.h>
 #import "CacheCleanerPlugin.h"
 #import "RetainCycleLoggerPlugin.h"
-
 @interface AppDelegate ()
 {
         FBMemoryProfiler *_memoryProfiler;
@@ -30,12 +30,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+        
         [BHContext shareInstance].application = application;
         [BHContext shareInstance].launchOptions = launchOptions;
-#ifdef DEBUG
+#ifdef FBMemoryProfiler
         [BHContext shareInstance].env = BHEnvironmentDev;
-        _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[[CacheCleanerPlugin alloc] init], [[RetainCycleLoggerPlugin alloc] init]] retainCycleDetectorConfiguration:nil];
+        _memoryProfiler = [[FBMemoryProfiler alloc] initWithPlugins:@[[[CacheCleanerPlugin alloc] init],
+                                                                      [[RetainCycleLoggerPlugin alloc] init]]
+                                   retainCycleDetectorConfiguration:nil];
         [_memoryProfiler enable];
+#elif (DEBUG || OPEN_RIGHT_MENU)
+        [BHContext shareInstance].env = BHEnvironmentDev;
 #elif defined(ADHoc)
         [BHContext shareInstance].env = BHEnvironmentTest;
 #elif defined(ADHocOnline)
@@ -50,7 +55,7 @@
         [super application:application didFinishLaunchingWithOptions:launchOptions];
         
         id <MainServiceProtocol> mainService = [[BeeHive shareInstance] createService:@protocol(MainServiceProtocol)];
-        
+       
         UIViewController *vc = [mainService getController];
         
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -60,6 +65,5 @@
         
         return YES;
 }
-
 
 @end

@@ -24,8 +24,8 @@ _format.mSampleRate = 8000.0f;
 /**
  *  format wav data
  *
- *  raw audio data
- *  @param PCMFormat format of pcm
+ *  @param self   raw audio data
+ *  @param pcmFormat format of pcm
  *
  *  @return wav data
  */

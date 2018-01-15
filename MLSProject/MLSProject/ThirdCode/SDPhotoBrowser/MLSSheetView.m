@@ -1,9 +1,9 @@
 //
-//  MLSSheetView.H
-//  MLSProject
+//  MLSSheetView.m
+//  newDemo
 //
-//  Created by MinLison on 2017/10/9.
-//  Copyright © 2017年 minlison. All rights reserved.
+//  Created by minlison on 2017/9/4.
+//  Copyright © 2017年 com.CZVRDemo. All rights reserved.
 //
 
 #import "MLSSheetView.h"
@@ -48,7 +48,7 @@
     
     [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    saveBtn.titleLabel.font = MLSSystem16Font;
+    saveBtn.titleLabel.font = WGSystem16Font;
     
     saveBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -64,7 +64,7 @@
     
     [cancleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
-    cancleBtn.titleLabel.font = MLSSystem16Font;
+    cancleBtn.titleLabel.font = WGSystem16Font;
     
     cancleBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -74,16 +74,16 @@
        
         make.top.leading.trailing.equalTo(contentView);
         
-        make.height.offset(__MLSWidth(BTNHEIGHT));
+        make.height.offset(__WGWidth(BTNHEIGHT));
     }];
     
     [cancleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(saveBtn.mas_bottom).offset(__MLSWidth(6.0f));
+        make.top.equalTo(saveBtn.mas_bottom).offset(__WGWidth(6.0f));
         
         make.bottom.leading.trailing.equalTo(contentView);
         
-        make.height.offset(__MLSWidth(BTNHEIGHT));
+        make.height.offset(__WGWidth(BTNHEIGHT));
     }];
     
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +107,7 @@
             
             if (self.clickBlock){
             
-                self.clickBlock(MLSSheetViewClickTypeSave);
+                self.clickBlock(CZSheetViewClickTypeSave);
             }
             
             break;
@@ -115,7 +115,7 @@
             
             if (self.clickBlock){
                 
-                self.clickBlock(MLSSheetViewClickTypeCancle);
+                self.clickBlock(CZSheetViewClickTypeCancle);
                     
             }
             

@@ -1,0 +1,47 @@
+{
+  "name": "pgyer",
+  "version": "1.0.0",
+  "summary": "蒲公英管理",
+  "description": "蒲公英 pod 管理\"",
+  "homepage": "https://www.pgyer.com",
+  "license": "MIT",
+  "authors": {
+    "MinLison": "yuanhang.1991@163.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "path": "."
+  },
+  "default_subspecs": [
+    "update",
+    "pgyersdk"
+  ],
+  "subspecs": [
+    {
+      "name": "pgyersdk",
+      "vendored_frameworks": "sdk/PgySDK.framework",
+      "frameworks": [
+        "CoreTelephony",
+        "SystemConfiguration",
+        "OpenGLES",
+        "CoreMotion",
+        "AudioToolbox",
+        "AvFoundation"
+      ]
+    },
+    {
+      "name": "update",
+      "frameworks": [
+        "CoreTelephony",
+        "SystemConfiguration",
+        "OpenGLES",
+        "CoreMotion",
+        "AudioToolbox",
+        "AvFoundation"
+      ],
+      "vendored_frameworks": "sdk/PgyUpdate.framework"
+    }
+  ]
+}

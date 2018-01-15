@@ -370,19 +370,19 @@
     NSEnumerator *enumerator = [array objectEnumerator];
     
     if ([type isEqualToString:[NSInvocation encodeType:@encode(CGRect)]]){
-        CGRect returnVal;
+        CGRect returnVal = CGRectZero;
         returnVal.origin.x = [[enumerator nextObject]doubleValue];
         returnVal.origin.y = [[enumerator nextObject]doubleValue];
         returnVal.size.width = [[enumerator nextObject]doubleValue];
         returnVal.size.height = [[enumerator nextObject]doubleValue];
         result = [NSValue valueWithCGRect:returnVal];
     }else if ([type isEqualToString:[NSInvocation encodeType:@encode(CGSize)]]){
-        CGSize returnVal;
+        CGSize returnVal = CGSizeZero;
         returnVal.width = [[enumerator nextObject]doubleValue];
         returnVal.height = [[enumerator nextObject]doubleValue];
         result = [NSValue valueWithCGSize:returnVal];
     }else if ([type isEqualToString:[NSInvocation encodeType:@encode(CGPoint)]]){
-        CGPoint returnVal;
+        CGPoint returnVal = CGPointZero;
         returnVal.x = [[enumerator nextObject]doubleValue];
         returnVal.y = [[enumerator nextObject]doubleValue];
         result = [NSValue valueWithCGPoint:returnVal];
@@ -390,12 +390,12 @@
         CGAffineTransform returnVal = CGAffineTransformIdentity;
         result = [NSValue valueWithCGAffineTransform:returnVal];
     }else if ([type isEqualToString:[NSInvocation encodeType:@encode(CLLocationCoordinate2D)]]){
-        CLLocationCoordinate2D returnVal;
+        CLLocationCoordinate2D returnVal = kCLLocationCoordinate2DInvalid;
         returnVal.latitude = [[enumerator nextObject]doubleValue];
         returnVal.longitude = [[enumerator nextObject]doubleValue];
         result = [NSValue valueWithMKCoordinate:returnVal];
     }else if ([type isEqualToString:[NSInvocation encodeType:@encode(MKCoordinateSpan)]]){
-        MKCoordinateSpan returnVal;
+        MKCoordinateSpan returnVal = MKCoordinateSpanMake(0, 0);
         returnVal.latitudeDelta = [[enumerator nextObject]doubleValue];
         returnVal.longitudeDelta = [[enumerator nextObject]doubleValue];
         result = [NSValue valueWithMKCoordinateSpan:returnVal];
@@ -403,12 +403,12 @@
         CATransform3D returnVal = CATransform3DIdentity;
         result = [NSValue valueWithCATransform3D:returnVal];
     }else if ([type isEqualToString:[NSInvocation encodeType:@encode(NSRange)]]){
-        NSRange returnVal;
+        NSRange returnVal = NSMakeRange(0, 0);
         returnVal.location = [[enumerator nextObject]unsignedIntegerValue];
         returnVal.length = [[enumerator nextObject]unsignedIntegerValue];
         result = [NSValue valueWithRange:returnVal];
     }else if ( [type isEqualToString:[NSInvocation encodeType:@encode(UIEdgeInsets)]]){
-        UIEdgeInsets returnVal;
+        UIEdgeInsets returnVal = UIEdgeInsetsZero;
         returnVal.top = [[enumerator nextObject]doubleValue];
         returnVal.left = [[enumerator nextObject]doubleValue];
         returnVal.bottom = [[enumerator nextObject]doubleValue];

@@ -12,7 +12,7 @@
 static NSDateFormatter *_internetDateTimeFormatter = nil;
 
 // Good info on internet dates here:
-// http://developer.MinLison.com/iphone/library/qa/qa2010/qa1480.html
+// http://developer.apple.com/iphone/library/qa/qa2010/qa1480.html
 @implementation NSDate (JKInternetDateTime)
 
 // Instantiate single date formatter
@@ -112,7 +112,7 @@ static NSDateFormatter *_internetDateTimeFormatter = nil;
             NSString *RFC3339String = [[NSString stringWithString:dateString] uppercaseString];
             RFC3339String = [RFC3339String stringByReplacingOccurrencesOfString:@"Z" withString:@"-0000"];
             // Remove colon in timezone as it breaks NSDateFormatter in iOS 4+.
-            // - see https://devforums.MinLison.com/thread/45837
+            // - see https://devforums.apple.com/thread/45837
             if (RFC3339String.length > 20) {
                 RFC3339String = [RFC3339String stringByReplacingOccurrencesOfString:@":" 
                                                                          withString:@"" 

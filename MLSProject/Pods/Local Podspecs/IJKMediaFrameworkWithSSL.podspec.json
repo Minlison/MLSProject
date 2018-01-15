@@ -1,0 +1,19 @@
+{
+  "name": "IJKMediaFrameworkWithSSL",
+  "version": "0.8.4",
+  "summary": "IJKMediaFrameworkWithSSL",
+  "homepage": "https://github.com/Bilibili/ijkplayer",
+  "authors": {
+    "MinLison": "yuanhang.1991@163.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/Bilibili/ijkplayer.git",
+    "tag": "0.8.4"
+  },
+  "source_files": "",
+  "vendored_frameworks": "IJKMediaFrameworkWithSSL.framework",
+  "requires_arc": true
+}

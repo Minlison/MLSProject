@@ -336,6 +336,7 @@ static BOOL alwaysTreatsHostAsPathComponent = NO;
 		}
 		[self _verboseLog:@"Final parameters are %@", finalParameters];
 		
+                
 		if (route.targetControllerClass)
 		{
 			didRoute = [route callControllerHandlerBlockWithParameters:finalParameters];
@@ -344,13 +345,15 @@ static BOOL alwaysTreatsHostAsPathComponent = NO;
 		{
 			didRoute = [route callHandlerBlockWithParameters:finalParameters];
 		}
-		
+                UIViewController <JLRRouteDefinitionTargetController>*vc = route.targetViewController;
+                route.targetViewController = nil;
 		if (didRoute)
 		{
 			if (handlerBlock)
 			{
-				handlerBlock(finalParameters,route.targetViewController);
+				handlerBlock(finalParameters,vc);
 			}
+                        
 			break;
 		}
 	}

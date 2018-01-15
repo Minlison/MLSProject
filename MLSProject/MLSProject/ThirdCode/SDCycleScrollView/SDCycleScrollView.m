@@ -294,6 +294,7 @@ NSString * const ID = @"cycleCell";
 			TAPageControl *pageControl = [[TAPageControl alloc] init];
 			pageControl.numberOfPages = self.imagesGroup.count;
 			pageControl.dotColor = self.dotColor;
+                        pageControl.hidesForSinglePage = YES;
 			[self addSubview:pageControl];
 			_pageControl = pageControl;
 		}
@@ -305,6 +306,7 @@ NSString * const ID = @"cycleCell";
 			pageControl.numberOfPages = self.imagesGroup.count;
 			pageControl.currentPageIndicatorTintColor = self.dotColor;
 			pageControl.pageIndicatorTintColor = self.pageIndicatorTintColor;
+                        pageControl.hidesForSinglePage = YES;
 			[self addSubview:pageControl];
 			_pageControl = pageControl;
 		}

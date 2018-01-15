@@ -23,6 +23,7 @@
 
 - (void)photoBrowser:(SDPhotoBrowser *)browser currentIndex:(NSInteger)current;
 
+- (void)closeSuperViewController;
 @end
 
 

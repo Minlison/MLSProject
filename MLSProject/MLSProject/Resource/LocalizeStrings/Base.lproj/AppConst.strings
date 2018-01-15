@@ -1,0 +1,74 @@
+/* 
+  AppConst.strings
+  MinLison
+
+  Created by MinLison on 2017/9/8.
+  Copyright © 2017年 minlison. All rights reserved.
+*/
+// 控制器标题
+"APP_Home" = "主页";
+"APP_Yard" = "场地预定";
+"APP_Event" = "赛事活动";
+"APP_Mine" = "我";
+
+"App_HomeTitle" = "李宁体育园";
+"App_MineTitle" = "个人中心";
+"App_MyVipCard" = "我的会员卡";
+"App_BindVipCard" = "绑定会员卡";
+"App_CreateVipCard" = "新办会员卡";
+"App_WebCatLogin" = "微信登陆";
+"App_WebCatLogin" = "绑定手机号";
+"App_FindPwd" = "找回密码";
+"App_RegisterNewCard" = "办卡";
+"App_Recharge" = "充值";
+"App_RegisterAndRecharge" = "办卡充值";
+"App_TransactNow" = "立即办理";
+"App_CardNum" = "卡号：";
+"App_Balance" = "余额：";
+"App_RemainTime" = "有效期至：";
+"App_ChangePwd" = "改密码";
+
+/// 普通提示文本
+"App_Sure" = "确定";
+"App_Refresh" = "刷新";
+"App_NeworkError" = "加载失败，请检查网络链接！";
+"App_RequestNormalError" = "网络错误，请稍后重试！";
+"App_Latter" = "稍后";
+"App_Update" = "升级";
+"App_UpdateNewFunction" = "新增功能:";
+"APP_Like" = "喜欢";
+"App_FeedBack" = "反馈";
+"App_NotLogin" = "未登录";
+"App_Login" = "登录";
+"App_Register" = "注册";
+"App_AuthorizationSuccess" = "授权成功";
+"App_AuthorizationFailed" = "授权失败";
+"APP_PhoneNum" = "手机号码";
+"APP_SMSSecurityCode" = "短信验证码";
+"APP_GetSMSCode" = "获取验证码";
+"APP_LogoutSuccess" = "退出登录成功";
+"APP_LoginSuccess" = "登录成功";
+"APP_NickNameError" = "请输入正确昵称";
+"APP_Save" = "保存";
+"APP_UploadSuccess" = "上传成功";
+"APP_UserNickNameNotValid" = "昵称至少2个字";
+"App_SuggestionFeedBack" = "意见反馈";
+"App_Send" = "发送";
+"App_CommentSaySomeThingFuny" = "说点儿有趣的...";
+"App_Overhead" = "置顶";
+"App_Newest" = "最新";
+"App_NoNickName" = "匿名用户";
+"App_EmptyContent" = "无内容";
+"APP_ThirdPartyFastLogin" = "快捷登录";
+"APP_SharedSuccess" = "分享成功";
+"APP_SharedFailed" = "分享失败";
+"APP_NewestComment" = "最新评论 (%ld)";
+"APP_WonderfulComment" = "精彩评论";
+"APP_MoreSupportAndMoreWonderful" = "多赞多精彩";
+"APP_upLoadMore" = "上拉显示更多...";
+"APP_stopForRefresh" = "松开刷新...";
+"APP_refreshIng" = "努力加载中...";
+"APP_endRefresh" = "已经到底啦";
+"App_EmptyComment" = "来,做第一个评论的人";
+"App_More" = "更多";
+"App_UserSignUp" = "我要报名";

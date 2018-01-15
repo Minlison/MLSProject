@@ -204,11 +204,8 @@ _Pragma("clang diagnostic pop") \
     NSDateComponents *components2 = [[NSDate jk_currentCalendar] components:JK_NSDATE_UTILITIES_COMPONENT_FLAGS fromDate:aDate];
 
     // Must be same week. 12/31 and 1/1 will both be week "1" if they are in the same week
-#ifdef NSFoundationVersionNumber_iOS_7_0
     if (components1.weekOfYear != components2.weekOfYear) return NO;
-#else
-    if (components1.week != components2.week) return NO;
-#endif
+    
     // Must have a time interval under 1 week. Thanks @aclark
     return (fabs([self timeIntervalSinceDate:aDate]) < JK_D_WEEK);
 

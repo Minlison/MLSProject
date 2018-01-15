@@ -184,7 +184,7 @@
 	if (self.handlerVCBlock == nil) {
 		return YES;
 	}
-	
+        self.targetViewController = nil;
 	return self.handlerVCBlock(vc);
 }
 @end

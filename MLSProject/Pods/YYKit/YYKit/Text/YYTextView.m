@@ -153,6 +153,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         unsigned int insideUndoBlock : 1;
         unsigned int firstResponderBeforeUndoAlert : 1;
     } _state;
+    
+    BOOL _isExcludeNeed;     // fix iOS10 Keyboard -- 用于控制 iOS10 键盘标点符号Bug  是否开启排除操作
 }
 
 @end
@@ -1396,6 +1398,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 /// Replace the range with the text, and change the `_selectTextRange`.
 /// The caller should make sure the `range` and `text` are valid before call this method.
 - (void)_replaceRange:(YYTextRange *)range withText:(NSString *)text notifyToDelegate:(BOOL)notify{
+    if (_isExcludeNeed) {
+        notify = NO;
+    }
     if (NSEqualRanges(range.asRange, _selectedTextRange.asRange)) {
         if (notify) [_inputDelegate selectionWillChange:self];
         NSRange newRange = NSMakeRange(0, 0);
@@ -1492,9 +1497,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         YYTextRange *oldTextRange = _selectedTextRange;
         NSRange newRange = _selectedTextRange.asRange;
         
-        [_inputDelegate textWillChange:self];
+        if(!_isExcludeNeed)[_inputDelegate textWillChange:self];
         BOOL textChanged = [self.textParser parseText:_innerText selectedRange:&newRange];
-        [_inputDelegate textDidChange:self];
+        if(!_isExcludeNeed)[_inputDelegate textDidChange:self];
         
         YYTextRange *newTextRange = [YYTextRange rangeWithRange:newRange];
         newTextRange = [self _correctedTextRange:newTextRange];
@@ -1728,43 +1733,43 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSDictionary *dic = @{
-            @"ar" : @[ @"إلغاء", @"إعادة", @"إعادة الكتابة", @"تراجع", @"تراجع عن الكتابة" ],
-            @"ca" : @[ @"Cancel·lar", @"Refer", @"Refer l’escriptura", @"Desfer", @"Desfer l’escriptura" ],
-            @"cs" : @[ @"Zrušit", @"Opakovat akci", @"Opakovat akci Psát", @"Odvolat akci", @"Odvolat akci Psát" ],
-            @"da" : @[ @"Annuller", @"Gentag", @"Gentag Indtastning", @"Fortryd", @"Fortryd Indtastning" ],
-            @"de" : @[ @"Abbrechen", @"Wiederholen", @"Eingabe wiederholen", @"Widerrufen", @"Eingabe widerrufen" ],
-            @"el" : @[ @"Ακύρωση", @"Επανάληψη", @"Επανάληψη πληκτρολόγησης", @"Αναίρεση", @"Αναίρεση πληκτρολόγησης" ],
-            @"en" : @[ @"Cancel", @"Redo", @"Redo Typing", @"Undo", @"Undo Typing" ],
-            @"es" : @[ @"Cancelar", @"Rehacer", @"Rehacer escritura", @"Deshacer", @"Deshacer escritura" ],
-            @"es_MX" : @[ @"Cancelar", @"Rehacer", @"Rehacer escritura", @"Deshacer", @"Deshacer escritura" ],
-            @"fi" : @[ @"Kumoa", @"Tee sittenkin", @"Kirjoita sittenkin", @"Peru", @"Peru kirjoitus" ],
-            @"fr" : @[ @"Annuler", @"Rétablir", @"Rétablir la saisie", @"Annuler", @"Annuler la saisie" ],
-            @"he" : @[ @"ביטול", @"חזור על הפעולה האחרונה", @"חזור על הקלדה", @"בטל", @"בטל הקלדה" ],
-            @"hr" : @[ @"Odustani", @"Ponovi", @"Ponovno upiši", @"Poništi", @"Poništi upisivanje" ],
-            @"hu" : @[ @"Mégsem", @"Ismétlés", @"Gépelés ismétlése", @"Visszavonás", @"Gépelés visszavonása" ],
-            @"id" : @[ @"Batalkan", @"Ulang", @"Ulang Pengetikan", @"Kembalikan", @"Batalkan Pengetikan" ],
-            @"it" : @[ @"Annulla", @"Ripristina originale", @"Ripristina Inserimento", @"Annulla", @"Annulla Inserimento" ],
-            @"ja" : @[ @"キャンセル", @"やり直す", @"やり直す - 入力", @"取り消す", @"取り消す - 入力" ],
-            @"ko" : @[ @"취소", @"실행 복귀", @"입력 복귀", @"실행 취소", @"입력 실행 취소" ],
-            @"ms" : @[ @"Batal", @"Buat semula", @"Ulang Penaipan", @"Buat asal", @"Buat asal Penaipan" ],
-            @"nb" : @[ @"Avbryt", @"Utfør likevel", @"Utfør skriving likevel", @"Angre", @"Angre skriving" ],
-            @"nl" : @[ @"Annuleer", @"Opnieuw", @"Opnieuw typen", @"Herstel", @"Herstel typen" ],
-            @"pl" : @[ @"Anuluj", @"Przywróć", @"Przywróć Wpisz", @"Cofnij", @"Cofnij Wpisz" ],
-            @"pt" : @[ @"Cancelar", @"Refazer", @"Refazer Digitação", @"Desfazer", @"Desfazer Digitação" ],
-            @"pt_PT" : @[ @"Cancelar", @"Refazer", @"Refazer digitar", @"Desfazer", @"Desfazer digitar" ],
-            @"ro" : @[ @"Renunță", @"Refă", @"Refă tastare", @"Anulează", @"Anulează tastare" ],
-            @"ru" : @[ @"Отменить", @"Повторить", @"Повторить набор на клавиатуре", @"Отменить", @"Отменить набор на клавиатуре" ],
-            @"sk" : @[ @"Zrušiť", @"Obnoviť", @"Obnoviť písanie", @"Odvolať", @"Odvolať písanie" ],
-            @"sv" : @[ @"Avbryt", @"Gör om", @"Gör om skriven text", @"Ångra", @"Ångra skriven text" ],
-            @"th" : @[ @"ยกเลิก", @"ทำกลับมาใหม่", @"ป้อนกลับมาใหม่", @"เลิกทำ", @"เลิกป้อน" ],
-            @"tr" : @[ @"Vazgeç", @"Yinele", @"Yazmayı Yinele", @"Geri Al", @"Yazmayı Geri Al" ],
-            @"uk" : @[ @"Скасувати", @"Повторити", @"Повторити введення", @"Відмінити", @"Відмінити введення" ],
-            @"vi" : @[ @"Hủy", @"Làm lại", @"Làm lại thao tác Nhập", @"Hoàn tác", @"Hoàn tác thao tác Nhập" ],
-            @"zh" : @[ @"取消", @"重做", @"重做键入", @"撤销", @"撤销键入" ],
-            @"zh_CN" : @[ @"取消", @"重做", @"重做键入", @"撤销", @"撤销键入" ],
-            @"zh_HK" : @[ @"取消", @"重做", @"重做輸入", @"還原", @"還原輸入" ],
-            @"zh_TW" : @[ @"取消", @"重做", @"重做輸入", @"還原", @"還原輸入" ]
-        };
+                              @"ar" : @[ @"إلغاء", @"إعادة", @"إعادة الكتابة", @"تراجع", @"تراجع عن الكتابة" ],
+                              @"ca" : @[ @"Cancel·lar", @"Refer", @"Refer l’escriptura", @"Desfer", @"Desfer l’escriptura" ],
+                              @"cs" : @[ @"Zrušit", @"Opakovat akci", @"Opakovat akci Psát", @"Odvolat akci", @"Odvolat akci Psát" ],
+                              @"da" : @[ @"Annuller", @"Gentag", @"Gentag Indtastning", @"Fortryd", @"Fortryd Indtastning" ],
+                              @"de" : @[ @"Abbrechen", @"Wiederholen", @"Eingabe wiederholen", @"Widerrufen", @"Eingabe widerrufen" ],
+                              @"el" : @[ @"Ακύρωση", @"Επανάληψη", @"Επανάληψη πληκτρολόγησης", @"Αναίρεση", @"Αναίρεση πληκτρολόγησης" ],
+                              @"en" : @[ @"Cancel", @"Redo", @"Redo Typing", @"Undo", @"Undo Typing" ],
+                              @"es" : @[ @"Cancelar", @"Rehacer", @"Rehacer escritura", @"Deshacer", @"Deshacer escritura" ],
+                              @"es_MX" : @[ @"Cancelar", @"Rehacer", @"Rehacer escritura", @"Deshacer", @"Deshacer escritura" ],
+                              @"fi" : @[ @"Kumoa", @"Tee sittenkin", @"Kirjoita sittenkin", @"Peru", @"Peru kirjoitus" ],
+                              @"fr" : @[ @"Annuler", @"Rétablir", @"Rétablir la saisie", @"Annuler", @"Annuler la saisie" ],
+                              @"he" : @[ @"ביטול", @"חזור על הפעולה האחרונה", @"חזור על הקלדה", @"בטל", @"בטל הקלדה" ],
+                              @"hr" : @[ @"Odustani", @"Ponovi", @"Ponovno upiši", @"Poništi", @"Poništi upisivanje" ],
+                              @"hu" : @[ @"Mégsem", @"Ismétlés", @"Gépelés ismétlése", @"Visszavonás", @"Gépelés visszavonása" ],
+                              @"id" : @[ @"Batalkan", @"Ulang", @"Ulang Pengetikan", @"Kembalikan", @"Batalkan Pengetikan" ],
+                              @"it" : @[ @"Annulla", @"Ripristina originale", @"Ripristina Inserimento", @"Annulla", @"Annulla Inserimento" ],
+                              @"ja" : @[ @"キャンセル", @"やり直す", @"やり直す - 入力", @"取り消す", @"取り消す - 入力" ],
+                              @"ko" : @[ @"취소", @"실행 복귀", @"입력 복귀", @"실행 취소", @"입력 실행 취소" ],
+                              @"ms" : @[ @"Batal", @"Buat semula", @"Ulang Penaipan", @"Buat asal", @"Buat asal Penaipan" ],
+                              @"nb" : @[ @"Avbryt", @"Utfør likevel", @"Utfør skriving likevel", @"Angre", @"Angre skriving" ],
+                              @"nl" : @[ @"Annuleer", @"Opnieuw", @"Opnieuw typen", @"Herstel", @"Herstel typen" ],
+                              @"pl" : @[ @"Anuluj", @"Przywróć", @"Przywróć Wpisz", @"Cofnij", @"Cofnij Wpisz" ],
+                              @"pt" : @[ @"Cancelar", @"Refazer", @"Refazer Digitação", @"Desfazer", @"Desfazer Digitação" ],
+                              @"pt_PT" : @[ @"Cancelar", @"Refazer", @"Refazer digitar", @"Desfazer", @"Desfazer digitar" ],
+                              @"ro" : @[ @"Renunță", @"Refă", @"Refă tastare", @"Anulează", @"Anulează tastare" ],
+                              @"ru" : @[ @"Отменить", @"Повторить", @"Повторить набор на клавиатуре", @"Отменить", @"Отменить набор на клавиатуре" ],
+                              @"sk" : @[ @"Zrušiť", @"Obnoviť", @"Obnoviť písanie", @"Odvolať", @"Odvolať písanie" ],
+                              @"sv" : @[ @"Avbryt", @"Gör om", @"Gör om skriven text", @"Ångra", @"Ångra skriven text" ],
+                              @"th" : @[ @"ยกเลิก", @"ทำกลับมาใหม่", @"ป้อนกลับมาใหม่", @"เลิกทำ", @"เลิกป้อน" ],
+                              @"tr" : @[ @"Vazgeç", @"Yinele", @"Yazmayı Yinele", @"Geri Al", @"Yazmayı Geri Al" ],
+                              @"uk" : @[ @"Скасувати", @"Повторити", @"Повторити введення", @"Відмінити", @"Відмінити введення" ],
+                              @"vi" : @[ @"Hủy", @"Làm lại", @"Làm lại thao tác Nhập", @"Hoàn tác", @"Hoàn tác thao tác Nhập" ],
+                              @"zh" : @[ @"取消", @"重做", @"重做键入", @"撤销", @"撤销键入" ],
+                              @"zh_CN" : @[ @"取消", @"重做", @"重做键入", @"撤销", @"撤销键入" ],
+                              @"zh_HK" : @[ @"取消", @"重做", @"重做輸入", @"還原", @"還原輸入" ],
+                              @"zh_TW" : @[ @"取消", @"重做", @"重做輸入", @"還原", @"還原輸入" ]
+                              };
         NSString *preferred = [[NSBundle mainBundle] preferredLocalizations].firstObject;
         if (preferred.length == 0) preferred = @"English";
         NSString *canonical = [NSLocale canonicalLocaleIdentifierFromString:preferred];
@@ -2144,7 +2149,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     
     [_inputDelegate selectionWillChange:self];
     [_inputDelegate textWillChange:self];
-     _innerText = text;
+    _innerText = text;
     [self _parseText];
     _selectedTextRange = [YYTextRange rangeWithRange:NSMakeRange(0, _innerText.length)];
     [_inputDelegate textDidChange:self];
@@ -2716,7 +2721,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [self _endTouchTracking];
     [self _hideMenu];
-
+    
     if (!_state.swallowTouch) [super touchesCancelled:touches withEvent:event];
 }
 
@@ -3012,23 +3017,23 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         keys = [NSSet setWithArray:@[
-            @"text",
-            @"font",
-            @"textColor",
-            @"textAlignment",
-            @"dataDetectorTypes",
-            @"linkTextAttributes",
-            @"highlightTextAttributes",
-            @"textParser",
-            @"attributedText",
-            @"textVerticalAlignment",
-            @"textContainerInset",
-            @"exclusionPaths",
-            @"verticalForm",
-            @"linePositionModifier",
-            @"selectedRange",
-            @"typingAttributes"
-        ]];
+                                     @"text",
+                                     @"font",
+                                     @"textColor",
+                                     @"textAlignment",
+                                     @"dataDetectorTypes",
+                                     @"linkTextAttributes",
+                                     @"highlightTextAttributes",
+                                     @"textParser",
+                                     @"attributedText",
+                                     @"textVerticalAlignment",
+                                     @"textContainerInset",
+                                     @"exclusionPaths",
+                                     @"verticalForm",
+                                     @"linePositionModifier",
+                                     @"selectedRange",
+                                     @"typingAttributes"
+                                     ]];
     });
     if ([keys containsObject:key]) {
         return NO;
@@ -3357,6 +3362,22 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (!range) return;
     if (!text) text = @"";
     if (range.asRange.length == 0 && text.length == 0) return;
+    
+    //控制排除设置 ---Fix iOS10下标点符号Bug  @Saylor
+    //此处拦截
+    //需要排除的字符集
+    NSString *strExclude = @"#。，、？！；（）@“”【】｛｝#%^*+=_\\|《》&·,?!'/.:";
+    _isExcludeNeed = NO;
+    
+    for (int i=0; i< strExclude.length -1; i++) {
+        NSString *str= [NSString stringWithFormat:@"%c",[strExclude characterAtIndex:i]];
+        
+        if ([strExclude containsString:str]) {
+            _isExcludeNeed = YES;
+            break;
+        }
+    }
+    
     range = [self _correctedTextRange:range];
     
     if ([self.delegate respondsToSelector:@selector(textView:shouldChangeTextInRange:replacementText:)]) {
@@ -3628,7 +3649,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         NSUInteger ofs = position.offset;
         if (position.offset == _innerText.length ||
             direction == UITextStorageDirectionBackward) {
-             ofs--;
+            ofs--;
         }
         attrs = [_innerText attributesAtIndex:ofs effectiveRange:NULL];
     }

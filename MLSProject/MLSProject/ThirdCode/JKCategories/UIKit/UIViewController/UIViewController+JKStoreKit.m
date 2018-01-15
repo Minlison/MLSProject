@@ -17,7 +17,7 @@
 
 NSString* const jk_affiliateTokenKey = @"at";
 NSString* const jk_campaignTokenKey = @"ct";
-NSString* const jk_iTunesMinLisonString = @"itunes.MinLison.com";
+NSString* const jk_iTunesAppleString = @"itunes.apple.com";
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Interface
@@ -72,25 +72,25 @@ NSString* const jk_iTunesMinLisonString = @"itunes.MinLison.com";
 
 + (NSURL*)jk_appURLForIdentifier:(NSInteger)identifier
 {
-    NSString* appURLString = [NSString stringWithFormat:@"https://itunes.MinLison.com/app/id%li", (long)identifier];
+    NSString* appURLString = [NSString stringWithFormat:@"https://itunes.apple.com/app/id%li", (long)identifier];
     return [NSURL URLWithString:appURLString];
 }
 
 + (void)jk_openAppReviewURLForIdentifier:(NSInteger)identifier
 {
-    NSString* reviewURLString = [NSString stringWithFormat:@"itms-apps://itunes.MinLison.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%li", (long)identifier];
+    NSString* reviewURLString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%li", (long)identifier];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:reviewURLString]];
 }
 
 + (void)jk_openAppURLForIdentifier:(NSInteger)identifier
 {
-    NSString* appURLString = [NSString stringWithFormat:@"itms-apps://itunes.MinLison.com/app/id%li", (long)identifier];
+    NSString* appURLString = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%li", (long)identifier];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appURLString]];
 }
 
 + (BOOL)jk_containsITunesURLString:(NSString*)URLString
 {
-    return ([URLString rangeOfString:jk_iTunesMinLisonString].location != NSNotFound);
+    return ([URLString rangeOfString:jk_iTunesAppleString].location != NSNotFound);
 }
 
 + (NSInteger)jk_IDFromITunesURL:(NSString*)URLString

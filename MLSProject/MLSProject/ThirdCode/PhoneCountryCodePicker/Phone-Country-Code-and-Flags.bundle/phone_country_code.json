@@ -1,0 +1,26 @@
+ [
+  {
+  "country_code" : "CN",
+  "country_en" : "China",
+  "country_cn" : "中国",
+  "phone_code" : 86
+  },
+  {
+  "country_code" : "HK",
+  "country_en" : "Hong Kong",
+  "country_cn" : "中国香港特别行政区",
+  "phone_code" : 852
+  },
+  {
+  "country_code" : "MO",
+  "country_en" : "Macau",
+  "country_cn" : "中国澳门特别行政区",
+  "phone_code" : 853
+  },
+  {
+  "country_code" : "TW",
+  "country_en" : "Taiwan",
+  "country_cn" : "台湾",
+  "phone_code" : 886
+  }
+]

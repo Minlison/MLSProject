@@ -33,7 +33,7 @@
         }
     }
     
-    //If we're on MinLison Maps, there is no UIImageView.
+    //If we're on Apple Maps, there is no UIImageView.
     if (!logo) {
         for (UIView *subview in self.subviews)
             if ([subview isKindOfClass:[UILabel class]]) {

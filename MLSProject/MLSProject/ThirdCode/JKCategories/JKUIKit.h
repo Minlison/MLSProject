@@ -14,7 +14,7 @@
 #import "UIApplication+JKApplicationSize.h"
 #import "UIApplication+JKKeyboardFrame.h"
 #import "UIApplication+JKNetworkActivityIndicator.h"
-#import "UIApplication+JKPermissions.h"
+//#import "UIApplication+JKPermissions.h"
 #import "UIBarButtonItem+JKAction.h"
 #import "UIBarButtonItem+JKBadge.h"
 #import "UIBezierPath+JKBasicShapes.h"

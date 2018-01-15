@@ -8,11 +8,11 @@
 
 #import "SDBrowserImageView.h"
 #import "SDPhotoBrowserConfig.h"
-#import "MLSPhotoLoadingView.h"
+#import "MLSLoadingCirclecirclView.h"
 
 @implementation SDBrowserImageView
 {
-        MLSPhotoLoadingView *_waitingView;
+        MLSLoadingCirclecirclView *_waitingView;
         
         //        __weak SDWaitingView *_waitingView;//进度绘图缓冲
         BOOL _didCheckSize;
@@ -102,7 +102,7 @@
         //        [self addSubview:waiting];
         
         //图片圆圈加载
-        MLSPhotoLoadingView *waiting = [[MLSPhotoLoadingView alloc]init];
+        MLSLoadingCirclecirclView *waiting = [[MLSLoadingCirclecirclView alloc]init];
         
         waiting.frame = CGRectMake(0, 0, 50, 50);
         
@@ -123,25 +123,15 @@
         } transform:nil completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
                 
                 [imageViewWeak removeWaitingView];
-                
                 if (error) {
-                        UILabel *label = [[UILabel alloc] init];
-                        label.bounds = CGRectMake(0, 0, 160, 30);
-                        label.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
-                        label.text = @"图片加载失败";
-                        label.font = [UIFont systemFontOfSize:16];
-                        label.textColor = [UIColor whiteColor];
-                        label.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-                        label.layer.cornerRadius = 5;
-                        label.clipsToBounds = YES;
-                        label.textAlignment = NSTextAlignmentCenter;
-                        [imageViewWeak addSubview:label];
+                        UIImageView *imgView = [[UIImageView alloc] init];
+                        imgView.bounds = CGRectMake(0, 0, 105, 80);
+                        imgView.image = [UIImage selectionHolder];
+                        imgView.center = CGPointMake(imageViewWeak.bounds.size.width * 0.5, imageViewWeak.bounds.size.height * 0.5);
+                        [imageViewWeak addSubview:imgView];
                 } else {
-                        
                         weakSelf.image = image;
-                        
                 }
-                
         }];
 }
 

@@ -10,10 +10,10 @@
 #define JKCategories_h
 
 #import "JKUIKit.h"
-#import "JKQuartzCore.h"
-#import "JKCoreData.h"
+//#import "JKQuartzCore.h"
+//#import "JKCoreData.h"
 #import "JKFoundation.h"
-#import "JKMapKit.h"
+//#import "JKMapKit.h"
 #import "JKCoreLocation.h"
 
 #endif /* JKCategories_h */

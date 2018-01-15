@@ -5,6 +5,7 @@
 //  Created by Mark on 15/6/11.
 //  Copyright (c) 2015年 yq. All rights reserved.
 //
+#import "BaseViewController.h"
 #import <UIKit/UIKit.h>
 #import "WMMenuView.h"
 #import "WMScrollView.h"
@@ -134,7 +135,7 @@ extern NSString *const WMControllerDidFullyDisplayedNotification;
 
 @end
 
-@interface WMPageController : UIViewController <WMMenuViewDelegate, WMMenuViewDataSource, UIScrollViewDelegate, WMPageControllerDataSource, WMPageControllerDelegate>
+@interface WMPageController : BaseViewController <WMMenuViewDelegate, WMMenuViewDataSource, UIScrollViewDelegate, WMPageControllerDataSource, WMPageControllerDelegate>
 
 @property (nonatomic, weak) id<WMPageControllerDelegate> delegate;
 @property (nonatomic, weak) id<WMPageControllerDataSource> dataSource;

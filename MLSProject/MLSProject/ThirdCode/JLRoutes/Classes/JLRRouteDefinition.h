@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  遵守 JLRRouteDefinitionTargetController 协议
  */
 @property (strong, nonatomic) Class targetControllerClass;
-@property (strong, nonatomic) UIViewController <JLRRouteDefinitionTargetController>  *targetViewController;
+@property (strong, nonatomic, nullable) UIViewController <JLRRouteDefinitionTargetController>  *targetViewController;
 
 ///---------------------------------
 /// @name Creating Route Definitions

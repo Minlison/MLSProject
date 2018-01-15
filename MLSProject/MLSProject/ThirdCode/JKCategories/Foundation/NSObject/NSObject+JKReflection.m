@@ -327,7 +327,7 @@
     NSMutableArray *attributeArray = [NSMutableArray array];
     
     /***
-     https://developer.MinLison.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//MinLison_ref/doc/uid/TP40008048-CH101-SW6
+     https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//apple_ref/doc/uid/TP40008048-CH101-SW6
      
      R           | The property is read-only (readonly).
      C           | The property is a copy of the value last assigned (copy).
@@ -398,7 +398,7 @@
     if ([attributeDictionary objectForKey:@"T"])
     {
         /*
-         https://developer.MinLison.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+         https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
          c               A char
          i               An int
          s               A short

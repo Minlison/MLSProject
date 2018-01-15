@@ -94,11 +94,7 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
 
 -(JKPermissionAccess)hasAccessToLocation {
     switch ([CLLocationManager authorizationStatus]) {
-#ifdef NSFoundationVersionNumber_iOS_8_0
-        case kCLAuthorizationStatusAuthorizedAlways:
-#else
-        case kCLAuthorizationStatusAuthorized:            
-#endif
+        case kCLAuthorizationStatusAuthorized:
             return JKPermissionAccessGranted;
             break;
             
@@ -160,7 +156,7 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
 
 
 #pragma mark - Request permissions
--(void)jk_requestAccessToCalendarWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)())accessDenied {
+-(void)jk_requestAccessToCalendarWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)(void))accessDenied {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -173,7 +169,7 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }];
 }
 
--(void)jk_requestAccessToContactsWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)())accessDenied {
+-(void)jk_requestAccessToContactsWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)(void))accessDenied {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
     if(addressBook) {
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
@@ -219,7 +215,7 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
     }];
 }
 
--(void)jk_requestAccessToRemindersWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)())accessDenied {
+-(void)jk_requestAccessToRemindersWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)(void))accessDenied {
     EKEventStore *eventStore = [[EKEventStore alloc] init];
     [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -240,7 +236,7 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
  }
  */
 
--(void)jk_requestAccessToLocationWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)())accessDenied {
+-(void)jk_requestAccessToLocationWithSuccess:(void(^)(void))accessGranted andFailure:(void(^)(void))accessDenied {
     self.jk_permissionsLocationManager = [[CLLocationManager alloc] init];
     self.jk_permissionsLocationManager.delegate = self;
     
@@ -278,11 +274,7 @@ static char JKPermissionsLocationBlockFailurePropertyKey;
 
 #pragma mark - Location manager delegate
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-#ifdef NSFoundationVersionNumber_iOS_8_0
-    if (status == kCLAuthorizationStatusAuthorizedAlways) {
-#else
-    if (status == kCLAuthorizationStatusAuthorized) {        
-#endif
+    if (status == kCLAuthorizationStatusAuthorized) {
         self.locationSuccessCallbackProperty();
     } else if (status != kCLAuthorizationStatusNotDetermined) {
         self.locationFailureCallbackProperty();

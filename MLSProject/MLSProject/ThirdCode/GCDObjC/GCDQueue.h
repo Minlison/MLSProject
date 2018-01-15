@@ -109,7 +109,7 @@
  *  Submits a block for asynchronous execution on the queue after a delay.
  *
  *  @param block The block to submit.
- *  @param seconds The delay in seconds.
+ *  @param afterDelay The delay in seconds.
  *  @see dispatch_after()
  */
 - (void)queueBlock:(dispatch_block_t)block afterDelay:(double)seconds;
@@ -126,7 +126,7 @@
  *  Submits a block for execution on the queue multiple times and waits until all executions complete.
  *
  *  @param block The block to submit.
- *  @param count The number of times to execute the block.
+ *  @param iterationCount The number of times to execute the block.
  *  @see dispatch_apply()
  */
 - (void)queueAndAwaitBlock:(void (^)(size_t))block iterationCount:(size_t)count;
@@ -135,7 +135,7 @@
  *  Submits a block for asynchronous execution on the queue and associates it with the group.
  *
  *  @param block The block to submit.
- *  @param group The group to associate the block with.
+ *  @param inGroup The group to associate the block with.
  *  @see dispatch_group_async()
  */
 - (void)queueBlock:(dispatch_block_t)block inGroup:(GCDGroup *)group;

@@ -1,6 +1,6 @@
 CONFIGURATION_BUILD_DIR = $PODS_CONFIGURATION_BUILD_DIR/SAMKeychain
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AMapFoundation-NO-IDFA" "${PODS_ROOT}/Headers/Public/AMapLocation-NO-IDFA" "${PODS_ROOT}/Headers/Public/Reveal-SDK" "${PODS_ROOT}/Headers/Public/pgyer" "${PODS_ROOT}/Headers/Public/umeng"
 OTHER_LDFLAGS = -framework "Foundation" -framework "Security"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

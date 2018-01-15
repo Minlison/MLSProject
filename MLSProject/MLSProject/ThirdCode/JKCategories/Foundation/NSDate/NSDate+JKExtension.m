@@ -137,7 +137,7 @@
 }
 
 + (NSString *)jk_formatYMD:(NSDate *)date {
-        return [NSString stringWithFormat:@"%lu-%02lu-%02lu",(long)[date jk_year],(long)[date jk_month], (long)[date jk_day]];
+    return [NSString stringWithFormat:@"%zd-%zd-%zd",[date jk_year],[date jk_month], [date jk_day]];
 }
 
 - (NSUInteger)jk_weeksOfMonth {
@@ -431,7 +431,9 @@
     if (time < 3600) { // 小于一小时
         retTime = time / 60;
         retTime = retTime <= 0.0 ? 1.0 : retTime;
-        return [NSString stringWithFormat:@"%.0f分钟前", retTime];
+//        return [NSString stringWithFormat:@"%.0f分钟前", retTime];
+        return retTime < 1.0 ? @"刚刚" : [NSString stringWithFormat:@"%.0f分钟前", retTime];
+
     } else if (time < 3600 * 24) { // 小于一天，也就是今天
         retTime = time / 3600;
         retTime = retTime <= 0.0 ? 1.0 : retTime;

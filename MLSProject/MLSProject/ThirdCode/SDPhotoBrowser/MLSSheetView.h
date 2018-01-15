@@ -1,23 +1,23 @@
 //
-//  MLSSheetView.H
-//  MLSProject
+//  MLSSheetView.h
+//  newDemo
 //
-//  Created by MinLison on 2017/10/9.
-//  Copyright © 2017年 minlison. All rights reserved.
+//  Created by minlison on 2017/9/4.
+//  Copyright © 2017年 com.CZVRDemo. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-typedef  NS_ENUM(NSInteger,MLSSheetViewClickType){
+typedef  NS_ENUM(NSInteger,CZSheetViewClickType){
 
-        MLSSheetViewClickTypeSave = 0, //保存
+        CZSheetViewClickTypeSave = 0, //保存
         
-        MLSSheetViewClickTypeCollectionPhotos,//收藏组图
+        CZSheetViewClickTypeCollectionPhotos,//收藏组图
         
-        MLSSheetViewClickTypeCancle,//取消
+        CZSheetViewClickTypeCancle,//取消
 
 };
 
 @interface MLSSheetView : UIView
-@property (copy, nonatomic) void (^clickBlock)(MLSSheetViewClickType type);
+@property (copy, nonatomic) void (^clickBlock)(CZSheetViewClickType type);
 @end

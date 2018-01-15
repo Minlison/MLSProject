@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  MLSProject
+
+  Created by 袁航 on 2017/12/9.
+  Copyright © 2017年 mlsproject. All rights reserved.
+*/
+"Choose From Library" = "相册选择";
+"Take Photo" = "拍照";
+"Cancel" = "取消";

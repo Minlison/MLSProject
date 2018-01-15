@@ -1,17 +1,24 @@
 //
 //  MLSRouterURIConst.m
-//  MLSProject
+//  MinLison
 //
 //  Created by MinLison on 2017/9/7.
 //  Copyright © 2017年 minlison. All rights reserved.
 //
 
 #import "MLSRouterURIConst.h"
-/// MARK: - MLSWebViewController
-NSString *const kMLSWebViewControllerURI = @"web";
-NSString *const kMLSWebViewControllerParamKey_URL = @"url";
-
-/// MARK: - MLSPlayerViewController
-NSString *const kMLSPlayerViewControllerURI = @"player";
-NSString *const kMLSPlayerViewControllerParamKey_URL = @"url";
-NSString *const kMLSPlayerViewControllerParamKey_VIDEO_NAME = @"name";
+/// MARK: - WGWebViewController
+NSString *const kLNWebViewControllerURI = @"ln_web";
+NSString *const kLNSportControllerURI = @"ln_sport";
+NSString *const KLNVipRegisterAndRecargeCardViewControllerURI = @"ln_vrarc";
+NSString *const kLNArticleMoreControllerURI = @"ln_article_more";
+NSString *const kLNArticleDetailControllerURI = @"ln_article_detail";
+NSString *const kLNOrderControllerURI = @"ln_order";
+NSString *const kLNUpdateUserInfoControllerURI = @"ln_update_user_info";
+NSString *const kLNSiteBookingControllerURI = @"ln_site_booking";
+NSString *const kLNEventControllerURI = @"ln_event";
+NSString *const kLNBuyTicketsControllerURI = @"ln_buy_tickets";
+NSString *const kLNTrainingClassControllerURI = @"ln_training_class";
+NSString *const kLNSportShopClassControllerURI = @"ln_sport_shop";
+NSString *const kLNShopCartControllerURI = @"ln_shop_cart";
+NSString *const kLNParkingRecordControllerURI = @"ln_parking_record";

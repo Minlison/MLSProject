@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/US2ConditionShorthandURL.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/US2ConditionShorthandURL</TokenIdentifier>
+			<Abstract type="html">The US2ConditionShorthandURL checks a string for a valid URL like:
+http://www.example.com
+https://www.example.com
+www.example.com
+example.com
+subdomain.example.com</Abstract>
+			<DeclaredIn>US2ConditionShorthandURL.h</DeclaredIn>
+			
+			<NodeRef refid="10"/>
+		</Token>
+		
+		
+	</File>
+</Tokens>

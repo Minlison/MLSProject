@@ -34,14 +34,14 @@
  
  This method calls `+customFontWithURL:size`.
  
- 
+ @deprecated
  @see +customFontWithURL:size: method
  @param size Font size
  @param name Font filename without extension
  @param extension Font filename extension (@"ttf" and @"otf" are supported)
  @return `UIFont` object or `nil` on errors
  */
-+ (UIFont *)jk_customFontOfSize:(CGFloat)size withName:(NSString *)name withExtension:(NSString *)extension;
++ (UIFont *)jk_customFontOfSize:(CGFloat)size withName:(NSString *)name withExtension:(NSString *)extension  __attribute__ ((deprecated));
 
 /**
  Get `UIFont` object for the selected font file (*.ttf or *.otf files).

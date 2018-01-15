@@ -9,7 +9,11 @@
 
 @implementation NSString (JKRemoveEmoji)
 - (BOOL)jk_containsEmoji{
-    //    return  [self rangeOfCharacterFromSet:[NSCharacterSet emojiCharacterSet]].location != NSNotFound;
+
+        if ([self rangeOfCharacterFromSet:[NSCharacterSet jk_emojiCharacterSet]].location != NSNotFound)
+        {
+                return YES;
+        }
     
     if ([self jk_isFuckEmoji]) {
         return YES;
@@ -19,7 +23,7 @@
     
     // Surrogate pair (U+1D000-1F77F)
     if (0xd800 <= high && high <= 0xdbff) {
-        const unichar low = [self characterAtIndex: 1];
+        const unichar low = [self characterAtIndex:1];
         const int codepoint = ((high - 0xd800) * 0x400) + (low - 0xdc00) + 0x10000;
         
         return (0x1d000 <= codepoint && codepoint <= 0x1f77f);

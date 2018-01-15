@@ -6,10 +6,10 @@
 # set -e
 # 都更改哪些后缀类型的文件
 all_extensions=".m .h .xib .storyboard"
-prefix_from="WG"
-prefix_to="MLS"
-project_name="MLSProject"
-test_name="MLSProjectTests"
+prefix_from="MLS"
+prefix_to=""
+project_name=""
+test_name=""
 
 # 如果提示project文件找不到，请把下面的project, storyboard 路径换成绝对路径
 project=`find ${project_name}.xcodeproj -name "project.pbxproj"`

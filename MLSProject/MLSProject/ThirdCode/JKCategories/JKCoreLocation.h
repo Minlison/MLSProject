@@ -9,6 +9,6 @@
 #ifndef JKCoreLocation_h
 #define JKCoreLocation_h
 
-#import "CLLocation+JKCH1903.h"
+//#import "CLLocation+JKCH1903.h"
 
 #endif /* JKCoreLocation_h */

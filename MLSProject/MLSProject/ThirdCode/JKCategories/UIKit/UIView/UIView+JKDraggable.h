@@ -20,7 +20,7 @@
 
 /** The pan gestures that handles the view dragging
  *
- * jk_panGesture The tint color of the blurred view. Set to nil to reset.
+ * @param panGesture The tint color of the blurred view. Set to nil to reset.
  */
 @property (nonatomic) UIPanGestureRecognizer *jk_panGesture;
 

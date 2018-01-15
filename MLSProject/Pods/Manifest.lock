@@ -14,6 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AMapFoundation-NO-IDFA (1.4.2)
+  - AMapLocation-NO-IDFA (2.5.0):
+    - AMapFoundation-NO-IDFA (~> 1.4)
   - Aspects (1.4.1)
   - BeeHive (1.5.1)
   - CocoaLumberjack (3.3.0):
@@ -23,234 +26,28 @@ PODS:
   - CocoaLumberjack/Extensions (3.3.0):
     - CocoaLumberjack/Default
   - CRToast (0.0.9)
-  - FBAllocationTracker (0.1.5)
-  - FBMemoryProfiler (0.1.3):
-    - FBAllocationTracker (~> 0.1)
-    - FBRetainCycleDetector (~> 0.1)
-  - FBRetainCycleDetector (0.1.3)
-  - FDFullscreenPopGesture (1.1)
-  - FDStackView (1.0)
-  - FormatterKit (1.8.2):
-    - FormatterKit/AddressFormatter (= 1.8.2)
-    - FormatterKit/ArrayFormatter (= 1.8.2)
-    - FormatterKit/ColorFormatter (= 1.8.2)
-    - FormatterKit/LocationFormatter (= 1.8.2)
-    - FormatterKit/NameFormatter (= 1.8.2)
-    - FormatterKit/OrdinalNumberFormatter (= 1.8.2)
-    - FormatterKit/Resources (= 1.8.2)
-    - FormatterKit/TimeIntervalFormatter (= 1.8.2)
-    - FormatterKit/UnitOfInformationFormatter (= 1.8.2)
-    - FormatterKit/URLRequestFormatter (= 1.8.2)
-  - FormatterKit/AddressFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/ArrayFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/ColorFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/LocationFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/NameFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/OrdinalNumberFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/Resources (1.8.2)
-  - FormatterKit/TimeIntervalFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/UnitOfInformationFormatter (1.8.2):
-    - FormatterKit/Resources
-  - FormatterKit/URLRequestFormatter (1.8.2):
-    - FormatterKit/Resources
-  - Harpy (4.1.6)
+  - IQKeyboardManager (5.0.7)
+  - KVOController (1.2.0)
   - Masonry (1.1.0)
-  - MJRefresh (3.1.14)
-  - Nimble (7.0.2)
-  - QMUIKit (2.0.0):
-    - QMUIKit/QMUIComponents (= 2.0.0)
-    - QMUIKit/QMUICore (= 2.0.0)
-    - QMUIKit/QMUIMainFrame (= 2.0.0)
-  - QMUIKit/QMUIComponents (2.0.0):
-    - QMUIKit/QMUIComponents/NavigationBarTransition (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIAlertController (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIAssetLibrary (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIButton (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUICellHeightCache (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUICollectionViewPagingLayout (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIDialogViewController (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIEmotionView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIEmptyView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIFloatLayoutView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIGridView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIImagePickerLibrary (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIImagePreviewView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIImagePreviewViewController (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIKeyboardManager (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUILabel (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIMarqueeLabel (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIModalPresentationViewController (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIMoreOperationController (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIOrderedDictionary (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIPieProgressView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIPopupContainerView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIPopupMenuView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIQQEmotionManager (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUISearchBar (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUISearchController (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUISegmentedControl (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUISlider (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIStaticTableView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITableView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITableViewCell (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITestView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITextField (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITextView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUITips (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIToastView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIVisualEffectView (= 2.0.0)
-    - QMUIKit/QMUIComponents/QMUIZoomImageView (= 2.0.0)
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/NavigationBarTransition (2.0.0):
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIAlertController (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
-    - QMUIKit/QMUIComponents/QMUITextField
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIAssetLibrary (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIButton (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICellHeightCache (2.0.0):
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUICollectionViewPagingLayout (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIDialogViewController (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView
-    - QMUIKit/QMUIComponents/QMUITableView
-    - QMUIKit/QMUIComponents/QMUITableViewCell
-    - QMUIKit/QMUIComponents/QMUITextField
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIEmotionView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIEmptyView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIFloatLayoutView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIGridView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIImagePickerLibrary (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIAlertController
-    - QMUIKit/QMUIComponents/QMUIAssetLibrary
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIImagePreviewViewController
-    - QMUIKit/QMUIComponents/QMUIPieProgressView
-    - QMUIKit/QMUIComponents/QMUITableViewCell
-    - QMUIKit/QMUIComponents/QMUIZoomImageView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIImagePreviewView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUICollectionViewPagingLayout
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIZoomImageView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIImagePreviewViewController (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIImagePreviewView
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIKeyboardManager (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUILabel (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIMarqueeLabel (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIModalPresentationViewController (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIMoreOperationController (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIModalPresentationViewController
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUINavigationTitleView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIOrderedDictionary (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIPieProgressView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIPopupContainerView (2.0.0):
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUIPopupMenuView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIPopupContainerView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIQQEmotionManager (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIEmotionView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUISearchBar (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUISearchController (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUISearchBar
-    - QMUIKit/QMUICore
-    - QMUIKit/QMUIMainFrame
-  - QMUIKit/QMUIComponents/QMUISegmentedControl (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUISlider (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIStaticTableView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUITableViewCell
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUITableViewProtocols
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableViewCell (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITableViewProtocols (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITestView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITextField (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITextView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUILabel
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUITips (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIToastView
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIToastView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIVisualEffectView (2.0.0):
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUIComponents/QMUIZoomImageView (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIButton
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUISlider
-    - QMUIKit/QMUICore
-  - QMUIKit/QMUICore (2.0.0)
-  - QMUIKit/QMUIMainFrame (2.0.0):
-    - QMUIKit/QMUIComponents/QMUIEmptyView
-    - QMUIKit/QMUIComponents/QMUIKeyboardManager
-    - QMUIKit/QMUIComponents/QMUILabel
-    - QMUIKit/QMUIComponents/QMUINavigationTitleView
-    - QMUIKit/QMUIComponents/QMUITableView
-    - QMUIKit/QMUICore
-  - Quick (1.2.0)
+  - pgyer (1.0.0):
+    - pgyer/pgyersdk (= 1.0.0)
+    - pgyer/update (= 1.0.0)
+  - pgyer/pgyersdk (1.0.0)
+  - pgyer/update (1.0.0)
+  - pop (1.0.10)
+  - Reveal-SDK (4)
   - SAMKeychain (1.5.3)
-  - SDWebImage (4.1.2):
-    - SDWebImage/Core (= 4.1.2)
-  - SDWebImage/Core (4.1.2)
-  - STPopup (1.8.3)
+  - SDWebImage (4.2.2):
+    - SDWebImage/Core (= 4.2.2)
+  - SDWebImage/Core (4.2.2)
   - TTTAttributedLabel (2.0.0)
+  - umeng/analytics (1.0.6):
+    - umeng/common
+  - umeng/common (1.0.6):
+    - umeng/thirdparties
+  - umeng/social (1.0.6)
+  - umeng/thirdparties (1.0.6)
+  - umeng/umessage (1.0.6)
   - WZProtocolInterceptor (0.1.0)
   - YTKNetwork (2.0.4):
     - AFNetworking (~> 3.0)
@@ -259,54 +56,66 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
+  - AMapLocation-NO-IDFA
   - Aspects
   - BeeHive
   - CocoaLumberjack
   - CRToast
-  - FBMemoryProfiler
-  - FDFullscreenPopGesture
-  - FDStackView
-  - FormatterKit
-  - Harpy
+  - IQKeyboardManager
+  - KVOController
   - Masonry
-  - MJRefresh
-  - Nimble
-  - QMUIKit
-  - Quick
+  - pgyer (from `./MLSProject/ThirdLib/pgyer`)
+  - pop
+  - Reveal-SDK (~> 4)
   - SAMKeychain
   - SDWebImage
-  - STPopup
   - TTTAttributedLabel
+  - umeng/analytics (from `./MLSProject/ThirdLib/umeng`)
+  - umeng/common (from `./MLSProject/ThirdLib/umeng`)
+  - umeng/social (from `./MLSProject/ThirdLib/umeng`)
+  - umeng/thirdparties (from `./MLSProject/ThirdLib/umeng`)
+  - umeng/umessage (from `./MLSProject/ThirdLib/umeng`)
   - WZProtocolInterceptor
-  - YTKNetwork
-  - YYKit
+  - YTKNetwork (from `./MLSProject/ThirdCode/YTKNetwork`)
+  - YYKit (from `https://github.com/Minlison/YYKit`)
+
+EXTERNAL SOURCES:
+  pgyer:
+    :path: "./MLSProject/ThirdLib/pgyer"
+  umeng:
+    :path: "./MLSProject/ThirdLib/umeng"
+  YTKNetwork:
+    :path: "./MLSProject/ThirdCode/YTKNetwork"
+  YYKit:
+    :git: https://github.com/Minlison/YYKit
+
+CHECKOUT OPTIONS:
+  YYKit:
+    :commit: 620403cf643abedba06c712f4af91856e7a42367
+    :git: https://github.com/Minlison/YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMapFoundation-NO-IDFA: 3b9ce87abc6a37c718cc320687469d0b74d5c953
+  AMapLocation-NO-IDFA: be669085a8cc0d22820022fc61d58811d24b4e3a
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   BeeHive: b135a33b3519814ec5d117318d205e10c997450f
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  FBAllocationTracker: dfdca3f71aceca6a85e95e3c6ec76a9785eba0f1
-  FBMemoryProfiler: 623fc5f8a61f7d02ec75c87e3b97c90f621d8b02
-  FBRetainCycleDetector: f0c7b290bf48ae77f6ae060843ce34ae341781eb
-  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
-  FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
-  FormatterKit: 4b8f29acc9b872d5d12a63efb560661e8f2e1b98
-  Harpy: '00136386df1e2bb7554a5bef5d56529c9c33739a'
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MJRefresh: 6642e35b3227a5447b9fd5e17c552c90196c9859
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  QMUIKit: 337d8c689c36223bd78f85bed57a62af5ec6707a
-  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  pgyer: d6feff59d60b91da0f877d6481366079a4ee2350
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  Reveal-SDK: 178c927f1a3230648d3a92b96f6e730a35b2750a
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
-  SDWebImage: cb6f9f266a9977741efcbc21e618e8be3734c774
-  STPopup: da1167250a01584af7bcccb898653185f223ec46
+  SDWebImage: 89a9d32cd520bbb46eb14e541d5109b3564af198
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  umeng: bcf2a3994d5e39f0535a849530f2be7fca887346
   WZProtocolInterceptor: 56c395e4b3323140421eba99546be362aabc041e
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 01e287dc9512e1bfb5d9f29c60a459046bd3f412
+PODFILE CHECKSUM: 9c58dbb128af4efad82036914b5e013e1a792f28
 
 COCOAPODS: 1.2.1

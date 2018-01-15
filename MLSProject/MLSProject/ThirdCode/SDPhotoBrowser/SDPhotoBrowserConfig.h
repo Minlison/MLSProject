@@ -14,13 +14,13 @@ typedef enum {
 } SDWaitingViewMode;
 
 // 图片保存成功提示文字
-#define SDPhotoBrowserSaveImageSuccessText @" ^_^ 已保存到相册";
+#define SDPhotoBrowserSaveImageSuccessText @"已保存到相册";
 
 // 图片保存失败提示文字
-#define SDPhotoBrowserSaveImageFailText @" >_< 保存失败 ";
+#define SDPhotoBrowserSaveImageFailText @"保存失败 ";
 
 // browser背景颜色
-#define SDPhotoBrowserBackgrounColor [[UIColor blackColor] colorWithAlphaComponent:0.95]
+#define SDPhotoBrowserBackgrounColor [UIColor blackColor]
 
 // browser中图片间的margin
 #define SDPhotoBrowserImageViewMargin 10
@@ -29,7 +29,7 @@ typedef enum {
 #define SDPhotoBrowserShowImageAnimationDuration 0.4f
 
 // browser中显示图片动画时长
-#define SDPhotoBrowserHideImageAnimationDuration 0.5f
+#define SDPhotoBrowserHideImageAnimationDuration 0.4f
 
 // 图片下载进度指示进度显示样式（SDWaitingViewModeLoopDiagram 环形，SDWaitingViewModePieDiagram 饼型）
 #define SDWaitingViewProgressMode SDWaitingViewModeLoopDiagram

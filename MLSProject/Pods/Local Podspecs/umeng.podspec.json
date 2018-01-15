@@ -1,0 +1,231 @@
+{
+  "name": "umeng",
+  "version": "1.0.6",
+  "summary": "友盟SDK pod 管理",
+  "description": "友盟SDK pod 管理\"",
+  "homepage": "http://www.umeng.com/codecenter.html",
+  "license": "MIT",
+  "authors": {
+    "MinLison": "yuanhang.1991@163.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "path": "."
+  },
+  "default_subspecs": "common",
+  "subspecs": [
+    {
+      "name": "thirdparties",
+      "vendored_frameworks": [
+        "thirdparties/UTDID.framework",
+        "thirdparties/SecurityEnvSDK.framework"
+      ],
+      "public_header_files": "thirdparties/thirdparties.h",
+      "source_files": "thirdparties/thirdparties.h"
+    },
+    {
+      "name": "common",
+      "dependencies": {
+        "umeng/thirdparties": [
+
+        ]
+      },
+      "public_header_files": "common/umcommon.h",
+      "source_files": "common/umcommon.h",
+      "vendored_frameworks": "common/UMCommon.framework",
+      "xcconfig": {
+        "OTHER_LDFLAGS": "-ObjC "
+      }
+    },
+    {
+      "name": "analytics",
+      "libraries": "z",
+      "frameworks": [
+        "CoreTelephony",
+        "SystemConfiguration"
+      ],
+      "dependencies": {
+        "umeng/common": [
+
+        ]
+      },
+      "public_header_files": "analytics/umanalytics.h",
+      "source_files": "analytics/umanalytics.h",
+      "vendored_frameworks": "analytics/UMAnalytics.framework"
+    },
+    {
+      "name": "push",
+      "dependencies": {
+        "umeng/common": [
+
+        ]
+      },
+      "libraries": "z",
+      "frameworks": [
+        "CoreTelephony",
+        "SystemConfiguration"
+      ],
+      "vendored_frameworks": "push/UMPush.framework",
+      "public_header_files": "push/umpush.h",
+      "source_files": "push/umpush.h"
+    },
+    {
+      "name": "social",
+      "libraries": [
+        "sqlite3",
+        "c++",
+        "z"
+      ],
+      "frameworks": [
+        "CoreGraphics",
+        "SystemConfiguration",
+        "CoreTelephony",
+        "ImageIO"
+      ],
+      "source_files": [
+        "social/SocialLibraries/**/*.h",
+        "social/umsocial.h"
+      ],
+      "public_header_files": [
+        "social/SocialLibraries/**/*.h",
+        "social/umsocial.h"
+      ],
+      "vendored_frameworks": "social/UMSocialSDK/*.framework",
+      "vendored_libraries": [
+        "social/SocialLibraries/**/*.a",
+        "social/UMSocialSDKPlugin/*.a"
+      ],
+      "resources": "social/UMSocialSDK/*.bundle"
+    },
+    {
+      "name": "socialui",
+      "dependencies": {
+        "umeng/social": [
+
+        ]
+      },
+      "vendored_frameworks": "social/UMSocialUI/*.framework",
+      "resources": "social/UMSocialUI/*.bundle",
+      "public_header_files": "social/umsocialui.h",
+      "source_files": "social/umsocialui.h"
+    },
+    {
+      "name": "idfa",
+      "source_files": "social/uniqueid.h",
+      "vendored_libraries": "social/UniqueId/*.a",
+      "frameworks": "AdSupport",
+      "public_header_files": "social/UniqueId/*.h"
+    },
+    {
+      "name": "share",
+      "dependencies": {
+        "umeng/common": [
+
+        ]
+      },
+      "libraries": [
+        "sqlite3",
+        "c++",
+        "z"
+      ],
+      "frameworks": [
+        "CoreGraphics",
+        "SystemConfiguration",
+        "CoreTelephony",
+        "ImageIO"
+      ],
+      "source_files": [
+        "share/SocialLibraries/**/*.h",
+        "share/umshare.h"
+      ],
+      "vendored_frameworks": "share/UMShare.framework",
+      "vendored_libraries": [
+        "share/SocialLibraries/**/*.a",
+        "share/UMSocialSDKPlugin/libUMSocialLog.a"
+      ],
+      "resources": "share/UMSocialSDKPlugin/UMSocialSDKPromptResources.bundle",
+      "public_header_files": [
+        "share/SocialLibraries/**/*.h",
+        "share/umshare.h"
+      ]
+    },
+    {
+      "name": "shareUI",
+      "dependencies": {
+        "umeng/share": [
+
+        ]
+      },
+      "vendored_frameworks": "share/UMSocialUI/UShareUI.framework",
+      "resources": "share/UMSocialUI/UMSocialSDKResources.bundle",
+      "public_header_files": "share/umshareui.h",
+      "source_files": "share/umshareui.h"
+    },
+    {
+      "name": "umerror",
+      "libraries": [
+        "z",
+        "c++"
+      ],
+      "dependencies": {
+        "umeng/analytics": [
+
+        ]
+      },
+      "frameworks": [
+        "SystemConfiguration",
+        "Foundation",
+        "UIKit"
+      ],
+      "vendored_frameworks": "umerror/UMErrorCatch.framework",
+      "public_header_files": "umerror/umerror.h",
+      "source_files": "umerror/umerror.h"
+    },
+    {
+      "name": "umessage",
+      "libraries": [
+        "sqlite3",
+        "z",
+        "c++"
+      ],
+      "source_files": [
+        "umessage/*.h",
+        "umessage/UMssageHeader.h"
+      ],
+      "frameworks": [
+        "SystemConfiguration",
+        "UserNotifications",
+        "UIKit"
+      ],
+      "vendored_libraries": "umessage/*.a",
+      "public_header_files": [
+        "umessage/*.h",
+        "umessage/UMssageHeader.h"
+      ]
+    },
+    {
+      "name": "umessageidfa",
+      "libraries": [
+        "sqlite3",
+        "z",
+        "c++"
+      ],
+      "source_files": [
+        "umessageidfa/*.h",
+        "umessageidfa/UMssageHeader.h"
+      ],
+      "frameworks": [
+        "SystemConfiguration",
+        "UserNotifications",
+        "UIKit"
+      ],
+      "vendored_libraries": "umessageidfa/*.a",
+      "public_header_files": [
+        "umessageidfa/*.h",
+        "umessageidfa/UMssageHeader.h"
+      ]
+    }
+  ]
+}

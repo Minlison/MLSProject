@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>--company-id</key>
-	<string>com.chengzivr</string>
+	<string>com.MLSProject</string>
 	<key>--ignore</key>
 	<array>
-		<string>./ChengziZdd/ThirdCode</string>
+		<string>./MLSProject/ThirdCode</string>
 		<string>./Pods</string>
 		<string>./Templates</string>
-		<string>./ChengziZdd/ThirdLib</string>
-		<string>./ChengziZdd/ThirdUI</string>
+		<string>./MLSProject/ThirdLib</string>
+		<string>./MLSProject/ThirdUI</string>
 		<string>./Shell</string>
 		<string>./fastlane</string>
 		<string>./docs</string>
@@ -20,9 +20,9 @@
 	<key>--print-settings</key>
 	<true/>
 	<key>--project-company</key>
-	<string>橙子-围观</string>
+	<string>MLSProject</string>
 	<key>--project-name</key>
-	<string>ChengziZdd</string>
+	<string>MLSProject</string>
 	<key>--repeat-first-par</key>
 	<false/>
 	<key>--templates</key>
