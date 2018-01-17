@@ -70,9 +70,14 @@ FOUNDATION_EXTERN NSInteger const kGetSMSCountTime;
 @property(nonatomic, copy, nullable) NSString *repeat_password;
 
 /**
+ 旧密码
+ */
+@property(nonatomic, copy, nullable) NSString *old_password;
+
+/**
  原来的昵称，计算属性，用来做昵称修改判断
  */
-@property(nonatomic, copy) NSString *old_nickname;
+@property(nonatomic, copy, nullable) NSString *old_nickname;
 
 /**
  是否已经登录
@@ -116,9 +121,19 @@ FOUNDATION_EXTERN NSInteger const kGetSMSCountTime;
 @property(nonatomic, assign) BOOL userInfoDidChange;
 
 /**
+ 是否可以重置密码
+ */
+@property(nonatomic, assign, readonly) BOOL canResetPassword;
+
+/**
+ 是否可以找回密码
+ */
+@property(nonatomic, assign, readonly) BOOL canFindPassword;
+
+/**
  用户个性化设置
  */
-@property(nonatomic, strong) MLSUserSettingModel *userSetting;
+@property(nonatomic, strong, nullable) MLSUserSettingModel *userSetting;
 
 /**
  底部弹框登录

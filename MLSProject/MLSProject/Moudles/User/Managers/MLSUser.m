@@ -46,6 +46,8 @@ NSInteger const kGetSMSInitCountTime = 0;
 @property(nonatomic, assign, getter=isHandleUMMsg) BOOL handleUMMsg;
 @property(nonatomic, strong) MLSUserGetNearYardRequest *getNearYardRequest;
 @property(nonatomic, assign, getter=isReady) BOOL ready;
+@property(nonatomic, assign, readwrite) BOOL canResetPassword;
+@property(nonatomic, assign, readwrite) BOOL canFindPassword;
 @end
 
 @implementation MLSUser
@@ -165,34 +167,29 @@ NSInteger const kGetSMSInitCountTime = 0;
 }
 - (void)_UpdateWithUserModel:(MLSUserModel *)userModel
 {
-        
-        if ( userModel == nil)
+        if (userModel == nil)
         {
-                self.login = NO;
+                self.userSetting = nil;
                 self.logout = YES;
-                [self _JudgeLoginOrRegister];
+                self.login = NO;
                 [self modelSetWithJSON:[[[MLSUserModel alloc] init] jk_propertyDictionary]];
-                [ShareStaticCache removeObjectForKey:MLSUserLoginUserIdentifier];
+                [ShareStaticCache setObject:nil forKey:MLSUserLoginUserIdentifier];
+                self.loginType = MLSLoginTypeUnKnown;
         }
-        else
+        else if ( [userModel isKindOfClass:[MLSUserModel class]] && userModel != self)
         {
                 self.logout = NO;
                 self.login = YES;
-                
-                if ( [userModel isKindOfClass:[MLSUserModel class]] )
-                {
-                        [self modelSetWithJSON:[userModel modelToJSONObject]];
-                        self.old_nickname = userModel.nickname;
-                }
-                
-                [self _JudgeLoginOrRegister];
-                
+                [self modelSetWithJSON:[userModel modelToJSONObject]];
+                self.old_nickname = userModel.nickname;
+                [self modelSetWithJSON:[userModel jk_propertyDictionary]];
                 [ShareStaticCache setObject:self forKey:MLSUserLoginUserIdentifier];
-                
-                [ShareStaticCache setObject:self.userSetting forKey:MLSLoginUserSettingIdentifier(userModel)];
-                _sms_code = nil;
-                self.loginType = MLSLoginTypeUnKnown;
         }
+        
+        
+        
+        [self _JudgeKVOState];
+        
 }
 /// MARK: - Public Method
 - (void)popLoginInViewController:(nullable UIViewController *)viewController completion:(nullable void (^)(void))completion dismiss:(nullable void (^)(void))dismiss
@@ -235,15 +232,21 @@ NSInteger const kGetSMSInitCountTime = 0;
 }
 - (void)pushOrPresentUserInfoInViewController:(nullable UIViewController *)viewController completion:(nullable void (^)(void))completion dismiss:(nullable void (^)(void))dismiss
 {
-        [self popLoginIfNeedInViewController:viewController completion:^{
-                
-        } dismiss:^{
-                if (self.isLogin)
-                {
-                        [[[MLSUpdateUserInfoViewController alloc] init] presentOrPushInViewController:viewController dismiss:dismiss];
-                }
-        }];
-        
+        if (self.isLogin)
+        {
+                [[[MLSUpdateUserInfoViewController alloc] init] presentOrPushInViewController:viewController dismiss:dismiss];
+        }
+        else
+        {
+                [self popLoginIfNeedInViewController:viewController completion:^{
+                        
+                } dismiss:^{
+                        if (self.isLogin)
+                        {
+                                [[[MLSUpdateUserInfoViewController alloc] init] presentOrPushInViewController:viewController dismiss:dismiss];
+                        }
+                }];
+        }
 }
 - (void)pushOrPresentUserInfoIfNeedInViewController:(nullable UIViewController *)viewController completion:(nullable void (^)(void))completion dismiss:(nullable void (^)(void))dismiss
 {
@@ -507,7 +510,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 - (void)setPhone:(NSString *)mobile
 {
         [super setMobile:mobile];
-        [self _JudgeLoginOrRegister];
+        [self _JudgeKVOState];
         [self postUserInfoDidChangeNotifaction];
 }
 
@@ -526,7 +529,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 - (void)setCountry_code:(NSString *)country_code
 {
         [super setCountry_code:country_code];
-        [self _JudgeLoginOrRegister];
+        [self _JudgeKVOState];
 }
 - (void)setCheckAgreement:(BOOL)checkAgreement
 {
@@ -534,7 +537,7 @@ NSInteger const kGetSMSInitCountTime = 0;
                 [self willChangeValueForKey:@keypath(self,checkAgreement)];
                 _checkAgreement = checkAgreement;
                 [self didChangeValueForKey:@keypath(self,checkAgreement)];
-                [self _JudgeLoginOrRegister];
+                [self _JudgeKVOState];
         }
 }
 - (void)setSms_code:(NSString *)sms_code
@@ -543,10 +546,27 @@ NSInteger const kGetSMSInitCountTime = 0;
                 [self willChangeValueForKey:@keypath(self,sms_code)];
                 _sms_code = sms_code;
                 [self didChangeValueForKey:@keypath(self,sms_code)];
-                [self _JudgeLoginOrRegister];
+                [self _JudgeKVOState];
         }
 }
-- (void)_JudgeLoginOrRegister
+- (void)setCanResetPassword:(BOOL)canResetPassword
+{
+        if (_canResetPassword != canResetPassword) {
+                [self willChangeValueForKey:@keypath(self,canResetPassword)];
+                _canResetPassword = canResetPassword;
+                [self didChangeValueForKey:@keypath(self,canResetPassword)];
+        }
+}
+- (void)setCanFindPassword:(BOOL)canFindPassword
+{
+        if (_canFindPassword != canFindPassword) {
+                [self willChangeValueForKey:@keypath(self,canFindPassword)];
+                _canFindPassword = canFindPassword;
+                [self didChangeValueForKey:@keypath(self,canFindPassword)];
+        }
+}
+
+- (void)_JudgeKVOState
 {
         if (!self.isReady)
         {
@@ -554,8 +574,10 @@ NSInteger const kGetSMSInitCountTime = 0;
                 self.canLogin = NO;
                 return;
         }
-        self.canRegister = [[MLSPhoneCondition condition] check:self.mobile] && [[MLSSMSCondition condition] check:self.sms_code] && !NULLString(self.country_code) && !self.isLogin && self.isLogout && self.isCheckAgreement;
+        self.canRegister = [[MLSPhoneCondition condition] check:self.mobile] && [[MLSSMSCondition condition] check:self.sms_code] && !NULLString(self.country_code) && !self.isLogin && self.isLogout && [[MLSPwdCondition condition] check:self.password];
         self.canLogin = [[MLSPhoneCondition condition] check:self.mobile] && [[MLSPwdCondition condition] check:self.password] && !NULLString(self.country_code) && !self.isLogin && self.isLogout;
+        self.canResetPassword = self.isLogin && !self.isLogout && [[MLSPwdCondition condition] check:self.old_password] && [[MLSPwdCondition condition] check:self.password] && [[MLSPwdCondition condition] check:self.repeat_password] && [self.password isEqualToString:self.repeat_password];
+        self.canFindPassword = !self.isLogin && self.isLogout && [[MLSPwdCondition condition] check:self.password];
 }
 - (void)postUserInfoDidChangeNotifaction
 {
@@ -604,8 +626,8 @@ NSInteger const kGetSMSInitCountTime = 0;
         if (_password != password) {
                 [self willChangeValueForKey:@keypath(self,password)];
                 _password = password;
-                [self _JudgeLoginOrRegister];
                 [self didChangeValueForKey:@keypath(self,password)];
+                [self _JudgeKVOState];
         }
 }
 - (void)setRepeat_password:(NSString *)repeat_password
@@ -613,8 +635,8 @@ NSInteger const kGetSMSInitCountTime = 0;
         if (_repeat_password != repeat_password) {
                 [self willChangeValueForKey:@keypath(self,repeat_password)];
                 _repeat_password = repeat_password;
-                [self _JudgeLoginOrRegister];
                 [self didChangeValueForKey:@keypath(self,repeat_password)];
+                [self _JudgeKVOState];
         }
 }
 - (void)setUserInfoDidChange:(BOOL)userInfoDidChange
@@ -628,8 +650,8 @@ NSInteger const kGetSMSInitCountTime = 0;
         if (_login != flag) {
                 [self willChangeValueForKey:@keypath(self,login)];
                 _login = flag;
-                [self postUserInfoDidChangeNotifaction];
                 [self didChangeValueForKey:@keypath(self,login)];
+                [self postUserInfoDidChangeNotifaction];
         }
 }
 - (void)setLogout:(BOOL)flag
@@ -637,8 +659,8 @@ NSInteger const kGetSMSInitCountTime = 0;
         if (_logout != flag) {
                 [self willChangeValueForKey:@keypath(self,logout)];
                 _logout = flag;
-                [self postUserInfoDidChangeNotifaction];
                 [self didChangeValueForKey:@keypath(self,logout)];
+                [self postUserInfoDidChangeNotifaction];
         }
 }
 - (void)setCanRegister:(BOOL)flag
@@ -662,9 +684,9 @@ NSInteger const kGetSMSInitCountTime = 0;
         NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:@{
                                                                                      @keypath(MLSUserManager,sms_code) : @[@"code"]
                                                                                       }];
-        if ([super respondsToSelector:@selector(modelCustomPropertyMapper)])
+        if ([[self superclass] respondsToSelector:@selector(modelCustomPropertyMapper)])
         {
-                NSDictionary *dict = [super modelCustomPropertyMapper];
+                NSDictionary *dict = [[self superclass] modelCustomPropertyMapper];
                 if (dict)
                 {
                         [dictM addEntriesFromDictionary:dict];
@@ -672,6 +694,23 @@ NSInteger const kGetSMSInitCountTime = 0;
                 
         }
         
+        return dictM;
+}
++ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass
+{
+        MLSUser *user = nil;
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:@{
+                                                                                      @keypath(user,userSetting) : [MLSUserSettingModel class],
+                                                                                      }];
+        if ([[self superclass] respondsToSelector:@selector(modelContainerPropertyGenericClass)])
+        {
+                NSDictionary *dict = [[self superclass] modelContainerPropertyGenericClass];
+                if (dict)
+                {
+                        [dictM addEntriesFromDictionary:dict];
+                }
+                
+        }
         return dictM;
 }
 + (NSArray<NSString *> *)modelPropertyBlacklist
