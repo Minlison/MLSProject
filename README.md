@@ -4,6 +4,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/MinLison/MLSProject.svg?style=social&label=Stars)](https://github.com/MinLison/MLSProject)
 [![GitHub forks](https://img.shields.io/github/forks/MinLison/MLSProject.svg?style=social&label=Fork)](https://github.com/MinLison/MLSProject)
 
+
+## 欢迎各位 fork 后指正不足之处
+## 项目暂时略有瑕疵，如有适配问题，可 Fork 后 Pull request，小弟会一一解答
 ## 前言
 
 　　`MLSProject` 项目是一个 iOS App 开发架构，结合目前优秀的三方框架，旨在快速构建 App。目前对纯代码开发支持良好，对 xib 以及 storyboard 支持暂不友好。
