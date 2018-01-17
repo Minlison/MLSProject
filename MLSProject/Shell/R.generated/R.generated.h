@@ -494,6 +494,12 @@
 
 @interface NSString (AppConst) 
 
+/// Base translation: MLSProject园
+/// 
+/// Locales: zh-Hans, en, Base
++ (NSString *)app_HomeTitle;
+
+
 /// Base translation: 上传成功
 /// 
 /// Locales: zh-Hans, en, Base
@@ -744,12 +750,6 @@
 /// 
 /// Locales: zh-Hans, en, Base
 + (NSString *)app_NotLogin;
-
-
-/// Base translation: 李宁体育园
-/// 
-/// Locales: zh-Hans, en, Base
-+ (NSString *)app_HomeTitle;
 
 
 /// Base translation: 来,做第一个评论的人

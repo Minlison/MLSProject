@@ -14,9 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AMapFoundation-NO-IDFA (1.4.2)
-  - AMapLocation-NO-IDFA (2.5.0):
-    - AMapFoundation-NO-IDFA (~> 1.4)
   - Aspects (1.4.1)
   - BeeHive (1.5.1)
   - CocoaLumberjack (3.3.0):
@@ -56,7 +53,6 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AMapLocation-NO-IDFA
   - Aspects
   - BeeHive
   - CocoaLumberjack
@@ -96,8 +92,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AMapFoundation-NO-IDFA: 3b9ce87abc6a37c718cc320687469d0b74d5c953
-  AMapLocation-NO-IDFA: be669085a8cc0d22820022fc61d58811d24b4e3a
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
   BeeHive: b135a33b3519814ec5d117318d205e10c997450f
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
@@ -116,6 +110,6 @@ SPEC CHECKSUMS:
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 9c58dbb128af4efad82036914b5e013e1a792f28
+PODFILE CHECKSUM: 2572b729bf9ae9a0ee4b4917a82a086fe58c6f7a
 
 COCOAPODS: 1.2.1

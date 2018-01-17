@@ -2851,20 +2851,20 @@
 				F3481F0A1FA1E20C004C203D /* MLSUserMoudle.h */,
 				F3481F0B1FA1E20C004C203D /* MLSUserMoudle.m */,
 				F3D2D0A81FAC5ACD00218603 /* Transfomers */,
-				F3D2D0941FAC49FC00218603 /* Validator */,
+				F3D2D0941FAC49FC00218603 /* Validators */,
 				F3D2D0841FAC137400218603 /* Forms */,
 				F33832A41FA9E3CC00B090F0 /* Requests */,
 				F3BC38111FA326E700D88DF9 /* Views */,
 				F3481EE51FA1D461004C203D /* ControllerViews */,
-				F3481EE41FA1D458004C203D /* Controllers */,
-				F3027FDF1F74EA58001F901A /* Manager */,
-				F3027FDB1F74EA07001F901A /* Model */,
-				F33832941FA9BCA200B090F0 /* Resource */,
+				F3481EE41FA1D458004C203D /* ViewControllers */,
+				F3027FDF1F74EA58001F901A /* Managers */,
+				F3027FDB1F74EA07001F901A /* Models */,
+				F33832941FA9BCA200B090F0 /* Resources */,
 			);
 			path = User;
 			sourceTree = "<group>";
 		};
-		F3027FDB1F74EA07001F901A /* Model */ = {
+		F3027FDB1F74EA07001F901A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F369735A1FD19C6300179D4B /* MLSYardModel.h */,
@@ -2890,10 +2890,10 @@
 				F3166C5D1FC2E75A007F9D7D /* MLSFeedBackCommentContentModel.h */,
 				F3166C5E1FC2E75A007F9D7D /* MLSFeedBackCommentContentModel.m */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		F3027FDF1F74EA58001F901A /* Manager */ = {
+		F3027FDF1F74EA58001F901A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				F3027FDC1F74EA3B001F901A /* MLSUser.h */,
@@ -2901,7 +2901,7 @@
 				F3F143481FAED96F00ABD7E2 /* MLSCountryCodeManager.h */,
 				F3F143491FAED96F00ABD7E2 /* MLSCountryCodeManager.m */,
 			);
-			path = Manager;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		F322683C1FBD9E7D003DF222 /* WZLBadge */ = {
@@ -3035,13 +3035,13 @@
 			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
-		F33832941FA9BCA200B090F0 /* Resource */ = {
+		F33832941FA9BCA200B090F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				F3F143511FAEE8B800ABD7E2 /* WGPhoneCountry.bundle */,
 				F33832951FA9BCBB00B090F0 /* WGUserCenter.plist */,
 			);
-			path = Resource;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		F33832A41FA9E3CC00B090F0 /* Requests */ = {
@@ -3366,7 +3366,7 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		F3481EE41FA1D458004C203D /* Controllers */ = {
+		F3481EE41FA1D458004C203D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F337745A1FA1EA8B000B09C3 /* MLSUserViewController.h */,
@@ -3394,7 +3394,7 @@
 				F33832A11FA9D8B800B090F0 /* MLSPopLoginViewController.h */,
 				F33832A21FA9D8B800B090F0 /* MLSPopLoginViewController.m */,
 			);
-			path = Controllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F3481EE51FA1D461004C203D /* ControllerViews */ = {
@@ -3496,8 +3496,8 @@
 		F35535CD1F5FA3AB004D87A4 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				F35535F91F5FA3AB004D87A4 /* ViewController */,
-				F3F04D461FA312700016D803 /* ControllerView */,
+				F35535F91F5FA3AB004D87A4 /* ViewControllers */,
+				F3F04D461FA312700016D803 /* ControllerViews */,
 				F3CE0DA21F7DFA6A009D50DD /* Extension */,
 				F35535CE1F5FA3AB004D87A4 /* Encrypt */,
 				F35535D61F5FA3AB004D87A4 /* Filter */,
@@ -3645,7 +3645,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F35535F91F5FA3AB004D87A4 /* ViewController */ = {
+		F35535F91F5FA3AB004D87A4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F35535FA1F5FA3AB004D87A4 /* BaseNavigationViewController.h */,
@@ -3661,7 +3661,7 @@
 				F384D8D31FCC36DB00EE08A5 /* BasePhotoPreviewController.h */,
 				F384D8D41FCC36DB00EE08A5 /* BasePhotoPreviewController.m */,
 			);
-			path = ViewController;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F35535FE1F5FA3AB004D87A4 /* ViewModel */ = {
@@ -3704,25 +3704,25 @@
 		F367BE05200C529300C7BC0D /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				F367BE06200C529300C7BC0D /* Controller */,
-				F367BE09200C529300C7BC0D /* Model */,
-				F367BE10200C529300C7BC0D /* View */,
-				F367BE1B200C529300C7BC0D /* Request */,
-				F367BE22200C529300C7BC0D /* ControllerView */,
+				F367BE06200C529300C7BC0D /* ViewControllers */,
+				F367BE09200C529300C7BC0D /* Models */,
+				F367BE10200C529300C7BC0D /* Views */,
+				F367BE1B200C529300C7BC0D /* Requests */,
+				F367BE22200C529300C7BC0D /* ControllerViews */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
 		};
-		F367BE06200C529300C7BC0D /* Controller */ = {
+		F367BE06200C529300C7BC0D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F367BE07200C529300C7BC0D /* MLSCommentViewController.h */,
 				F367BE08200C529300C7BC0D /* MLSCommentViewController.m */,
 			);
-			path = Controller;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		F367BE09200C529300C7BC0D /* Model */ = {
+		F367BE09200C529300C7BC0D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F367BE0A200C529300C7BC0D /* MLSEmptyCommentModel.m */,
@@ -3732,10 +3732,10 @@
 				F367BE0E200C529300C7BC0D /* MLSSendCommentModel.m */,
 				F367BE0F200C529300C7BC0D /* MLSCommentModel.h */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		F367BE10200C529300C7BC0D /* View */ = {
+		F367BE10200C529300C7BC0D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F367BE11200C529300C7BC0D /* MLSCommonTitleHeaderView.m */,
@@ -3749,10 +3749,10 @@
 				F367BE19200C529300C7BC0D /* MLSCommentHeaderView.m */,
 				F367BE1A200C529300C7BC0D /* MLSEmptyCommentTableViewCell.m */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		F367BE1B200C529300C7BC0D /* Request */ = {
+		F367BE1B200C529300C7BC0D /* Requests */ = {
 			isa = PBXGroup;
 			children = (
 				F367BE1C200C529300C7BC0D /* MLSCommentListRequest.h */,
@@ -3762,16 +3762,16 @@
 				F367BE20200C529300C7BC0D /* MLSBanCommentRequest.m */,
 				F367BE21200C529300C7BC0D /* MLSCommentListRequest.m */,
 			);
-			path = Request;
+			path = Requests;
 			sourceTree = "<group>";
 		};
-		F367BE22200C529300C7BC0D /* ControllerView */ = {
+		F367BE22200C529300C7BC0D /* ControllerViews */ = {
 			isa = PBXGroup;
 			children = (
 				F367BE23200C529300C7BC0D /* MLSCommentView.h */,
 				F367BE24200C529300C7BC0D /* MLSCommentView.m */,
 			);
-			path = ControllerView;
+			path = ControllerViews;
 			sourceTree = "<group>";
 		};
 		F36FCC8E1F46E7E600455756 = {
@@ -3943,14 +3943,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		F390BDBB1FDA81AB005FAC3A /* View */ = {
+		F390BDBB1FDA81AB005FAC3A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F34BF1F41FDAA09B00BA1D73 /* Cell */,
 				F34BF1F61FDAA0BC00BA1D73 /* MLSMineHeaderView.h */,
 				F34BF1F71FDAA0BC00BA1D73 /* MLSMineHeaderView.m */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F39816BC1FCF01490045B99A /* View */ = {
@@ -4354,23 +4354,23 @@
 				F3C68885200C8657005B0D56 /* MLSUpdateEnum.h */,
 				F3C68886200C8657005B0D56 /* MLSUpdateMoudle.h */,
 				F3C68875200C8657005B0D56 /* MLSUpdateMoudle.m */,
-				F3C68872200C8657005B0D56 /* ViewModel */,
+				F3C68872200C8657005B0D56 /* ViewModels */,
 				F3C68876200C8657005B0D56 /* Models */,
-				F3C6887B200C8657005B0D56 /* Protocol */,
+				F3C6887B200C8657005B0D56 /* Protocols */,
 				F3C6887D200C8657005B0D56 /* ControllerViews */,
 				F3C68880200C8657005B0D56 /* Requests */,
-				F3C68887200C8657005B0D56 /* Controllers */,
+				F3C68887200C8657005B0D56 /* ViewControllers */,
 			);
 			path = Update;
 			sourceTree = "<group>";
 		};
-		F3C68872200C8657005B0D56 /* ViewModel */ = {
+		F3C68872200C8657005B0D56 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				F3C68874200C8657005B0D56 /* MLSUpdateViewModel.h */,
 				F3C68873200C8657005B0D56 /* MLSUpdateViewModel.m */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F3C68876200C8657005B0D56 /* Models */ = {
@@ -4384,12 +4384,12 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F3C6887B200C8657005B0D56 /* Protocol */ = {
+		F3C6887B200C8657005B0D56 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				F3C6887C200C8657005B0D56 /* MLSUpdateProtocol.h */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		F3C6887D200C8657005B0D56 /* ControllerViews */ = {
@@ -4412,16 +4412,16 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		F3C68887200C8657005B0D56 /* Controllers */ = {
+		F3C68887200C8657005B0D56 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F3C68888200C8657005B0D56 /* MLSUpdateViewController.h */,
 				F3C68889200C8657005B0D56 /* MLSUpdateViewController.m */,
 			);
-			path = Controllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		F3C7A2AF1FDA329A0059122E /* Form */ = {
+		F3C7A2AF1FDA329A0059122E /* Forms */ = {
 			isa = PBXGroup;
 			children = (
 				F3C7A2B01FDA32C70059122E /* MLSMineForm.h */,
@@ -4429,7 +4429,7 @@
 				F30D81F61FDF89A80091C2AA /* MLSSettingForm.h */,
 				F30D81F71FDF89A80091C2AA /* MLSSettingForm.m */,
 			);
-			path = Form;
+			path = Forms;
 			sourceTree = "<group>";
 		};
 		F3C7A2B31FDA38120059122E /* XLForm */ = {
@@ -4761,7 +4761,7 @@
 			path = Forms;
 			sourceTree = "<group>";
 		};
-		F3D2D0941FAC49FC00218603 /* Validator */ = {
+		F3D2D0941FAC49FC00218603 /* Validators */ = {
 			isa = PBXGroup;
 			children = (
 				F3D2D0951FAC4A4A00218603 /* MLSPhoneValidator.h */,
@@ -4785,7 +4785,7 @@
 				F3F1436D1FAF06B000ABD7E2 /* MLSNickNameCondition.h */,
 				F3F1436E1FAF06B000ABD7E2 /* MLSNickNameCondition.m */,
 			);
-			path = Validator;
+			path = Validators;
 			sourceTree = "<group>";
 		};
 		F3D2D0A81FAC5ACD00218603 /* Transfomers */ = {
@@ -4959,7 +4959,7 @@
 			path = Const;
 			sourceTree = "<group>";
 		};
-		F3F04D461FA312700016D803 /* ControllerView */ = {
+		F3F04D461FA312700016D803 /* ControllerViews */ = {
 			isa = PBXGroup;
 			children = (
 				F35535F71F5FA3AB004D87A4 /* BaseControllerView.h */,
@@ -4969,7 +4969,7 @@
 				F3C80FD51FD12311007265A4 /* BaseCollectionControllerView.h */,
 				F3C80FD61FD12311007265A4 /* BaseCollectionControllerView.m */,
 			);
-			path = ControllerView;
+			path = ControllerViews;
 			sourceTree = "<group>";
 		};
 		F3F143291FAECAF200ABD7E2 /* libPhoneNumber */ = {
@@ -5022,15 +5022,15 @@
 			children = (
 				F3F201E31FCF70CA0084F42A /* MLSMineMoudle.h */,
 				F3F201E41FCF70CA0084F42A /* MLSMineMoudle.m */,
-				F3F201EF1FCF71320084F42A /* Controllers */,
+				F3F201EF1FCF71320084F42A /* ViewControllers */,
 				F3F201F01FCF71370084F42A /* ControllerViews */,
-				F390BDBB1FDA81AB005FAC3A /* View */,
-				F3C7A2AF1FDA329A0059122E /* Form */,
+				F390BDBB1FDA81AB005FAC3A /* Views */,
+				F3C7A2AF1FDA329A0059122E /* Forms */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
 		};
-		F3F201EF1FCF71320084F42A /* Controllers */ = {
+		F3F201EF1FCF71320084F42A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F3F202031FCF71D50084F42A /* MLSMineViewController.h */,
@@ -5038,7 +5038,7 @@
 				F3C7A3621FDA406C0059122E /* MLSMineSettingViewController.h */,
 				F3C7A3631FDA406C0059122E /* MLSMineSettingViewController.m */,
 			);
-			path = Controllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F3F201F01FCF71370084F42A /* ControllerViews */ = {
@@ -5072,31 +5072,31 @@
 			children = (
 				F3F211021F58231F00B8EF16 /* MainMoudle.h */,
 				F3F211031F58231F00B8EF16 /* MainMoudle.m */,
-				F3F210FA1F581FDD00B8EF16 /* Protocol */,
-				F3F20B881F57B61F00B8EF16 /* Service */,
-				F3F20B891F57B61F00B8EF16 /* View */,
-				F3F20B8A1F57B61F00B8EF16 /* ViewController */,
+				F3F210FA1F581FDD00B8EF16 /* Protocols */,
+				F3F20B881F57B61F00B8EF16 /* Services */,
+				F3F20B891F57B61F00B8EF16 /* Views */,
+				F3F20B8A1F57B61F00B8EF16 /* ViewControllers */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		F3F20B881F57B61F00B8EF16 /* Service */ = {
+		F3F20B881F57B61F00B8EF16 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				F3F210F41F581FB000B8EF16 /* MainService.h */,
 				F3F210F51F581FB000B8EF16 /* MainService.m */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
-		F3F20B891F57B61F00B8EF16 /* View */ = {
+		F3F20B891F57B61F00B8EF16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		F3F20B8A1F57B61F00B8EF16 /* ViewController */ = {
+		F3F20B8A1F57B61F00B8EF16 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				F3F210F71F581FC500B8EF16 /* MainViewController.h */,
@@ -5104,7 +5104,7 @@
 				F3481F041FA1D5D2004C203D /* MLSTabBarViewController.h */,
 				F3481F051FA1D5D2004C203D /* MLSTabBarViewController.m */,
 			);
-			path = ViewController;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F3F20B8C1F57B61F00B8EF16 /* ThirdCode */ = {
@@ -6381,13 +6381,13 @@
 			path = InteractionControllers;
 			sourceTree = "<group>";
 		};
-		F3F210FA1F581FDD00B8EF16 /* Protocol */ = {
+		F3F210FA1F581FDD00B8EF16 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				F3F210FB1F5820FA00B8EF16 /* MainServiceProtocol.h */,
 				F3F210FC1F5820FA00B8EF16 /* MainServiceProtocol.m */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

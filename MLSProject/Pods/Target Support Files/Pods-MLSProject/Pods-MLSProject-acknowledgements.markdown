@@ -24,16 +24,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## AMapFoundation-NO-IDFA
-
-Copyright © 2014 AutoNavi. All Rights Reserved.
-
-
-## AMapLocation-NO-IDFA
-
-Copyright © 2014 AutoNavi. All Rights Reserved.
-
-
 ## Aspects
 
 The MIT License (MIT)

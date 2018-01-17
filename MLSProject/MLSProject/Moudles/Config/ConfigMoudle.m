@@ -5,8 +5,6 @@
 //  Created by MinLison on 2017/8/31.
 //  Copyright © 2017年 minlison. All rights reserved.
 //
-#import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
 #if WGEnablePgyerSDK
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
@@ -28,8 +26,6 @@
 }
 - (void)modSetUp:(BHContext *)context
 {
-        [self _SetupGaoDeMap];
-        
         [self _SetupNetwork:context];
         
         [self _SetupUITheme];
@@ -115,12 +111,6 @@
         {
                 [[UMSocialManager defaultManager] handleOpenURL:context.openURLItem.openURL];
         }
-}
-
-- (void)_SetupGaoDeMap
-{
-        [AMapServices sharedServices].apiKey = GAO_DE_KEY;
-        [[AMapServices sharedServices] setEnableHTTPS:YES];
 }
 
 - (void)_SetupDebugConfigVC

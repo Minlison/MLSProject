@@ -763,6 +763,14 @@
 /// This `R.string.appConst` struct is generated, and contains static references to 62 localization keys.
 @implementation NSString (AppConst) 
 
+/// Base translation: MLSProject园
+/// 
+/// Locales: zh-Hans, en, Base
++ (NSString *)app_HomeTitle {
+     return NSLocalizedStringWithDefaultValue(@"App_HomeTitle",@"AppConst",[NSBundle mainBundle],@"MLSProject园",@"");
+}
+
+
 /// Base translation: 上传成功
 /// 
 /// Locales: zh-Hans, en, Base
@@ -1096,14 +1104,6 @@
 /// Locales: zh-Hans, en, Base
 + (NSString *)app_NotLogin {
      return NSLocalizedStringWithDefaultValue(@"App_NotLogin",@"AppConst",[NSBundle mainBundle],@"未登录",@"");
-}
-
-
-/// Base translation: 李宁体育园
-/// 
-/// Locales: zh-Hans, en, Base
-+ (NSString *)app_HomeTitle {
-     return NSLocalizedStringWithDefaultValue(@"App_HomeTitle",@"AppConst",[NSBundle mainBundle],@"李宁体育园",@"");
 }
 
 

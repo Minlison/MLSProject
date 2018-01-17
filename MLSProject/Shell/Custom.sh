@@ -8,18 +8,18 @@ DisplayName=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "$IN
 DisplayName="${DisplayName}"
 
 if [ "MinLison" == "${PRODUCT_NAME}" ]; then
-/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName 李宁体育$DisplayName" "$INFOPLIST_FILE"
+/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName MLSProject$DisplayName" "$INFOPLIST_FILE"
 else
-/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName 李宁体育$DisplayName" "$INFOPLIST_FILE"
+/usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName MLSProject$DisplayName" "$INFOPLIST_FILE"
 fi
 
 
 else
 
 if [ "MinLison" == "${PRODUCT_NAME}" ]; then
-DisplayName="李宁体育"
+DisplayName="MLSProject"
 else
-DisplayName="李宁体育"
+DisplayName="MLSProject"
 fi
 
 BuildNumber=$(date +%Y%m%d%H%M%S)
