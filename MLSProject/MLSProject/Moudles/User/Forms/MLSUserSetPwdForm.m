@@ -15,7 +15,7 @@
 #import "MLSUserPwdCell.h"
 #import "MLSSetPwdCompleteCell.h"
 @implementation MLSUserSetPwdForm
-- (instancetype)initWithType:(LNSetPwdType)type
+- (instancetype)initWithType:(MLSSetPwdType)type
 {
         if (self = [super init]) {
                 self.type = type;
@@ -32,24 +32,24 @@
 - (void)setPassword:(NSString *)password
 {
         _password = password;
-        LNUserManager.password = password;
+        MLSUserManager.password = password;
 }
 - (void)setRepeatPassword:(NSString *)repeatPassword
 {
         _repeatPassword = repeatPassword;
-        LNUserManager.repeat_password = repeatPassword;
+        MLSUserManager.repeat_password = repeatPassword;
 }
 
 - (NSArray *)extraFields
 {
         NSString *title = @"";
         switch (self.type) {
-                case LNSetPwdTypeRegister:
+                case MLSSetPwdTypeRegister:
                 {
                         title = @"完成注册";
                 }
                         break;
-                case LNSetPwdTypeFindPwd:
+                case MLSSetPwdTypeFindPwd:
                 {
                         title = @"完成修改";
                 }
@@ -66,6 +66,6 @@
 
 - (void)dealloc
 {
-        LNUserManager.password = nil;
+        MLSUserManager.password = nil;
 }
 @end

@@ -14,9 +14,9 @@
 {
         NSMutableDictionary *dict = [super defaultParams];
         [dict addEntriesFromDictionary:@{
-                                         kRequestKeyUser_ID : NOT_NULL_STRING(LNUserManager.uid, @"0"),
-                                         kRequestKeyToken : NOT_NULL_STRING_DEFAULT_EMPTY(LNUserManager.token),
-                                         kRequestKeyRefresh_Token : NOT_NULL_STRING_DEFAULT_EMPTY(LNUserManager.refresh_token),
+                                         kRequestKeyUser_ID : NOT_NULL_STRING(MLSUserManager.uid, @"0"),
+                                         kRequestKeyToken : NOT_NULL_STRING_DEFAULT_EMPTY(MLSUserManager.token),
+                                         kRequestKeyRefresh_Token : NOT_NULL_STRING_DEFAULT_EMPTY(MLSUserManager.refresh_token),
                                          }];
         return dict;
 }

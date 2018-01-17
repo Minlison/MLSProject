@@ -7,14 +7,14 @@
 //
 
 #import "BaseModel.h"
-typedef NS_ENUM(NSInteger,LNSetPwdType)
+typedef NS_ENUM(NSInteger,MLSSetPwdType)
 {
-        LNSetPwdTypeRegister,
-        LNSetPwdTypeFindPwd,
+        MLSSetPwdTypeRegister,
+        MLSSetPwdTypeFindPwd,
 };
 @interface MLSUserSetPwdForm : BaseModel<FXForm>
 @property(nonatomic, copy) NSString *password;
 @property(nonatomic, copy) NSString *repeatPassword;
-@property(nonatomic, assign) LNSetPwdType type;
-- (instancetype)initWithType:(LNSetPwdType)type;
+@property(nonatomic, assign) MLSSetPwdType type;
+- (instancetype)initWithType:(MLSSetPwdType)type;
 @end

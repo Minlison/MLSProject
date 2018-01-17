@@ -53,27 +53,27 @@
         [self.rightGoBtn jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
                 if (self.actionBlock) {
-                        self.actionBlock(LNMineHeaderViewClickTypeUpdateUserInfo);
+                        self.actionBlock(MLSMineHeaderViewClickTypeUpdateUserInfo);
                 }
         }];
         
         [self updateContent];
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,userInfoDidChange) options:(NSKeyValueObservingOptionNew) block:^(MLSMineHeaderView *  _Nullable observer, MLSUser *  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,userInfoDidChange) options:(NSKeyValueObservingOptionNew) block:^(MLSMineHeaderView *  _Nullable observer, MLSUser *  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 [observer updateContent];
         }];
         [self.headImgBtn jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
                 if (self.actionBlock) {
-                        self.actionBlock(LNMineHeaderViewClickTypeHeadImgClick);
+                        self.actionBlock(MLSMineHeaderViewClickTypeHeadImgClick);
                 }
         }];
 }
 - (void)updateContent
 {
-        [self.headImgBtn sd_setImageWithURL:[NSURL URLWithString:NOT_NULL_STRING_DEFAULT_EMPTY(LNUserManager.img)] forState:(UIControlStateNormal) placeholderImage:[UIImage pic_default_avatar]];
-        self.phoneNumlabel.text = NOT_NULL_STRING(LNUserManager.mobile, @"");
-        self.nickNamelabel.text = NOT_NULL_STRING(LNUserManager.nickname, LNUserManager.isLogin ? @"匿名用户" : @"注册/登录");
-        self.stackView.spacing = LNUserManager.isLogin ? __WGHeight(11) : 0;
+        [self.headImgBtn sd_setImageWithURL:[NSURL URLWithString:NOT_NULL_STRING_DEFAULT_EMPTY(MLSUserManager.img)] forState:(UIControlStateNormal) placeholderImage:[UIImage pic_default_avatar]];
+        self.phoneNumlabel.text = NOT_NULL_STRING(MLSUserManager.mobile, @"");
+        self.nickNamelabel.text = NOT_NULL_STRING(MLSUserManager.nickname, MLSUserManager.isLogin ? @"匿名用户" : @"注册/登录");
+        self.stackView.spacing = MLSUserManager.isLogin ? __WGHeight(11) : 0;
 }
 - (QMUIButton *)rightGoBtn
 {

@@ -52,7 +52,7 @@
 }
 - (void)formDescriptorCellDidSelectedWithFormController:(XLFormViewController *)controller
 {
-        [MLSImagePickerViewController show:(LNImagePickerTypeTakePhoto | LNImagePickerTypeChoseImage) inController:controller editImage:nil success:^(NSURL * _Nullable localImgUrl, UIImage * _Nullable image) {
+        [MLSImagePickerViewController show:(MLSImagePickerTypeTakePhoto | MLSImagePickerTypeChoseImage) inController:controller editImage:nil success:^(NSURL * _Nullable localImgUrl, UIImage * _Nullable image) {
                 [self uploadImageFileUrl:localImgUrl image:image];
         } failed:^(NSError * _Nonnull error) {
                 [MLSTipClass showText:error.localizedDescription];
@@ -65,7 +65,7 @@
         self.formViewController.fd_interactivePopDisabled = YES;
         [MLSTipClass showLoadingInView:self.formViewController.view];
         
-        [LNUserManager uploadUserHeadFileUrl:url completion:^(MLSUserModel * _Nonnull user) {
+        [MLSUserManager uploadUserHeadFileUrl:url completion:^(MLSUserModel * _Nonnull user) {
                 @strongify(self);
                 self.formViewController.fd_interactivePopDisabled = NO;
                 self.rowDescriptor.value = user.img;

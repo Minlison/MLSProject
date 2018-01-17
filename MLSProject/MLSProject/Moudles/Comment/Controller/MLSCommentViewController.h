@@ -21,7 +21,7 @@ typedef void (^WGSendCommentCallBackBlock)(NSArray <MLSCommentModel *> *models);
  @param contentType  内容类型
  @return MLSCommentViewController
  */
-+ (instancetype)commentViewControllerWithItemID:(NSString *)itemID contentType:(LNArticleContentType)contentType;
++ (instancetype)commentViewControllerWithItemID:(NSString *)itemID contentType:(MLSArticleContentType)contentType;
 
 /**
  评论回调

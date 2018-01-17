@@ -62,9 +62,9 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationWillEnterForegroundNotification object:nil];
         [self _LayoutViews];
         @weakify(self);
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,login) options:(NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,login) options:(NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
-                if (LNUserManager.isLogin && !LNUserManager.is_new_user)
+                if (MLSUserManager.isLogin && !MLSUserManager.is_new_user)
                 {
                         [self.popupController dismiss];
                 }
@@ -178,7 +178,7 @@
 }
 - (void)threePartiesLogin:(UIButton *)sender
 {
-        [LNUserManager loginType:(LNLoginType)sender.tag param:nil success:^(MLSUserModel * _Nonnull user) {
+        [MLSUserManager loginType:(MLSLoginType)sender.tag param:nil success:^(MLSUserModel * _Nonnull user) {
                 [MLSTipClass showText:[NSString app_AuthorizationSuccess]];
                 [self.popupController dismiss];
         } failed:^(NSError * _Nonnull error) {
@@ -203,7 +203,7 @@
                 _webCatView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
                 [_webCatView setImage:[UIImage login_icon_wechat] forState:(UIControlStateNormal)];
                 _webCatView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-                _webCatView.tag = LNLoginTypeWebchat;
+                _webCatView.tag = MLSLoginTypeWebchat;
                 [_webCatView addTarget:self action:@selector(threePartiesLogin:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         return _webCatView;
@@ -214,7 +214,7 @@
                 _qqView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
                 [_qqView setImage:[UIImage login_icon_qq] forState:(UIControlStateNormal)];
                 _qqView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-                _qqView.tag = LNLoginTypeQQ;
+                _qqView.tag = MLSLoginTypeQQ;
                 [_qqView addTarget:self action:@selector(threePartiesLogin:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         return _qqView;
@@ -225,7 +225,7 @@
                 _weiBoView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
                 [_weiBoView setImage:[UIImage login_icon_weibo] forState:(UIControlStateNormal)];
                 _weiBoView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-                _weiBoView.tag = LNLoginTypeWeibo;
+                _weiBoView.tag = MLSLoginTypeWeibo;
                 [_weiBoView addTarget:self action:@selector(threePartiesLogin:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         return _weiBoView;
@@ -234,7 +234,7 @@
 {
         if (_phoneView == nil) {
                 _phoneView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
-                _phoneView.tag = LNLoginTypePhone;
+                _phoneView.tag = MLSLoginTypePhone;
                 [_phoneView setImage:[UIImage login_icon_phone] forState:(UIControlStateNormal)];
                 _phoneView.imageView.contentMode = UIViewContentModeScaleAspectFit;
                 [_phoneView addTarget:self action:@selector(loginButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];

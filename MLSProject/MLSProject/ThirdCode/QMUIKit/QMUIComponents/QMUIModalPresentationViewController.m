@@ -124,13 +124,14 @@ static QMUIModalPresentationViewController *appearance;
     if (self.layoutBlock) {
         self.layoutBlock(self.view.bounds, self.keyboardHeight, contentViewFrame);
     } else {
-            self.contentView.frame = contentViewFrame;
+        self.contentView.frame = contentViewFrame;
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (self.containerWindow) {
+    
+    if (self.shownInWindowMode) {
         // 只有使用showWithAnimated:completion:显示出来的浮层，才需要修改之前就记住的animated的值
         animated = self.appearAnimated;
     }
@@ -141,6 +142,12 @@ static QMUIModalPresentationViewController *appearance;
     if (self.contentViewController) {
         self.contentViewController.qmui_modalPresentationViewController = self;
         [self.contentViewController beginAppearanceTransition:YES animated:animated];
+    }
+    
+    // 如果是因为 present 了新的界面再从那边回来，导致走到 viewWillAppear，则后面那些升起浮层的操作都可以不用做了，因为浮层从来没被降下去过
+    BOOL willAppearByPresentedViewController = [self isShowingPresentedViewController];
+    if (willAppearByPresentedViewController) {
+        return;
     }
     
     [QMUIHelper dimmedApplicationWindow];
@@ -194,17 +201,38 @@ static QMUIModalPresentationViewController *appearance;
     }
     
     [super viewWillDisappear:animated];
-    if (self.containerWindow) {
+    
+    if (self.shownInWindowMode) {
         animated = self.disappearAnimated;
     }
     
-    if ([self.delegate respondsToSelector:@selector(willHideModalPresentationViewController:)]) {
-        [self.delegate willHideModalPresentationViewController:self];
+    BOOL willDisappearByPresentedViewController = [self isShowingPresentedViewController];
+    
+    if (!willDisappearByPresentedViewController) {
+        if ([self.delegate respondsToSelector:@selector(willHideModalPresentationViewController:)]) {
+            [self.delegate willHideModalPresentationViewController:self];
+        }
+    }
+    
+    // 在降下键盘前取消对键盘事件的监听，从而避免键盘影响隐藏浮层的动画
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    [self.view endEditing:YES];
+    
+    // 如果是因为 present 了新的界面导致走到 willDisappear，则后面那些降下浮层的操作都可以不用做了
+    if (willDisappearByPresentedViewController) {
+        return;
+    }
+    
+    [QMUIHelper resetDimmedApplicationWindow];
+    
+    if (self.contentViewController) {
+        [self.contentViewController beginAppearanceTransition:NO animated:animated];
     }
     
     void (^didHiddenCompletion)(BOOL finished) = ^(BOOL finished) {
         
-        if (self.containerWindow) {
+        if (self.shownInWindowMode) {
             // 恢复 keyWindow 之前做一下检查，避免这个问题 https://github.com/QMUI/QMUI_iOS/issues/90
             if ([[UIApplication sharedApplication] keyWindow] == self.containerWindow) {
                 [self.previousKeyWindow makeKeyWindow];
@@ -215,14 +243,13 @@ static QMUIModalPresentationViewController *appearance;
             [self endAppearanceTransition];
         }
         
-        if (self.view.superview) {
+        if (self.shownInSubviewMode) {
             // 这句是给addSubview的形式显示的情况下使用，但会触发第二次viewWillDisappear:，所以要搭配self.hasAlreadyViewWillDisappear使用
             [self.view removeFromSuperview];
             self.hasAlreadyViewWillDisappear = NO;
         }
         
         [self.contentView removeFromSuperview];
-        self.contentView = nil;
         if (self.contentViewController) {
             [self.contentViewController endAppearanceTransition];
         }
@@ -245,17 +272,6 @@ static QMUIModalPresentationViewController *appearance;
         
         self.disappearAnimated = NO;
     };
-    
-    // 在降下键盘前取消对键盘事件的监听，从而避免键盘影响隐藏浮层的动画
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    
-    [QMUIHelper resetDimmedApplicationWindow];
-    [self.view endEditing:YES];
-    
-    if (self.contentViewController) {
-        [self.contentViewController beginAppearanceTransition:NO animated:animated];
-    }
     
     if (animated) {
         if (self.hidingAnimation) {
@@ -321,23 +337,20 @@ static QMUIModalPresentationViewController *appearance;
         return;
     }
     
-    if (self.containerWindow) {
-        // 认为是以 UIWindow 的形式显示出来
+    if (self.shownInWindowMode) {
         __weak __typeof(self)weakSelf = self;
         [self hideWithAnimated:YES completion:^(BOOL finished) {
             if (weakSelf.didHideByDimmingViewTappedBlock) {
                 weakSelf.didHideByDimmingViewTappedBlock();
             }
         }];
-    } else if (self.presentingViewController && self.presentingViewController.presentedViewController == self) {
-        // 认为是以 presentViewController 的形式显示出来
+    } else if (self.shownInPresentedMode) {
         [self dismissViewControllerAnimated:YES completion:^{
             if (self.didHideByDimmingViewTappedBlock) {
                 self.didHideByDimmingViewTappedBlock();
             }
         }];
-    } else {
-        // 认为是 addSubview 的形式显示出来
+    } else if (self.shownInSubviewMode) {
         __weak __typeof(self)weakSelf = self;
         [self hideInView:self.view.superview animated:YES completion:^(BOOL finished) {
             if (weakSelf.didHideByDimmingViewTappedBlock) {
@@ -457,7 +470,7 @@ static QMUIModalPresentationViewController *appearance;
     }
     
     // window模式下，通过手动触发viewWillDisappear:来做界面消失的逻辑
-    if (self.containerWindow) {
+    if (self.shownInWindowMode) {
         [self beginAppearanceTransition:NO animated:animated];
     }
 }
@@ -478,7 +491,7 @@ static QMUIModalPresentationViewController *appearance;
 }
 
 - (CGRect)contentViewFrameForShowing {
-    CGSize contentViewContainerSize = CGSizeMake(CGRectGetWidth(self.view.bounds) - UIEdgeInsetsGetHorizontalValue(self.contentViewMargins), CGRectGetHeight(self.view.bounds) /*- self.keyboardHeight*/ - UIEdgeInsetsGetVerticalValue(self.contentViewMargins));
+    CGSize contentViewContainerSize = CGSizeMake(CGRectGetWidth(self.view.bounds) - UIEdgeInsetsGetHorizontalValue(self.contentViewMargins), CGRectGetHeight(self.view.bounds) - self.keyboardHeight - UIEdgeInsetsGetVerticalValue(self.contentViewMargins));
     CGSize contentViewLimitSize = CGSizeMake(fmin(self.maximumContentViewWidth, contentViewContainerSize.width), contentViewContainerSize.height);
     CGSize contentViewSize = CGSizeZero;
     if ([self.contentViewController respondsToSelector:@selector(preferredContentSizeInModalPresentationViewController:limitSize:)]) {
@@ -491,15 +504,24 @@ static QMUIModalPresentationViewController *appearance;
     CGRect contentViewFrame = CGRectMake(CGFloatGetCenter(contentViewContainerSize.width, contentViewSize.width) + self.contentViewMargins.left, CGFloatGetCenter(contentViewContainerSize.height, contentViewSize.height) + self.contentViewMargins.top, contentViewSize.width, contentViewSize.height);
     
     // showingAnimation、hidingAnimation里会通过设置contentView的transform来做动画，所以可能在showing的过程中设置了transform后，系统触发viewDidLayoutSubviews，在viewDidLayoutSubviews里计算的frame又是最终状态的frame，与showing时的transform冲突，导致动画过程中浮层跳动或者位置错误，所以为了保证layout时计算出来的frame与showing/hiding时计算的frame一致，这里给frame应用了transform。但这种处理方法也有局限：如果你在showingAnimation/hidingAnimation里对contentView.frame的更改不是通过修改transform而是直接修改frame来得到结果，那么这里这句CGRectApplyAffineTransform就没用了，viewDidLayoutSubviews里算出来的frame依然会和showingAnimation/hidingAnimation冲突。
-        CGFloat translate = 0;
-        if (self.keyboardHeight >= 1)
-        {
-                CGFloat maxY = CGRectGetMaxY(contentViewFrame);
-                translate = CGRectGetHeight(self.view.bounds) - maxY - self.keyboardHeight;
-        }
-        
-    contentViewFrame = CGRectApplyAffineTransform(contentViewFrame, CGAffineTransformTranslate(self.contentView.transform, 0, translate));
+    contentViewFrame = CGRectApplyAffineTransform(contentViewFrame, self.contentView.transform);
     return contentViewFrame;
+}
+
+- (BOOL)isShownInWindowMode {
+    return !!self.containerWindow;
+}
+
+- (BOOL)isShownInPresentedMode {
+    return !self.shownInWindowMode && self.presentingViewController && self.presentingViewController.presentedViewController == self;
+}
+
+- (BOOL)isShownInSubviewMode {
+    return !self.shownInPresentedMode && self.view.superview;
+}
+
+- (BOOL)isShowingPresentedViewController {
+    return self.shownInPresentedMode && self.presentedViewController && self.presentedViewController.presentingViewController == self;
 }
 
 #pragma mark - Keyboard

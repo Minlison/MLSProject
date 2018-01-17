@@ -10,15 +10,15 @@
 #import "MLSUpdateUserInfoCell.h"
 #import "MLSUpdateUserInfoHeadImgCell.h"
 #import "MLSModifyInfoViewController.h"
-NSString *const LNUpdateUserInfoFormCustomCell = @"LNUpdateUserInfoFormCustomCell";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeNickName = @"LNUpdateUserInfoRowDescriptorTypeNickName";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeRealName = @"LNUpdateUserInfoRowDescriptorTypeRealName";
-//NSString *const LNUpdateUserInfoRowDescriptorTypePhone = @"LNUpdateUserInfoRowDescriptorTypePhone";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeIDNumber = @"LNUpdateUserInfoRowDescriptorTypeIDNumber";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeGender = @"LNUpdateUserInfoRowDescriptorTypeGender";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeBirthday = @"LNUpdateUserInfoRowDescriptorTypeBirthday";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeAddress = @"LNUpdateUserInfoRowDescriptorTypeAddress";
-//NSString *const LNUpdateUserInfoRowDescriptorTypeEmail = @"LNUpdateUserInfoRowDescriptorTypeEmail";
+NSString *const MLSUpdateUserInfoFormCustomCell = @"MLSUpdateUserInfoFormCustomCell";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeNickName = @"MLSUpdateUserInfoRowDescriptorTypeNickName";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeRealName = @"MLSUpdateUserInfoRowDescriptorTypeRealName";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypePhone = @"MLSUpdateUserInfoRowDescriptorTypePhone";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeIDNumber = @"MLSUpdateUserInfoRowDescriptorTypeIDNumber";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeGender = @"MLSUpdateUserInfoRowDescriptorTypeGender";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeBirthday = @"MLSUpdateUserInfoRowDescriptorTypeBirthday";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeAddress = @"MLSUpdateUserInfoRowDescriptorTypeAddress";
+//NSString *const MLSUpdateUserInfoRowDescriptorTypeEmail = @"MLSUpdateUserInfoRowDescriptorTypeEmail";
 
 @implementation MLSUpdateUserInfoForm
 - (instancetype)init
@@ -40,7 +40,7 @@ NSString *const LNUpdateUserInfoFormCustomCell = @"LNUpdateUserInfoFormCustomCel
         section = [XLFormSectionDescriptor formSectionWithTitle:@"HeadImg"];
         [self addFormSection:section];
         row = [XLFormRowDescriptor formRowDescriptorWithTag:@"order" rowType:XLFormRowDescriptorTypeImage];
-        row.value = LNUserManager.img;
+        row.value = MLSUserManager.img;
         row.title = @"头像";
         row.cellClass = [MLSUpdateUserInfoHeadImgCell class];
         [section addFormRow:row];
@@ -48,23 +48,23 @@ NSString *const LNUpdateUserInfoFormCustomCell = @"LNUpdateUserInfoFormCustomCel
         // 底部视图
         NSArray <NSString *>*titlesArr = @[@"昵称",@"真实姓名",@"手机号码",@"身份证号码",@"性别",@"出生日期",@"联系地址",@"邮箱"];
         NSArray <NSString *>*tags = @[
-                                      @keypath(LNUserManager,nickname),
-                                       @keypath(LNUserManager,name),
-                                       @keypath(LNUserManager,mobile),
-                                       @keypath(LNUserManager,id_number),
-                                       @keypath(LNUserManager,gender),
-                                       @keypath(LNUserManager,date),
-                                       @keypath(LNUserManager,address),
-                                       @keypath(LNUserManager,email)
+                                      @keypath(MLSUserManager,nickname),
+                                       @keypath(MLSUserManager,name),
+                                       @keypath(MLSUserManager,mobile),
+                                       @keypath(MLSUserManager,id_number),
+                                       @keypath(MLSUserManager,gender),
+                                       @keypath(MLSUserManager,date),
+                                       @keypath(MLSUserManager,address),
+                                       @keypath(MLSUserManager,email)
                                        ];
         section = [XLFormSectionDescriptor formSectionWithTitle:@"Other"];
         [self addFormSection:section];
         
-        for (int i = 0; i < LNUpdateUserInfoTypeMax; i++)
+        for (int i = 0; i < MLSUpdateUserInfoTypeMax; i++)
         {
                 row = [XLFormRowDescriptor formRowDescriptorWithTag:tags[i] rowType:@(i).stringValue title:titlesArr[i]];
-                row.value = NOT_NULL_STRING([LNUserManager valueForKey:tags[i]],@"");
-                row.subTitle = NOT_NULL_STRING([LNUserManager valueForKey:tags[i]],@"未设置");
+                row.value = NOT_NULL_STRING([MLSUserManager valueForKey:tags[i]],@"");
+                row.subTitle = NOT_NULL_STRING([MLSUserManager valueForKey:tags[i]],@"未设置");
                 row.cellClass = [MLSUpdateUserInfoCell class];
                 row.action.viewControllerClass = [MLSModifyInfoViewController class];
                 [section addFormRow:row];

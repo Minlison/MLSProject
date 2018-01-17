@@ -21,7 +21,7 @@
         NSError *error = nil;
         BOOL res = NO;
 
-        NSString *addCountryCodeNum = [NSString stringWithFormat:@"+%@%@",LNUserManager.country_code,string];
+        NSString *addCountryCodeNum = [NSString stringWithFormat:@"+%@%@",MLSUserManager.country_code,string];
         NBPhoneNumber *phoneNumber = [self.phoneNumUtil parseWithPhoneCarrierRegion:addCountryCodeNum error:&error];
         res = [self.phoneNumUtil isValidNumber:phoneNumber];
         

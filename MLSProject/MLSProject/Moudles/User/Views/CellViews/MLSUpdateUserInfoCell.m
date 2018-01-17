@@ -63,7 +63,7 @@
 {
         [self update];
         @weakify(self);
-        [LNUserManager updateUserInfoWithParam:@{
+        [MLSUserManager updateUserInfoWithParam:@{
                                                  self.rowDescriptor.tag : self.rowDescriptor.value,
                                                  } success:^(NSString * _Nonnull sms) {
                                                          @strongify(self);
@@ -85,7 +85,7 @@
 - (void)formDescriptorCellDidSelectedWithFormController:(XLFormViewController *)controller
 {
         self.oldValue = self.rowDescriptor.value;
-        if (self.rowDescriptor.rowType.integerValue == LNUpdateUserInfoTypeBirthday)
+        if (self.rowDescriptor.rowType.integerValue == MLSUpdateUserInfoTypeBirthday)
         {
                 // date
                 if ( !NULLString(self.textLabelView.text) ) {
@@ -96,7 +96,7 @@
                 }
                 [self.textField becomeFirstResponder];
         }
-        else if ( self.rowDescriptor.rowType.integerValue == LNUpdateUserInfoTypeGender )
+        else if ( self.rowDescriptor.rowType.integerValue == MLSUpdateUserInfoTypeGender )
         {
                 /// alert
                 [self alertGenderVC];

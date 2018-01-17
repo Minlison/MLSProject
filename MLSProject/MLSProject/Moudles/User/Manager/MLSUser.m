@@ -25,10 +25,10 @@
 #import "MLSPhoneCondition.h"
 #import "MLSSMSCondition.h"
 #import "MLSUploadImageRequest.h"
-#define LNUserLoginUserIdentifier @"LNUserLoginUserIdentifier"
-#define LNLoginUserSettingIdentifier(user) [NSString stringWithFormat:@"LNLoginUserSettingIdentifier_%@",user.uid]
-#define LNLoginGetSMSIdentifier @"LNLoginGetSMSIdentifier"
-#define LNUserLoginFirstIdentifier @"LNUserLoginFirstIdentifier"
+#define MLSUserLoginUserIdentifier @"MLSUserLoginUserIdentifier"
+#define MLSLoginUserSettingIdentifier(user) [NSString stringWithFormat:@"MLSLoginUserSettingIdentifier_%@",user.uid]
+#define MLSLoginGetSMSIdentifier @"MLSLoginGetSMSIdentifier"
+#define MLSUserLoginFirstIdentifier @"MLSUserLoginFirstIdentifier"
 #if (DEBUG)
 NSInteger const kGetSMSCountTime = 60;
 #else
@@ -68,7 +68,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 {
         if (!_lastGetSMSTimeInterval) {
 #if !(DEBUG)
-                _lastGetSMSTimeInterval = [(NSNumber *)[ShareStaticCache objectForKey:LNLoginGetSMSIdentifier] unsignedIntegerValue];
+                _lastGetSMSTimeInterval = [(NSNumber *)[ShareStaticCache objectForKey:MLSLoginGetSMSIdentifier] unsignedIntegerValue];
 #endif
                 if (_lastGetSMSTimeInterval <= 0) {
                         self.lastGetSMSTimeInterval = kGetSMSInitCountTime;
@@ -80,7 +80,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 {
         _lastGetSMSTimeInterval = lastGetSMSTimeInterval;
 #if !(DEBUG)
-        [ShareStaticCache setObject:@(lastGetSMSTimeInterval) forKey:LNLoginGetSMSIdentifier];
+        [ShareStaticCache setObject:@(lastGetSMSTimeInterval) forKey:MLSLoginGetSMSIdentifier];
 #endif
 }
 - (BOOL)isLastSMSCountTimeCompletion
@@ -109,7 +109,7 @@ NSInteger const kGetSMSInitCountTime = 0;
         @synchronized(self)
         {
                 self.ready = NO;
-                MLSUserModel *model = (MLSUserModel *)[ShareStaticCache objectForKey:LNUserLoginUserIdentifier];
+                MLSUserModel *model = (MLSUserModel *)[ShareStaticCache objectForKey:MLSUserLoginUserIdentifier];
                 if (model && [model isKindOfClass:[MLSUserModel class]])
                 {
                         [self _UpdateWithUserModel:model];
@@ -118,7 +118,7 @@ NSInteger const kGetSMSInitCountTime = 0;
                 {
                         [self _UpdateWithUserModel:nil];
                 }
-                MLSUserSettingModel *settingModel = (MLSUserSettingModel *)[ShareStaticCache objectForKey:LNLoginUserSettingIdentifier(model)];
+                MLSUserSettingModel *settingModel = (MLSUserSettingModel *)[ShareStaticCache objectForKey:MLSLoginUserSettingIdentifier(model)];
                 if (!settingModel) {
                         settingModel = [[MLSUserSettingModel alloc] init];
                         settingModel.enablePushNotifaction = YES;
@@ -152,7 +152,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 }
 - (void)applicationDidBecomeActive:(NSNotification *)noti
 {
-        if ((self.loginType == LNLoginTypeQQ || self.loginType == LNLoginTypeWebchat || self.loginType == LNLoginTypeWeibo))
+        if ((self.loginType == MLSLoginTypeQQ || self.loginType == MLSLoginTypeWebchat || self.loginType == MLSLoginTypeWeibo))
         {
                 if (!self.isHandleUMMsg && self.userLoginFailedBlock)
                 {
@@ -164,7 +164,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 }
 - (BOOL)isNeedModifyUserInfo
 {
-        return self.is_new_user && self.loginType == LNLoginTypePhone;
+        return self.is_new_user && self.loginType == MLSLoginTypePhone;
 }
 - (void)_UpdateWithUserModel:(MLSUserModel *)userModel
 {
@@ -175,7 +175,7 @@ NSInteger const kGetSMSInitCountTime = 0;
                 self.logout = YES;
                 [self _JudgeLoginOrRegister];
                 [self modelSetWithJSON:[[[MLSUserModel alloc] init] jk_propertyDictionary]];
-                [ShareStaticCache removeObjectForKey:LNUserLoginUserIdentifier];
+                [ShareStaticCache removeObjectForKey:MLSUserLoginUserIdentifier];
         }
         else
         {
@@ -190,11 +190,11 @@ NSInteger const kGetSMSInitCountTime = 0;
                 
                 [self _JudgeLoginOrRegister];
                 
-                [ShareStaticCache setObject:self forKey:LNUserLoginUserIdentifier];
+                [ShareStaticCache setObject:self forKey:MLSUserLoginUserIdentifier];
                 
-                [ShareStaticCache setObject:self.userSetting forKey:LNLoginUserSettingIdentifier(userModel)];
+                [ShareStaticCache setObject:self.userSetting forKey:MLSLoginUserSettingIdentifier(userModel)];
                 _sms_code = nil;
-                self.loginType = LNLoginTypeUnKnown;
+                self.loginType = MLSLoginTypeUnKnown;
         }
 }
 /// MARK: - Public Method
@@ -266,10 +266,10 @@ NSInteger const kGetSMSInitCountTime = 0;
                 [self pushOrPresentUserInfoInViewController:viewController completion:completion dismiss:dismiss];
         }
 }
-- (void)loginType:(LNLoginType)type param:(nullable NSDictionary *)params success:(WGUserLoginSuccessBlock)success failed:(WGUserFailedBlock)failed
+- (void)loginType:(MLSLoginType)type param:(nullable NSDictionary *)params success:(WGUserLoginSuccessBlock)success failed:(WGUserFailedBlock)failed
 {
         self.loginType = type;
-        if (self.loginType == LNLoginTypePhone)
+        if (self.loginType == MLSLoginTypePhone)
         {
                 [self loginWithPhoneParam:params success:success failed:failed];
         }
@@ -301,7 +301,7 @@ NSInteger const kGetSMSInitCountTime = 0;
                 }
         }];
 }
-- (void)loginWithThirdPartyType:(LNLoginType)type success:(WGUserLoginSuccessBlock)success failed:(WGUserFailedBlock)failed
+- (void)loginWithThirdPartyType:(MLSLoginType)type success:(WGUserLoginSuccessBlock)success failed:(WGUserFailedBlock)failed
 {
         self.userLoginSuccessBlock = success;
         self.userLoginFailedBlock = failed;
@@ -309,7 +309,7 @@ NSInteger const kGetSMSInitCountTime = 0;
         [UMLogin login:(UMLoginType)type completion:^(BOOL suc, NSError *err, NSDictionary *response) {
                 @strongify(self);
                 self.handleUMMsg = YES;
-                self.loginType = LNLoginTypeUnKnown;
+                self.loginType = MLSLoginTypeUnKnown;
                 if (success)
                 {
                         NSDictionary *params = @{
@@ -581,7 +581,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 {
         self.userInfoDidChange = NO;
         self.userInfoDidChange = YES;
-        NSNotification *noti = [[NSNotification alloc] initWithName:LNUserInfoDidChangeNotifactionName object:self userInfo:nil];
+        NSNotification *noti = [[NSNotification alloc] initWithName:MLSUserInfoDidChangeNotifactionName object:self userInfo:nil];
         [[NSNotificationCenter defaultCenter] postNotification:noti];
 }
 
@@ -593,25 +593,25 @@ NSInteger const kGetSMSInitCountTime = 0;
 {
         BOOL automatic;
         
-        if ([theKey isEqualToString:@keypath(LNUserManager,login)]) {
+        if ([theKey isEqualToString:@keypath(MLSUserManager,login)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,logout)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,logout)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,canRegister)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,canRegister)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,canLogin)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,canLogin)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,userInfoDidChange)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,userInfoDidChange)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,password)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,password)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,mobile)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,mobile)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,repeat_password)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,repeat_password)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,sms_code)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,sms_code)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,checkAgreement)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,checkAgreement)]) {
                 automatic = NO;
         } else {
                 automatic = [super automaticallyNotifiesObserversForKey:theKey];
@@ -680,7 +680,7 @@ NSInteger const kGetSMSInitCountTime = 0;
 + (NSDictionary<NSString *,id> *)modelCustomPropertyMapper
 {
         NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithDictionary:@{
-                                                                                     @keypath(LNUserManager,sms_code) : @[@"code"]
+                                                                                     @keypath(MLSUserManager,sms_code) : @[@"code"]
                                                                                       }];
         if ([super respondsToSelector:@selector(modelCustomPropertyMapper)])
         {
@@ -745,4 +745,4 @@ NSInteger const kGetSMSInitCountTime = 0;
         return _locationManager;
 }
 @end
-NSString *const LNUserInfoDidChangeNotifactionName = @"LNUserInfoDidChangeNotifactionName";
+NSString *const MLSUserInfoDidChangeNotifactionName = @"MLSUserInfoDidChangeNotifactionName";

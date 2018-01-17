@@ -13,75 +13,75 @@
 /**
  tabbar的位置
 
- - LNTabbarIndexHome: 首页
- - LNTabbarIndexYard: 场地预定
- - LNTabbarIndexEvent: 赛事活动
- - LNTabbarIndexMine: 我的
+ - MLSTabbarIndexHome: 首页
+ - MLSTabbarIndexYard: 场地预定
+ - MLSTabbarIndexEvent: 赛事活动
+ - MLSTabbarIndexMine: 我的
  */
-typedef NS_ENUM(NSInteger,LNTabbarIndex)
+typedef NS_ENUM(NSInteger,MLSTabbarIndex)
 {
-        LNTabbarIndexHome = 0,
-        LNTabbarIndexYard = 1,
-        LNTabbarIndexEvent = 2,
-        LNTabbarIndexMine = 3,
+        MLSTabbarIndexHome = 0,
+        MLSTabbarIndexYard = 1,
+        MLSTabbarIndexEvent = 2,
+        MLSTabbarIndexMine = 3,
 };
 
 /**
  内容类型, 针对全局的所有内容的类型说明
  // 1热门产品 2促销信息 3新闻动态 4体育项目的赛事活动 5体育项目的新闻 6体育项目的活动介绍
- - LNArticleContentTypeHot: 热门产品
- - LNArticleContentTypePromotion: 促销信息
- - LNArticleContentTypeNews: 新闻动态
- - LNArticleContentTypeSportActivity: 体育项目的赛事活动
- - LNArticleContentTypeSportNews: 体育项目的新闻
- - LNArticleContentTypeSportIntroduce: 体育项目的活动介绍
+ - MLSArticleContentTypeHot: 热门产品
+ - MLSArticleContentTypePromotion: 促销信息
+ - MLSArticleContentTypeNews: 新闻动态
+ - MLSArticleContentTypeSportActivity: 体育项目的赛事活动
+ - MLSArticleContentTypeSportNews: 体育项目的新闻
+ - MLSArticleContentTypeSportIntroduce: 体育项目的活动介绍
  */
-typedef NS_ENUM(NSInteger,LNArticleContentType)
+typedef NS_ENUM(NSInteger,MLSArticleContentType)
 {
-        LNArticleContentTypeHot = 1,
-        LNArticleContentTypePromotion = 2,
-        LNArticleContentTypeNews = 3,
-        LNArticleContentTypeSportActivity = 4,
-        LNArticleContentTypeSportNews = 5,
-        LNArticleContentTypeSportIntroduce = 6,
+        MLSArticleContentTypeHot = 1,
+        MLSArticleContentTypePromotion = 2,
+        MLSArticleContentTypeNews = 3,
+        MLSArticleContentTypeSportActivity = 4,
+        MLSArticleContentTypeSportNews = 5,
+        MLSArticleContentTypeSportIntroduce = 6,
 };
 /**
  订单类型
  
- - LNOrderStatusTypeWaitingPay: 等待付款
- - LNOrderStatusTypePayed: 已付款但为确认
- - LNOrderStatusTypeCanceled: 已取消
- - LNOrderStatusTypeCompleted: 已完成
+ - MLSOrderStatusTypeWaitingPay: 等待付款
+ - MLSOrderStatusTypePayed: 已付款但为确认
+ - MLSOrderStatusTypeCanceled: 已取消
+ - MLSOrderStatusTypeCompleted: 已完成
  */
-typedef NS_ENUM(NSInteger,LNOrderStatusType)
+typedef NS_ENUM(NSInteger,MLSOrderStatusType)
 {
-        LNOrderStatusTypeWaitingPay,
-        LNOrderStatusTypePayed,
-        LNOrderStatusTypeCanceled,
-        LNOrderStatusTypeCompleted,
-        LNOrderStatusTypeAll,
-        LNOrderStatusTypeMax,
+        MLSOrderStatusTypeWaitingPay,
+        MLSOrderStatusTypePayed,
+        MLSOrderStatusTypeCanceled,
+        MLSOrderStatusTypeCompleted,
+        MLSOrderStatusTypeAll,
+        MLSOrderStatusTypeMax,
 };
-static inline NSString *LNOrderStatusDesForType(LNOrderStatusType type)
+static inline NSString *MLSOrderStatusDesForType(MLSOrderStatusType type)
 {
         NSString *des = nil;
         switch (type) {
-                case LNOrderStatusTypeWaitingPay:
+                case MLSOrderStatusTypeWaitingPay:
                 {
                         des = @"待支付";
                 }
                         break;
-                case LNOrderStatusTypePayed:
+                case MLSOrderStatusTypePayed:
                 {
                         des = @"已支付";
                 }
                         break;
-                case LNOrderStatusTypeCanceled:
+                case MLSOrderStatusTypeCanceled:
                 {
                         des = @"已取消";
                 }
                         break;
-                case LNOrderStatusTypeCompleted:
+                case MLSOrderStatusTypeCompleted:
                 {
                         des = @"已完成";
                 }
@@ -95,34 +95,34 @@ static inline NSString *LNOrderStatusDesForType(LNOrderStatusType type)
 };
 
 
-typedef NS_ENUM(NSInteger, LNPersonalTrainerOrderStatus)
+typedef NS_ENUM(NSInteger, MLSPersonalTrainerOrderStatus)
 {
-        LNPersonalTrainerOrderStatusWaitingReview,
-        LNPersonalTrainerOrderStatusReviewing,
-        LNPersonalTrainerOrderStatusReviewPass,
-        LNPersonalTrainerOrderStatusReviewNotPass,
-        LNPersonalTrainerOrderStatusMax,
+        MLSPersonalTrainerOrderStatusWaitingReview,
+        MLSPersonalTrainerOrderStatusReviewing,
+        MLSPersonalTrainerOrderStatusReviewPass,
+        MLSPersonalTrainerOrderStatusReviewNotPass,
+        MLSPersonalTrainerOrderStatusMax,
 };
-static inline NSString *LNPersonalTrainerOrderDesForType(LNPersonalTrainerOrderStatus type)
+static inline NSString *MLSPersonalTrainerOrderDesForType(MLSPersonalTrainerOrderStatus type)
 {
         NSString *des = nil;
         switch (type) {
-                case LNPersonalTrainerOrderStatusWaitingReview:
+                case MLSPersonalTrainerOrderStatusWaitingReview:
                 {
                         des = @"等待审核";
                 }
                         break;
-                case LNPersonalTrainerOrderStatusReviewing:
+                case MLSPersonalTrainerOrderStatusReviewing:
                 {
                         des = @"审核中";
                 }
                         break;
-                case LNPersonalTrainerOrderStatusReviewPass:
+                case MLSPersonalTrainerOrderStatusReviewPass:
                 {
                         des = @"审核通过";
                 }
                         break;
-                case LNPersonalTrainerOrderStatusReviewNotPass:
+                case MLSPersonalTrainerOrderStatusReviewNotPass:
                 {
                         des = @"审核未通过";
                 }
@@ -140,49 +140,49 @@ static inline NSString *LNPersonalTrainerOrderDesForType(LNPersonalTrainerOrderS
 /**
  会员类型
  后台对应 service_id
- - LNVipServiceKindTypeCreateCardAndCharge: 办卡充值
- - LNVipServiceKindTypeSiteBooking: 场地预订
- - LNVipServiceKindTypeBuyTickets: 购买门票
- - LNVipServiceKindTypeSportsClass: 体育培训
- - LNVipServiceKindTypeMatchSignUp: 赛事报名
- - LNVipServiceKindTypeSportShop: 运动商城
- - LNVipServiceKindTypeParkingCar: 停车缴费
+ - MLSVipServiceKindTypeCreateCardAndCharge: 办卡充值
+ - MLSVipServiceKindTypeSiteBooking: 场地预订
+ - MLSVipServiceKindTypeBuyTickets: 购买门票
+ - MLSVipServiceKindTypeSportsClass: 体育培训
+ - MLSVipServiceKindTypeMatchSignUp: 赛事报名
+ - MLSVipServiceKindTypeSportShop: 运动商城
+ - MLSVipServiceKindTypeParkingCar: 停车缴费
  */
-typedef NS_ENUM(NSInteger, LNVipServiceKindType)
+typedef NS_ENUM(NSInteger, MLSVipServiceKindType)
 {
-        LNVipServiceKindTypeCreateCardAndCharge = 1,
-        LNVipServiceKindTypeSiteBooking = 2,
-        LNVipServiceKindTypeBuyTickets = 3,
-        LNVipServiceKindTypeSportsClass = 4,
-        LNVipServiceKindTypeMatchSignUp = 5,
-        LNVipServiceKindTypeSportShop = 6,
-        LNVipServiceKindTypeParkingCar = 7,
-        LNVipServiceKindTypeMax,
+        MLSVipServiceKindTypeCreateCardAndCharge = 1,
+        MLSVipServiceKindTypeSiteBooking = 2,
+        MLSVipServiceKindTypeBuyTickets = 3,
+        MLSVipServiceKindTypeSportsClass = 4,
+        MLSVipServiceKindTypeMatchSignUp = 5,
+        MLSVipServiceKindTypeSportShop = 6,
+        MLSVipServiceKindTypeParkingCar = 7,
+        MLSVipServiceKindTypeMax,
 };
 
 /**
  购物车类型
  根据后台定义
- - LNShopCartTypeShopping: 运动商城商品
- - LNShopCartTypeBuyTickets: 购买门票
+ - MLSShopCartTypeShopping: 运动商城商品
+ - MLSShopCartTypeBuyTickets: 购买门票
  */
-typedef NS_ENUM(NSInteger, LNShopCartType)
+typedef NS_ENUM(NSInteger, MLSShopCartType)
 {
-        LNShopCartTypeShopping = 1,
-        LNShopCartTypeBuyTickets = 2
+        MLSShopCartTypeShopping = 1,
+        MLSShopCartTypeBuyTickets = 2
 };
 
 
 /**
  门票类型
 
- - LNBuyTicketsTypeSwimChildTicket: 儿童游泳馆
- - LNBuyTicketsTypeParentChildTicket: 亲子运动员门票
+ - MLSBuyTicketsTypeSwimChildTicket: 儿童游泳馆
+ - MLSBuyTicketsTypeParentChildTicket: 亲子运动员门票
  */
-typedef NS_ENUM(NSInteger, LNBuyTicketsType)
+typedef NS_ENUM(NSInteger, MLSBuyTicketsType)
 {
-        LNBuyTicketsTypeSwimChildTicket = 1,
-        LNBuyTicketsTypeParentChildTicket = 2
+        MLSBuyTicketsTypeSwimChildTicket = 1,
+        MLSBuyTicketsTypeParentChildTicket = 2
 };
 
 
@@ -323,19 +323,19 @@ typedef NS_ENUM(NSInteger, WGUserRoleType)
 
 /**
  三方登录类型
- - LNLoginTypePhone: 手机
- - LNLoginTypeQQ:  QQ
- - LNLoginTypeWebchat: 微信
- - LNLoginTypeWeibo: 微博
+ - MLSLoginTypePhone: 手机
+ - MLSLoginTypeQQ:  QQ
+ - MLSLoginTypeWebchat: 微信
+ - MLSLoginTypeWeibo: 微博
  */
-typedef NS_ENUM(NSInteger, LNLoginType)
+typedef NS_ENUM(NSInteger, MLSLoginType)
 {
-        LNLoginTypePhone = -1,
-        LNLoginTypeUnKnown = 0,
+        MLSLoginTypePhone = -1,
+        MLSLoginTypeUnKnown = 0,
         /// 服务器定义 begin
-        LNLoginTypeQQ = 3,
-        LNLoginTypeWebchat = 4,
-        LNLoginTypeWeibo = 5,
+        MLSLoginTypeQQ = 3,
+        MLSLoginTypeWebchat = 4,
+        MLSLoginTypeWeibo = 5,
         /// 服务器定义 end
 };
 
@@ -400,24 +400,24 @@ typedef NS_ENUM(NSInteger, WGBanCommentType)
 /**
  文章列表请求类型
 
- - LNArticleListRequestTypeHome: 首页
- - LNArticleListRequestTypeSport: 运动馆
+ - MLSArticleListRequestTypeHome: 首页
+ - MLSArticleListRequestTypeSport: 运动馆
  */
-typedef NS_ENUM(NSInteger,LNArticleListRequestType)
+typedef NS_ENUM(NSInteger,MLSArticleListRequestType)
 {
-        LNArticleListRequestTypeHome,
-        LNArticleListRequestTypeSport,
+        MLSArticleListRequestTypeHome,
+        MLSArticleListRequestTypeSport,
 };
 
 /**
  轮播图请求类型
 
- - LNBannerRequestTypeHome: 首页
- - LNBannerRequestTypeSport: 运动馆
+ - MLSBannerRequestTypeHome: 首页
+ - MLSBannerRequestTypeSport: 运动馆
  */
-typedef NS_ENUM(NSInteger,LNBannerRequestType)
+typedef NS_ENUM(NSInteger,MLSBannerRequestType)
 {
-        LNBannerRequestTypeHome,
-        LNBannerRequestTypeSport,
+        MLSBannerRequestTypeHome,
+        MLSBannerRequestTypeSport,
 };
 #endif /* MLSEnum_h */

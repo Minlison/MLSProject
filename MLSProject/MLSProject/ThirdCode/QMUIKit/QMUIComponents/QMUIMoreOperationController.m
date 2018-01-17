@@ -64,6 +64,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
         moreOperationViewControllerAppearance.itemPaddingHorizontal = 16;
         moreOperationViewControllerAppearance.itemTitleMarginTop = 9;
         moreOperationViewControllerAppearance.itemMinimumMarginHorizontal = 0;
+        moreOperationViewControllerAppearance.automaticallyAdjustItemMargins = YES;
         
         moreOperationViewControllerAppearance.cancelButtonBackgroundColor = UIColorWhite;
         moreOperationViewControllerAppearance.cancelButtonTitleColor = UIColorBlue;
@@ -80,10 +81,9 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 
 @interface QMUIMoreOperationController ()
 
-@property(nonatomic, strong) UIView *contentView;// 放两个 UIScrollView 的容器
-@property(nonatomic, strong) CALayer *extendLayer;
-@property(nonatomic, strong) NSMutableArray<UIScrollView *> *scrollViews;
+@property(nonatomic, strong) NSMutableArray<UIScrollView *> *mutableScrollViews;
 @property(nonatomic, strong) NSMutableArray<NSMutableArray<QMUIMoreOperationItemView *> *> *mutableItems;
+@property(nonatomic, strong) CALayer *extendLayer;
 
 @property(nonatomic, assign, getter=isShowing, readwrite) BOOL showing;
 @property(nonatomic, assign, getter=isAnimating, readwrite) BOOL animating;
@@ -124,6 +124,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
         self.itemPaddingHorizontal = [QMUIMoreOperationController appearance].itemPaddingHorizontal;
         self.itemTitleMarginTop = [QMUIMoreOperationController appearance].itemTitleMarginTop;
         self.itemMinimumMarginHorizontal = [QMUIMoreOperationController appearance].itemMinimumMarginHorizontal;
+        self.automaticallyAdjustItemMargins = [QMUIMoreOperationController appearance].automaticallyAdjustItemMargins;
         
         self.cancelButtonBackgroundColor = [QMUIMoreOperationController appearance].cancelButtonBackgroundColor;
         self.cancelButtonTitleColor = [QMUIMoreOperationController appearance].cancelButtonTitleColor;
@@ -134,7 +135,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
         
         self.isExtendBottomLayout = [QMUIMoreOperationController appearance].isExtendBottomLayout;
         
-        self.scrollViews = [[NSMutableArray alloc] init];
+        self.mutableScrollViews = [[NSMutableArray alloc] init];
         self.mutableItems = [[NSMutableArray alloc] init];
     }
     
@@ -144,7 +145,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.contentView = [[UIView alloc] init];
+    _contentView = [[UIView alloc] init];
     self.contentView.backgroundColor = self.contentBackgroundColor;
     [self.view addSubview:self.contentView];
     
@@ -168,6 +169,10 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     [self updateExtendLayerAppearance];
     
     [self updateCornerRadius];
+}
+
+- (NSArray<UIScrollView *> *)scrollViews {
+    return [self.mutableScrollViews copy];
 }
 
 #pragma mark - Layout
@@ -195,15 +200,26 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     layoutY = self.contentPaddings.top;
     CGFloat contentWidth = CGRectGetWidth(self.contentView.bounds) - UIEdgeInsetsGetHorizontalValue(self.contentPaddings);
     
-    [self.scrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIEdgeInsets scrollViewSafeAreaInsets = scrollView.qmui_safeAreaInsets;// 左右可能要适配 iPhone X 的 safeAreaInsets
+    [self.mutableScrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
+        scrollView.frame = CGRectMake(self.contentPaddings.left, layoutY, contentWidth, CGRectGetHeight(scrollView.frame));
+        
+        // 要保护 safeAreaInsets 的区域，而这里不使用 scrollView.qmui_safeAreaInsets 是因为此时 scrollView 的 safeAreaInsets 仍然为 0，但 scrollView.superview.safeAreaInsets 已经正确了，所以使用 scrollView.superview 也即 self.view 的
+        // 底部的 insets 暂不考虑
+//        UIEdgeInsets scrollViewSafeAreaInsets = scrollView.qmui_safeAreaInsets;
+        UIEdgeInsets scrollViewSafeAreaInsets = UIEdgeInsetsMake(fmax(self.view.qmui_safeAreaInsets.top - scrollView.qmui_top, 0), fmax(self.view.qmui_safeAreaInsets.left - scrollView.qmui_left, 0), 0, fmax(self.view.qmui_safeAreaInsets.right - (self.view.qmui_width - scrollView.qmui_right), 0));
+        
         NSArray<QMUIMoreOperationItemView *> *itemSection = self.mutableItems[idx];
         QMUIMoreOperationItemView *exampleItemView = itemSection.firstObject;
         CGFloat exampleItemWidth = exampleItemView.imageView.image.size.width + self.itemPaddingHorizontal * 2;
         CGFloat scrollViewVisibleWidth = contentWidth - scrollView.contentInset.left - scrollViewSafeAreaInsets.left;// 注意计算列数时不需要考虑 contentInset.right 的
         CGFloat columnCount = (scrollViewVisibleWidth + self.itemMinimumMarginHorizontal) / (exampleItemWidth + self.itemMinimumMarginHorizontal);
-        columnCount = [self suitableColumnCountWithCount:columnCount];
-        CGFloat finalItemMarginHorizontal = (scrollViewVisibleWidth - exampleItemWidth / 2.0 - exampleItemWidth * (NSInteger)columnCount) / (NSInteger)columnCount;// 让初始状态下在 scrollView 右边露出半个 item
+        
+        // 让初始状态下在 scrollView 右边露出半个 item
+        if (self.automaticallyAdjustItemMargins) {
+            columnCount = [self suitableColumnCountWithCount:columnCount];
+        }
+        
+        CGFloat finalItemMarginHorizontal = (scrollViewVisibleWidth - exampleItemWidth * columnCount) / columnCount;
         
         __block CGFloat maximumItemHeight = 0;
         __block CGFloat itemViewMinX = scrollViewSafeAreaInsets.left;
@@ -214,7 +230,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
             itemViewMinX = CGRectGetMaxX(itemView.frame) + finalItemMarginHorizontal;
         }];
         scrollView.contentSize = CGSizeMake(itemViewMinX - finalItemMarginHorizontal + scrollViewSafeAreaInsets.right, maximumItemHeight);
-        scrollView.frame = CGRectMake(self.contentPaddings.left, layoutY, contentWidth, scrollView.contentSize.height + UIEdgeInsetsGetVerticalValue(scrollView.contentInset));
+        scrollView.frame = CGRectSetHeight(scrollView.frame, scrollView.contentSize.height + UIEdgeInsetsGetVerticalValue(scrollView.contentInset));
         layoutY = CGRectGetMaxY(scrollView.frame);
     }];
 }
@@ -308,10 +324,10 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     
     self.mutableItems = [items qmui_mutableCopyNestedArray];
     
-    [self.scrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mutableScrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
         [scrollView removeFromSuperview];
     }];
-    [self.scrollViews removeAllObjects];
+    [self.mutableScrollViews removeAllObjects];
     [self.mutableItems enumerateObjectsUsingBlock:^(NSArray<QMUIMoreOperationItemView *> * _Nonnull itemViewSection, NSUInteger scrollViewIndex, BOOL * _Nonnull stop) {
         UIScrollView *scrollView = [self addScrollViewAtIndex:scrollViewIndex];
         [itemViewSection enumerateObjectsUsingBlock:^(QMUIMoreOperationItemView * _Nonnull itemView, NSUInteger itemViewIndex, BOOL * _Nonnull stop) {
@@ -334,12 +350,12 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     }
     itemView.moreOperationController = self;
     
-    if (section == self.scrollViews.count) {
+    if (section == self.mutableScrollViews.count) {
         // 创建新的 section
         [self addScrollViewAtIndex:section];
     }
-    if (section < self.scrollViews.count) {
-        [self addItemView:itemView toScrollView:self.scrollViews[section]];
+    if (section < self.mutableScrollViews.count) {
+        [self addItemView:itemView toScrollView:self.mutableScrollViews[section]];
     }
     
     [self setViewNeedsLayoutIfLoaded];
@@ -354,28 +370,28 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     }
     itemView.moreOperationController = self;
     
-    if (indexPath.section == self.scrollViews.count) {
+    if (indexPath.section == self.mutableScrollViews.count) {
         // 创建新的 section
         [self addScrollViewAtIndex:indexPath.section];
     }
-    if (indexPath.section < self.scrollViews.count) {
+    if (indexPath.section < self.mutableScrollViews.count) {
         [itemView formatItemViewStyleWithMoreOperationController:self];
-        [self.scrollViews[indexPath.section] insertSubview:itemView atIndex:indexPath.item];
+        [self.mutableScrollViews[indexPath.section] insertSubview:itemView atIndex:indexPath.item];
     }
     
     [self setViewNeedsLayoutIfLoaded];
 }
 
 - (void)removeItemViewAtIndexPath:(NSIndexPath *)indexPath {
-    QMUIMoreOperationItemView *itemView = self.scrollViews[indexPath.section].subviews[indexPath.item];
+    QMUIMoreOperationItemView *itemView = self.mutableScrollViews[indexPath.section].subviews[indexPath.item];
     itemView.moreOperationController = nil;
     [itemView removeFromSuperview];
     NSMutableArray<QMUIMoreOperationItemView *> *itemViewSection = self.mutableItems[indexPath.section];
     [itemViewSection removeObject:itemView];
     if (itemViewSection.count == 0) {
         [self.mutableItems removeObject:itemViewSection];
-        [self.scrollViews[indexPath.section] removeFromSuperview];
-        [self.scrollViews removeObjectAtIndex:indexPath.section];
+        [self.mutableScrollViews[indexPath.section] removeFromSuperview];
+        [self.mutableScrollViews removeObjectAtIndex:indexPath.section];
         [self updateScrollViewsBorderStyle];
     }
     [self setViewNeedsLayoutIfLoaded];
@@ -405,7 +421,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 - (UIScrollView *)addScrollViewAtIndex:(NSInteger)index {
     UIScrollView *scrollView = [self generateScrollViewWithIndex:index];
     [self.contentView addSubview:scrollView];
-    [self.scrollViews addObject:scrollView];
+    [self.mutableScrollViews addObject:scrollView];
     [self updateScrollViewsBorderStyle];
     return scrollView;
 }
@@ -432,7 +448,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 }
 
 - (void)updateScrollViewsBorderStyle {
-    [self.scrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mutableScrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
         scrollView.qmui_borderColor = self.scrollViewSeparatorColor;
         scrollView.qmui_borderPosition = idx != 0 ? QMUIBorderViewPositionTop : QMUIBorderViewPositionNone;
     }];
@@ -467,8 +483,8 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 
 - (void)setScrollViewContentInsets:(UIEdgeInsets)scrollViewContentInsets {
     _scrollViewContentInsets = scrollViewContentInsets;
-    if (self.scrollViews) {
-        for (UIScrollView *scrollView in self.scrollViews) {
+    if (self.mutableScrollViews) {
+        for (UIScrollView *scrollView in self.mutableScrollViews) {
             scrollView.contentInset = scrollViewContentInsets;
         }
         [self setViewNeedsLayoutIfLoaded];
@@ -534,6 +550,11 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
     [self setViewNeedsLayoutIfLoaded];
 }
 
+- (void)setAutomaticallyAdjustItemMargins:(BOOL)automaticallyAdjustItemMargins {
+    _automaticallyAdjustItemMargins = automaticallyAdjustItemMargins;
+    [self setViewNeedsLayoutIfLoaded];
+}
+
 - (void)setCancelButtonFont:(UIFont *)cancelButtonFont {
     _cancelButtonFont = cancelButtonFont;
     self.cancelButton.titleLabel.font = cancelButtonFont;
@@ -594,7 +615,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 
 - (CGSize)preferredContentSizeInModalPresentationViewController:(QMUIModalPresentationViewController *)controller limitSize:(CGSize)limitSize {
     __block CGFloat contentHeight = (self.cancelButton.hidden ? 0 : self.cancelButtonHeight + self.cancelButtonMarginTop);
-    [self.scrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.mutableScrollViews enumerateObjectsUsingBlock:^(UIScrollView * _Nonnull scrollView, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray<QMUIMoreOperationItemView *> *itemSection = self.mutableItems[idx];
         QMUIMoreOperationItemView *exampleItemView = itemSection.firstObject;
         CGFloat exampleItemWidth = exampleItemView.imageView.image.size.width + self.itemPaddingHorizontal * 2;
@@ -605,7 +626,7 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
         }];
         contentHeight += maximumItemHeight + UIEdgeInsetsGetVerticalValue(scrollView.contentInset);
     }];
-    if (self.scrollViews.count) {
+    if (self.mutableScrollViews.count) {
         contentHeight += UIEdgeInsetsGetVerticalValue(self.contentPaddings);
     }
     limitSize.height = contentHeight;
@@ -637,7 +658,6 @@ static QMUIMoreOperationController *moreOperationViewControllerAppearance;
 
 + (instancetype)itemViewWithImage:(UIImage *)image selectedImage:(UIImage *)selectedImage title:(NSString *)title selectedTitle:(NSString *)selectedTitle handler:(void (^)(QMUIMoreOperationController *, QMUIMoreOperationItemView *))handler {
     QMUIMoreOperationItemView *itemView = [[QMUIMoreOperationItemView alloc] init];
-    itemView.qmui_automaticallyAdjustTouchHighlightedInScrollView = YES;
     [itemView setImage:image forState:UIControlStateNormal];
     [itemView setImage:selectedImage forState:UIControlStateSelected];
     [itemView setImage:selectedImage forState:UIControlStateHighlighted|UIControlStateSelected];

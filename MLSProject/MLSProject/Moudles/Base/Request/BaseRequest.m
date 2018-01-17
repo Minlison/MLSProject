@@ -534,7 +534,7 @@
                 /// 刷新 token， data 只有 token 有值
                 if (!NULLString(data.token))
                 {
-                        LNUserManager.token = data.token;
+                        MLSUserManager.token = data.token;
                         self.needRefreshToken = NO;
                         /// 更新 token
                         [self paramInsert:data.token forKey:kRequestKeyToken];
@@ -557,13 +557,13 @@
 {
         [self paramInsert:@"" forKey:kRequestKeyToken];
         @weakify(self);
-        [LNUserManager logOut:nil success:^(NSString * _Nonnull sms) {
+        [MLSUserManager logOut:nil success:^(NSString * _Nonnull sms) {
                 @strongify(self);
                 [self stopWithError:error?:[NSError appErrorWithCode:APP_ERROR_CODE_ERR msg:[NSString app_NeworkError] remark:sms]];
                 self.needRefreshToken = NO;
                 self.refreshTokenCount = 0;
                 /// 弹出登录界面
-                [LNUserManager pushOrPresentLoginIfNeed:YES inViewController:nil completion:nil dismiss:nil];
+                [MLSUserManager pushOrPresentLoginIfNeed:YES inViewController:nil completion:nil dismiss:nil];
         } failed:^(NSError * _Nonnull error) {
                 @strongify(self);
                 [self stopWithError:error];
@@ -646,8 +646,8 @@
 //        [paramsM jk_setObj:kRequestKeyValueSystemType forKey:kRequestKeySys_Type];
         [paramsM jk_setObj:@([AppUnit currentNetworkStatus]) forKey:kRequestKeyNetType];
 //        [paramsM jk_setObj:[AppUnit versionNumberString] forKey:kRequestKeyApp_Version_Code];
-//        [paramsM jk_setObj:NOT_NULL_STRING(LNUserManager.uid, @"0") forKey:kRequestKeyUser_ID];
-//        [paramsM jk_setObj:NOT_NULL_STRING(LNUserManager.token, @"") forKey:kRequestKeyToken];
+//        [paramsM jk_setObj:NOT_NULL_STRING(MLSUserManager.uid, @"0") forKey:kRequestKeyUser_ID];
+//        [paramsM jk_setObj:NOT_NULL_STRING(MLSUserManager.token, @"") forKey:kRequestKeyToken];
         
         /// 页码
         [paramsM jk_setObj:@(self.currentPageNumber) forKey:self.pageKey];
@@ -655,11 +655,11 @@
         [paramsM jk_setObj:@(self.pageLimitCount) forKey:self.pageLimitKey];
         
         // 位置信息
-        [paramsM jk_setObj:LNUserManager.longitude forKey:kRequestKeyLng];
-        [paramsM jk_setObj:LNUserManager.latitude forKey:kRequestKeyLat];
-        [paramsM jk_setObj:LNUserManager.token forKey:kRequestKeyToken];
+        [paramsM jk_setObj:MLSUserManager.longitude forKey:kRequestKeyLng];
+        [paramsM jk_setObj:MLSUserManager.latitude forKey:kRequestKeyLat];
+        [paramsM jk_setObj:MLSUserManager.token forKey:kRequestKeyToken];
         // 最近园区信息
-        [paramsM jk_setObj:LNUserManager.currentYardModel.area_id forKey:kRequestKeyAreaID];
+        [paramsM jk_setObj:MLSUserManager.currentYardModel.area_id forKey:kRequestKeyAreaID];
 
         return paramsM;
 }
@@ -745,10 +745,10 @@
 }
 - (NSDictionary<NSString *,NSString *> *)requestHeaderFieldValueDictionary
 {
-        if (LNUserManager.isLogin)
+        if (MLSUserManager.isLogin)
         {
                 return @{
-                         @"Authorization" : [NSString stringWithFormat:@"Bearer %@",LNUserManager.token]
+                         @"Authorization" : [NSString stringWithFormat:@"Bearer %@",MLSUserManager.token]
                          };
         }
         return @{};

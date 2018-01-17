@@ -67,7 +67,7 @@
 - (void)valueChanged
 {
         self.rowDescriptor.value = @(self.switchControl.on);
-        LNUserManager.userSetting.enablePushNotifaction = self.switchControl.isOn;
+        MLSUserManager.userSetting.enablePushNotifaction = self.switchControl.isOn;
 }
 - (TTTAttributedLabel *)leftTitleLabel
 {

@@ -19,19 +19,19 @@
 - (NSArray *)fields
 {
         return @[
-                 @{FXFormFieldKey : @keypath(self,mobile),FXFormFieldDefaultValue : NOT_NULL_STRING_DEFAULT_EMPTY(LNUserManager.mobile), FXFormFieldTitle : @"", FXFormFieldCell : [MLSUserFormPhoneCell class], FXFormFieldPlaceholder : @"注册手机号"},
+                 @{FXFormFieldKey : @keypath(self,mobile),FXFormFieldDefaultValue : NOT_NULL_STRING_DEFAULT_EMPTY(MLSUserManager.mobile), FXFormFieldTitle : @"", FXFormFieldCell : [MLSUserFormPhoneCell class], FXFormFieldPlaceholder : @"注册手机号"},
                  @{FXFormFieldKey : @keypath(self,sms_code), FXFormFieldTitle : @"", FXFormFieldCell : [MLSUserFormSMSCell class], FXFormFieldPlaceholder : @"验证码",FXFormFieldAction: @"getSmsCode"},
                  ];
 }
 - (void)setMobile:(NSString *)mobile
 {
         _mobile = mobile;
-        LNUserManager.mobile = mobile;
+        MLSUserManager.mobile = mobile;
 }
 - (void)setSms_code:(NSString *)sms_code
 {
         _sms_code = sms_code;
-        LNUserManager.sms_code = sms_code;
+        MLSUserManager.sms_code = sms_code;
 }
 
 - (NSArray *)extraFields
@@ -43,6 +43,6 @@
 
 - (void)dealloc
 {
-        LNUserManager.repeat_password = nil;
+        MLSUserManager.repeat_password = nil;
 }
 @end

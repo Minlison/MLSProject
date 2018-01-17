@@ -25,7 +25,7 @@
         self.tableView.backgroundColor = UIColorHex(0xf5f5f5);
         self.form = [[MLSMineForm alloc] init];
         @weakify(self);
-        [self.controllerView setActionBlock:^(LNMineViewClickType type) {
+        [self.controllerView setActionBlock:^(MLSMineViewClickType type) {
                 @strongify(self);
                 [self pushToUpdateUserInfoLogInIfNeed];
         }];
@@ -33,13 +33,13 @@
 
 - (void)pushToUpdateUserInfoLogInIfNeed
 {
-        if (LNUserManager.isLogin)
+        if (MLSUserManager.isLogin)
         {
-                [LNUserManager pushOrPresentUserInfoInViewController:self completion:nil dismiss:nil];
+                [MLSUserManager pushOrPresentUserInfoInViewController:self completion:nil dismiss:nil];
         }
         else
         {
-                [LNUserManager pushOrPresentLoginIfNeed:YES inViewController:self completion:nil dismiss:nil];
+                [MLSUserManager pushOrPresentLoginIfNeed:YES inViewController:self completion:nil dismiss:nil];
         }
 }
 - (BOOL)preferredNavigationBarHidden

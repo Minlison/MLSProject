@@ -22,7 +22,7 @@
         vc.tabBarItem.image = [UIImage wo_de_norRenderingMode:(UIImageRenderingModeAlwaysOriginal)];
         vc.hidesBottomBarWhenPushed = NO;
         BaseNavigationViewController *navController = [[BaseNavigationViewController alloc] initWithRootViewController:vc];
-        [mainService addTabBarController:navController atIndex:LNTabbarIndexMine];
+        [mainService addTabBarController:navController atIndex:MLSTabbarIndexMine];
 }
 
 @end

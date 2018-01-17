@@ -57,7 +57,7 @@
 - (void)_UserHeadClick
 {
         id <MainServiceProtocol> mainService = [[BeeHive shareInstance] createService:@protocol(MainServiceProtocol)];
-        if (LNUserManager.isLogin)
+        if (MLSUserManager.isLogin)
         {
                 // 修改个人资料
                 [mainService closeMenu:YES andPushViewController:[[MLSUpdateUserInfoViewController alloc] init]];
@@ -90,7 +90,7 @@
         [super configNimbus];
         [self.tableViewActions attachToClass:[MLSUserCenterCellModel class] tapBlock:^BOOL(MLSUserCenterCellModel *object, MLSUserViewController *target, NSIndexPath *indexPath) {
                 id <MainServiceProtocol> mainService = [[BeeHive shareInstance] createService:@protocol(MainServiceProtocol)];
-                if (LNUserManager.isLogin)
+                if (MLSUserManager.isLogin)
                 {
                         [mainService closeMenu:YES andPushViewController:[AppUnit getInstanceFromClassName:object.nextClassName]];
                 }

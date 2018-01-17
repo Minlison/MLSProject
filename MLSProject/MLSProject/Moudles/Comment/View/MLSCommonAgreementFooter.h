@@ -8,19 +8,19 @@
 
 #import "BaseTableHeaderFooterView.h"
 
-typedef NS_ENUM(NSInteger, LNCommonAgreementFooterActionType)
+typedef NS_ENUM(NSInteger, MLSCommonAgreementFooterActionType)
 {
-        LNCommonAgreementFooterAgree,
-        LNCommonAgreementFooterUnAgree,
-        LNCommonAgreementFooterAgreeAndShowAgreement,
+        MLSCommonAgreementFooterAgree,
+        MLSCommonAgreementFooterUnAgree,
+        MLSCommonAgreementFooterAgreeAndShowAgreement,
 };
-typedef NS_ENUM(NSInteger,LNCommonAgreementFooterAlignment)
+typedef NS_ENUM(NSInteger,MLSCommonAgreementFooterAlignment)
 {
-        LNCommonAgreementFooterAlignmentCenter,
-        LNCommonAgreementFooterAlignmentLeft
+        MLSCommonAgreementFooterAlignmentCenter,
+        MLSCommonAgreementFooterAlignmentLeft
 };
-typedef void (^LNCommonAgreementFooterActionBlock)(LNCommonAgreementFooterActionType type, BOOL isAgree);
+typedef void (^MLSCommonAgreementFooterActionBlock)(MLSCommonAgreementFooterActionType type, BOOL isAgree);
 @interface MLSCommonAgreementFooter : BaseTableHeaderFooterView
-@property(nonatomic, assign) LNCommonAgreementFooterAlignment alignment;
-@property(nonatomic, copy) LNCommonAgreementFooterActionBlock actionBlock;
+@property(nonatomic, assign) MLSCommonAgreementFooterAlignment alignment;
+@property(nonatomic, copy) MLSCommonAgreementFooterActionBlock actionBlock;
 @end

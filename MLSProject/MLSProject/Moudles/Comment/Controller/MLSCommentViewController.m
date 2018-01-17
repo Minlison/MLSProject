@@ -19,7 +19,7 @@
 @property (nonatomic,strong)  MLSCommentListRequest *normalCommentListRequest;
 @property (nonatomic,strong)  MLSCommentListRequest *wonderfulCommentListRequest;
 @property(nonatomic, copy) NSString *itemID;
-@property(nonatomic, assign) LNArticleContentType contentType;
+@property(nonatomic, assign) MLSArticleContentType contentType;
 @property(nonatomic, strong)  MLSSendCommentRequest *sendCommentRequest;
 @property(nonatomic, copy) WGSendCommentCallBackBlock sendCommentCallBack;
 @property(nonatomic, strong) MLSBanCommentRequest *banCommentRequest;
@@ -28,7 +28,7 @@
 
 @implementation MLSCommentViewController
 
-+ (instancetype)commentViewControllerWithItemID:(NSString *)itemID contentType:(LNArticleContentType)contentType
++ (instancetype)commentViewControllerWithItemID:(NSString *)itemID contentType:(MLSArticleContentType)contentType
 {
         MLSCommentViewController *vc = [[MLSCommentViewController alloc] init];
         vc.itemID = itemID;
@@ -55,7 +55,7 @@
         
         [self.tableViewActions attachToClass:[MLSCommentModel class] tapBlock:^BOOL(MLSCommentModel * object, MLSCommentViewController *target, NSIndexPath *indexPath) {
                 
-                if (LNUserManager.isLogin && LNUserManager.role.integerValue == WGUserRoleTypeAdmin)
+                if (MLSUserManager.isLogin && MLSUserManager.role.integerValue == WGUserRoleTypeAdmin)
                 {
                         [target alertBanCommentController:object];
                 }
@@ -268,9 +268,9 @@
 - (void)commentViewSendButtonDidClick:(id<BaseCommentToolBarProtocol>)commentView hideBlock:(void (^)(BOOL))hideBlock cleanTextBlock:(void (^)(BOOL))cleanTextBlock
 {
         @weakify(self);
-        [LNUserManager popLoginIfNeedInViewController:self completion:^{
+        [MLSUserManager popLoginIfNeedInViewController:self completion:^{
                 @strongify(self);
-                if (LNUserManager.isLogin)
+                if (MLSUserManager.isLogin)
                 {
                         if (NULLString(commentView.text))
                         {

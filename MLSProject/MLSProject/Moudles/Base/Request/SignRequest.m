@@ -48,7 +48,7 @@
                                  kRequestKeyDevice_Info : deviceInfoStr,
                                  kRequestKeySys_Type : kRequestKeyValueSystemType,
                                  kRequestKeyTrace_Id : [AppUnit getAUniqueString],
-                                 kRequestKeyUser_ID : NOT_NULL_STRING(LNUserManager.uid, @"0"),
+                                 kRequestKeyUser_ID : NOT_NULL_STRING(MLSUserManager.uid, @"0"),
                                  };
         
         return params;

@@ -11,20 +11,20 @@
 /**
  事件
 
- - LNMineViewClickTypeUpdateUserInfo: 更新用户信息
+ - MLSMineViewClickTypeUpdateUserInfo: 更新用户信息
  */
-typedef NS_ENUM(NSInteger, LNMineViewClickType)
+typedef NS_ENUM(NSInteger, MLSMineViewClickType)
 {
-        LNMineViewClickTypeUpdateUserInfo = LNMineHeaderViewClickTypeUpdateUserInfo,
-        LNMineViewClickTypeHeadImgClick = LNMineHeaderViewClickTypeHeadImgClick,
+        MLSMineViewClickTypeUpdateUserInfo = MLSMineHeaderViewClickTypeUpdateUserInfo,
+        MLSMineViewClickTypeHeadImgClick = MLSMineHeaderViewClickTypeHeadImgClick,
 };
 
-typedef void (^LNMineViewClickBlock)(LNMineViewClickType type);
+typedef void (^MLSMineViewClickBlock)(MLSMineViewClickType type);
 
 @interface MLSMineView : BaseTableControllerView
 
 /**
  事件回调
  */
-@property(nonatomic, copy) LNMineViewClickBlock actionBlock;
+@property(nonatomic, copy) MLSMineViewClickBlock actionBlock;
 @end

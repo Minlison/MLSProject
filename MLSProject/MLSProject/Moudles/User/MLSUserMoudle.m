@@ -16,7 +16,7 @@
 @implementation MLSUserMoudle
 - (void)modSetUp:(BHContext *)context
 {
-        [AppShareRouterService addRoute:kLNUpdateUserInfoControllerURI handlerClass:[MLSUpdateUserInfoViewController class]];
+        [AppShareRouterService addRoute:kMLSUpdateUserInfoControllerURI handlerClass:[MLSUpdateUserInfoViewController class]];
 }
 
 @end

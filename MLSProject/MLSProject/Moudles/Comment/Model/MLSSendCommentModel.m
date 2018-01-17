@@ -12,7 +12,7 @@
 
 
 
-+ (instancetype)commentModelWith:(LNArticleContentType)type pId:(NSString *)pid itemID:(NSString *)itemid;
++ (instancetype)commentModelWith:(MLSArticleContentType)type pId:(NSString *)pid itemID:(NSString *)itemid;
 {
         MLSSendCommentModel *model = [[self alloc] init];
         model.type       = type;

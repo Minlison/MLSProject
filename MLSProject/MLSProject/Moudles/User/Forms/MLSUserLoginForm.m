@@ -25,22 +25,22 @@
 - (void)setCountry_code:(NSString *)country_code
 {
         _country_code = country_code;
-        LNUserManager.country_code = country_code;
+        MLSUserManager.country_code = country_code;
 }
 - (void)setMobile:(NSString *)mobile
 {
         _mobile = mobile;
-        LNUserManager.mobile = mobile;
+        MLSUserManager.mobile = mobile;
 }
 - (void)setSms_code:(NSString *)sms_code
 {
         _sms_code = sms_code;
-        LNUserManager.sms_code = sms_code;
+        MLSUserManager.sms_code = sms_code;
 }
 - (void)setPassword:(NSString *)password
 {
         _password = password;
-        LNUserManager.password = password;
+        MLSUserManager.password = password;
 }
 - (NSArray *)extraFields
 {

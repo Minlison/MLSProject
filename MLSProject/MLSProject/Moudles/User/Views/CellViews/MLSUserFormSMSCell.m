@@ -31,14 +31,14 @@
                 }
         }];
 
-        self.rightView.enabled = [[MLSPhoneCondition condition] check:LNUserManager.mobile];
+        self.rightView.enabled = [[MLSPhoneCondition condition] check:MLSUserManager.mobile];
 
         [self.contentView addSubview:self.timerLabel];
         [self.contentView addSubview:self.rightView];
         self.textField.validator = [MLSSMSValidator validator];
         
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,mobile) options:(NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
-                self.rightView.enabled = [[MLSPhoneCondition condition] check:LNUserManager.mobile];
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,mobile) options:(NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+                self.rightView.enabled = [[MLSPhoneCondition condition] check:MLSUserManager.mobile];
         }];
 }
 - (void)update
@@ -88,9 +88,9 @@
 - (void)configTimerLabel:(BOOL)force
 {
 
-        if ( ![LNUserManager isLastSMSCountTimeCompletion] || force )
+        if ( ![MLSUserManager isLastSMSCountTimeCompletion] || force )
         {
-                NSInteger time = [LNUserManager getSMSResidueCountTime];
+                NSInteger time = [MLSUserManager getSMSResidueCountTime];
                 self.rightView.hidden = YES;
                 NSString *text = @"(xxs)重新获取";
                 NSRange r = [text rangeOfString:@"xx"];

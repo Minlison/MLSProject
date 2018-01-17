@@ -79,10 +79,10 @@
 //        if (_thirdLoginView == nil) {
 //                _thirdLoginView = [[MLSUserThirdLoginView alloc] initWithFrame:CGRectZero];
 //                @weakify(self);
-//                [_thirdLoginView setThirdLoginAction:^(LNLoginType type) {
+//                [_thirdLoginView setThirdLoginAction:^(MLSLoginType type) {
 //                        @strongify(self);
 //                        if (self.actionBlock) {
-//                                self.actionBlock(LNFormLoginViewClickTypeThirdLoginClick,type,nil,nil);
+//                                self.actionBlock(MLSFormLoginViewClickTypeThirdLoginClick,type,nil,nil);
 //                        }
 //                }];
 //        }
@@ -94,14 +94,14 @@
         if (self.actionBlock)
         {
                 MLSUserLoginForm *form = (MLSUserLoginForm *)self.formController.form;
-                self.actionBlock(LNFormLoginViewClickTypeLoginClick,LNLoginTypePhone,[form modelToJSONObject],nil);
+                self.actionBlock(MLSFormLoginViewClickTypeLoginClick,MLSLoginTypePhone,[form modelToJSONObject],nil);
         }
 }
 - (void)webCatLogin
 {
         if (self.actionBlock)
         {
-                self.actionBlock(LNFormLoginViewClickTypeThirdLoginClick,LNLoginTypeWebchat,nil,nil);
+                self.actionBlock(MLSFormLoginViewClickTypeThirdLoginClick,MLSLoginTypeWebchat,nil,nil);
         }
 }
 - (void)getSMSCode
@@ -109,7 +109,7 @@
         if (self.actionBlock)
         {
                 MLSUserLoginForm *form = (MLSUserLoginForm *)self.formController.form;
-                self.actionBlock(LNFormLoginViewClickTypeGetSmsCode,LNLoginTypeUnKnown,[form modelToJSONObject],nil);
+                self.actionBlock(MLSFormLoginViewClickTypeGetSmsCode,MLSLoginTypeUnKnown,[form modelToJSONObject],nil);
         }
 }
 - (void)findPwd
@@ -117,7 +117,7 @@
         if (self.actionBlock)
         {
                 MLSUserLoginForm *form = (MLSUserLoginForm *)self.formController.form;
-                self.actionBlock(LNFormLoginViewClickTypeFindPwd,LNLoginTypeUnKnown,[form modelToJSONObject],nil);
+                self.actionBlock(MLSFormLoginViewClickTypeFindPwd,MLSLoginTypeUnKnown,[form modelToJSONObject],nil);
         }
 }
 - (void)getCountryCode
@@ -125,8 +125,8 @@
         if (self.actionBlock)
         {
                 MLSUserLoginForm *form = (MLSUserLoginForm *)self.formController.form;
-                self.actionBlock(LNFormLoginViewClickTypeGetCountryCode,LNLoginTypeUnKnown,[form modelToJSONObject],^(NSString *str) {
-                        LNUserManager.country_code = str;
+                self.actionBlock(MLSFormLoginViewClickTypeGetCountryCode,MLSLoginTypeUnKnown,[form modelToJSONObject],^(NSString *str) {
+                        MLSUserManager.country_code = str;
                 });
         }
 }

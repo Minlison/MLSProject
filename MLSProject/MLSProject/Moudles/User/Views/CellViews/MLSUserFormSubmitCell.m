@@ -25,10 +25,10 @@
 {
         [super setUp];
         @weakify(self);
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,canLogin) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,canLogin) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
-                if (self.button.isEnabled != LNUserManager.canLogin) {
-                        self.button.enabled = LNUserManager.canLogin;
+                if (self.button.isEnabled != MLSUserManager.canLogin) {
+                        self.button.enabled = MLSUserManager.canLogin;
                 }
                 
         }];

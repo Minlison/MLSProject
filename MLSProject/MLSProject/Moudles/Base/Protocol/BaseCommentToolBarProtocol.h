@@ -90,7 +90,7 @@ typedef void (^BaseCommentToolBarActionBlock)(BaseCommentToolBarActionType type,
 
  @param emotionManager 表情
  */
-- (void)setEmotionManager:(QMUIQQEmotionManager *)emotionManager;
+- (void)setEmotionManager:(QMUIEmotionInputManager *)emotionManager;
 
 /**
  设置最大的高度（自增高的时候才会使用）

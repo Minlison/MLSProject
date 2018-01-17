@@ -28,7 +28,7 @@
 {
         [super configNimbus];
         [self.tableViewActions attachToClass:[WGCountryCodeModel class] tapBlock:^BOOL(WGCountryCodeModel *object, MLSGetCountryCodeViewController *target, NSIndexPath *indexPath) {
-                LNUserManager.country_code = object.phone_code;
+                MLSUserManager.country_code = object.phone_code;
                 if (target.getCountryCodeActionBlock) {
                         target.getCountryCodeActionBlock(object.phone_code);
                 }

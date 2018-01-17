@@ -82,7 +82,7 @@
         self.tableViewModel.delegate = self;
         [self.tableViewActions attachToClass:[MLSFeedBackCommentModel class] tapBlock:^BOOL(MLSFeedBackCommentModel * object, MLSFeedBackCommentViewController *target, NSIndexPath *indexPath) {
                 
-                if (LNUserManager.isLogin && LNUserManager.role.integerValue == WGUserRoleTypeAdmin)
+                if (MLSUserManager.isLogin && MLSUserManager.role.integerValue == WGUserRoleTypeAdmin)
                 {
                         [target alertBanCommentController:object];
                 }

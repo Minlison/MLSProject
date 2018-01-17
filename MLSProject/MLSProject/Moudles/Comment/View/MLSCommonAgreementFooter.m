@@ -17,7 +17,7 @@
 {
         [super setupView];
         //override
-        self.alignment = LNCommonAgreementFooterAlignmentCenter;
+        self.alignment = MLSCommonAgreementFooterAlignmentCenter;
         self.agreementButton = [[QMUIButton alloc] init];
         self.agreementButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         self.aggreeIconButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -55,14 +55,14 @@
                 self.aggreeIconButton.selected = !self.aggreeIconButton.selected;
                
                 if (self.actionBlock) {
-                        self.actionBlock(LNCommonAgreementFooterAgree,self.aggreeIconButton.isSelected);
+                        self.actionBlock(MLSCommonAgreementFooterAgree,self.aggreeIconButton.isSelected);
                 }
         }];
         [self.agreementButton jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
                 self.aggreeIconButton.selected = !self.aggreeIconButton.selected;
                 if (self.actionBlock) {
-                        self.actionBlock(LNCommonAgreementFooterAgreeAndShowAgreement,self.aggreeIconButton.isSelected);
+                        self.actionBlock(MLSCommonAgreementFooterAgreeAndShowAgreement,self.aggreeIconButton.isSelected);
                 }
         }];
 }
@@ -70,7 +70,7 @@
 {
         
         switch (self.alignment) {
-                case LNCommonAgreementFooterAlignmentLeft:
+                case MLSCommonAgreementFooterAlignmentLeft:
                 {
                         [self.stackView mas_remakeConstraints:^(MASConstraintMaker *make) {
                                 make.left.equalTo(self.contentView.mas_left).offset(__WGWidth(15));
@@ -78,7 +78,7 @@
                         }];
                 }
                         break;
-                case LNCommonAgreementFooterAlignmentCenter:
+                case MLSCommonAgreementFooterAlignmentCenter:
                 {
                         [self.stackView mas_remakeConstraints:^(MASConstraintMaker *make) {
                                 make.center.equalTo(self.contentView);
@@ -90,7 +90,7 @@
                         break;
         }
 }
-- (void)setAlignment:(LNCommonAgreementFooterAlignment)alignment
+- (void)setAlignment:(MLSCommonAgreementFooterAlignment)alignment
 {
         _alignment = alignment;
         [self updateLayout];

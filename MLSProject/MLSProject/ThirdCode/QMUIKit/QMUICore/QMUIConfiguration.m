@@ -11,26 +11,13 @@
 #import "UIImage+QMUI.h"
 #import "NSString+QMUI.h"
 #import "UIViewController+QMUI.h"
+#import <objc/runtime.h>
 
 @implementation QMUIConfiguration
 
 + (instancetype)sharedInstance {
     static dispatch_once_t pred;
-    static QMUIConfiguration *sharedInstance = nil;
-    
-    // 检查是否有在某些类的 +load 方法里调用 QMUICMI，因为在 [QMUIConfiguration init] 方法里会操作到 UI 的东西，例如 [UINavigationBar appearance] xxx 等，这些操作不能太早（+load 里就太早了）执行，否则会 crash，所以加这个检测
-//#ifdef DEBUG
-//    BOOL shouldCheckCallStack = NO;
-//    if (shouldCheckCallStack) {
-//        for (NSString *symbol in [NSThread callStackSymbols]) {
-//            if ([symbol containsString:@" load]"]) {
-//                NSAssert(NO, @"不应该在 + load 方法里调用 %s", __func__);
-//                return nil;
-//            }
-//        }
-//    }
-//#endif
-    
+    static QMUIConfiguration *sharedInstance;
     dispatch_once(&pred, ^{
         sharedInstance = [[QMUIConfiguration alloc] init];
     });
@@ -43,6 +30,39 @@
         [self initDefaultConfiguration];
     }
     return self;
+}
+
+static BOOL QMUI_hasAppliedInitialTemplate;
+- (void)applyInitialTemplate {
+    if (QMUI_hasAppliedInitialTemplate) {
+        return;
+    }
+    
+    // 自动寻找并应用模板的解释参照这里 https://github.com/QMUI/QMUI_iOS/issues/264
+    
+    Protocol *protocol = @protocol(QMUIConfigurationTemplateProtocol);
+    int numberOfClasses = objc_getClassList(NULL, 0);
+    if (numberOfClasses > 0) {
+        Class *classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numberOfClasses);
+        numberOfClasses = objc_getClassList(classes, numberOfClasses);
+        for (int i = 0; i < numberOfClasses; i++) {
+            Class class = classes[i];
+            if ([NSStringFromClass(class) hasPrefix:@"QMUIConfigurationTemplate"] && [class conformsToProtocol:protocol]) {
+                if ([class instancesRespondToSelector:@selector(shouldApplyTemplateAutomatically)]) {
+                    id<QMUIConfigurationTemplateProtocol> template = [[class alloc] init];
+                    if ([template shouldApplyTemplateAutomatically]) {
+                        QMUI_hasAppliedInitialTemplate = YES;
+                        [template applyConfigurationTemplate];
+                        // 只应用第一个 shouldApplyTemplateAutomatically 的主题
+                        break;
+                    }
+                }
+            }
+        }
+        free(classes);
+    }
+    
+    QMUI_hasAppliedInitialTemplate = YES;
 }
 
 #pragma mark - 初始化默认值
@@ -113,8 +133,10 @@
     self.navBarShadowImage = nil;
     self.navBarBarTintColor = nil;
     self.navBarTintColor = nil;
-    self.navBarTitleColor = self.blackColor;
+    self.navBarTitleColor = nil;
     self.navBarTitleFont = nil;
+    self.navBarLargeTitleColor = nil;
+    self.navBarLargeTitleFont = nil;
     self.navBarBackButtonTitlePositionAdjustment = UIOffsetZero;
     self.navBarBackIndicatorImage = nil;
     self.navBarCloseButtonImage = [UIImage qmui_imageWithShape:QMUIImageShapeNavClose size:CGSizeMake(16, 16) tintColor:self.navBarTintColor];
@@ -188,6 +210,8 @@
     self.tableViewSectionFooterFont = UIFontBoldMake(12);
     self.tableViewSectionHeaderTextColor = self.grayDarkenColor;
     self.tableViewSectionFooterTextColor = self.grayColor;
+    self.tableViewSectionHeaderAccessoryMargins = UIEdgeInsetsMake(0, 15, 0, 0);
+    self.tableViewSectionFooterAccessoryMargins = UIEdgeInsetsMake(0, 15, 0, 0);
     self.tableViewSectionHeaderContentInset = UIEdgeInsetsMake(4, 15, 4, 15);
     self.tableViewSectionFooterContentInset = UIEdgeInsetsMake(4, 15, 4, 15);
     
@@ -195,6 +219,8 @@
     self.tableViewGroupedSectionFooterFont = UIFontMake(12);
     self.tableViewGroupedSectionHeaderTextColor = self.grayDarkenColor;
     self.tableViewGroupedSectionFooterTextColor = self.grayColor;
+    self.tableViewGroupedSectionHeaderAccessoryMargins = UIEdgeInsetsMake(0, 15, 0, 0);
+    self.tableViewGroupedSectionFooterAccessoryMargins = UIEdgeInsetsMake(0, 15, 0, 0);
     self.tableViewGroupedSectionHeaderDefaultHeight = UITableViewAutomaticDimension;
     self.tableViewGroupedSectionFooterDefaultHeight = UITableViewAutomaticDimension;
     self.tableViewGroupedSectionHeaderContentInset = UIEdgeInsetsMake(16, 15, 8, 15);
@@ -263,6 +289,15 @@
 
 - (void)setNavBarTitleFont:(UIFont *)navBarTitleFont {
     _navBarTitleFont = navBarTitleFont;
+    [self updateNavigationBarTitleAttributesIfNeeded];
+}
+
+- (void)setNavBarTitleColor:(UIColor *)navBarTitleColor {
+    _navBarTitleColor = navBarTitleColor;
+    [self updateNavigationBarTitleAttributesIfNeeded];
+}
+
+- (void)updateNavigationBarTitleAttributesIfNeeded {
     if (self.navBarTitleFont || self.navBarTitleColor) {
         NSMutableDictionary<NSString *, id> *titleTextAttributes = [[NSMutableDictionary alloc] init];
         if (self.navBarTitleFont) {
@@ -276,18 +311,29 @@
     }
 }
 
-- (void)setNavBarTitleColor:(UIColor *)navBarTitleColor {
-    _navBarTitleColor = navBarTitleColor;
-    if (self.navBarTitleFont || self.navBarTitleColor) {
-        NSMutableDictionary<NSString *, id> *titleTextAttributes = [[NSMutableDictionary alloc] init];
-        if (self.navBarTitleFont) {
-            [titleTextAttributes setValue:self.navBarTitleFont forKey:NSFontAttributeName];
+- (void)setNavBarLargeTitleFont:(UIFont *)navBarLargeTitleFont {
+    _navBarLargeTitleFont = navBarLargeTitleFont;
+    [self updateNavigationBarLargeTitleTextAttributesIfNeeded];
+}
+
+- (void)setNavBarLargeTitleColor:(UIColor *)navBarLargeTitleColor {
+    _navBarLargeTitleColor = navBarLargeTitleColor;
+    [self updateNavigationBarLargeTitleTextAttributesIfNeeded];
+}
+
+- (void)updateNavigationBarLargeTitleTextAttributesIfNeeded {
+    if (@available(iOS 11, *)) {
+        if (self.navBarLargeTitleFont || self.navBarLargeTitleColor) {
+            NSMutableDictionary<NSString *, id> *largeTitleTextAttributes = [[NSMutableDictionary alloc] init];
+            if (self.navBarLargeTitleFont) {
+                largeTitleTextAttributes[NSFontAttributeName] = self.navBarLargeTitleFont;
+            }
+            if (self.navBarLargeTitleColor) {
+                largeTitleTextAttributes[NSForegroundColorAttributeName] = self.navBarLargeTitleColor;
+            }
+            [UINavigationBar appearance].largeTitleTextAttributes = largeTitleTextAttributes;
+            [QMUIHelper visibleViewController].navigationController.navigationBar.largeTitleTextAttributes = largeTitleTextAttributes;
         }
-        if (self.navBarTitleColor) {
-            [titleTextAttributes setValue:self.navBarTitleColor forKey:NSForegroundColorAttributeName];
-        }
-        [UINavigationBar appearance].titleTextAttributes = titleTextAttributes;
-        [QMUIHelper visibleViewController].navigationController.navigationBar.titleTextAttributes = titleTextAttributes;
     }
 }
 
@@ -303,10 +349,10 @@
         CGSize customBackIndicatorImageSize = _navBarBackIndicatorImage.size;
         if (!CGSizeEqualToSize(customBackIndicatorImageSize, systemBackIndicatorImageSize)) {
             CGFloat imageExtensionVerticalFloat = CGFloatGetCenter(systemBackIndicatorImageSize.height, customBackIndicatorImageSize.height);
-            _navBarBackIndicatorImage = [_navBarBackIndicatorImage qmui_imageWithSpacingExtensionInsets:UIEdgeInsetsMake(imageExtensionVerticalFloat,
-                                                                                                                         0,
-                                                                                                                         imageExtensionVerticalFloat,
-                                                                                                                         systemBackIndicatorImageSize.width - customBackIndicatorImageSize.width)];
+            _navBarBackIndicatorImage = [[_navBarBackIndicatorImage qmui_imageWithSpacingExtensionInsets:UIEdgeInsetsMake(imageExtensionVerticalFloat,
+                                                                                                                          0,
+                                                                                                                          imageExtensionVerticalFloat,
+                                                                                                                          systemBackIndicatorImageSize.width - customBackIndicatorImageSize.width)] imageWithRenderingMode:_navBarBackIndicatorImage.renderingMode];
         }
         
         navBarAppearance.backIndicatorImage = _navBarBackIndicatorImage;

@@ -17,12 +17,12 @@
         [self adjustButtonEnable];
         
         @weakify(self);
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,sms_code) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,sms_code) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 [self adjustButtonEnable];
         }];
         
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,mobile) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,mobile) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 [self adjustButtonEnable];
         }];
@@ -30,7 +30,7 @@
 
 - (void)adjustButtonEnable
 {
-        BOOL res = [[MLSPhoneCondition condition] check:LNUserManager.mobile] && [[MLSSMSCondition condition] check:LNUserManager.sms_code];
+        BOOL res = [[MLSPhoneCondition condition] check:MLSUserManager.mobile] && [[MLSSMSCondition condition] check:MLSUserManager.sms_code];
         if (self.button.isEnabled != res)
         {
                 self.button.enabled = res;

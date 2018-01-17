@@ -8,13 +8,13 @@
 
 #import "BaseControllerView.h"
 
-typedef NS_ENUM(NSInteger,LNRegisterNotNewUserViewClickType)
+typedef NS_ENUM(NSInteger,MLSRegisterNotNewUserViewClickType)
 {
-        LNRegisterNotNewUserViewClickTypeMineLoginRightNow,
-        LNRegisterNotNewUserViewClickTypeForgetPwdAndReset,
-        LNRegisterNotNewUserViewClickTypeChangePhoneToRegister,
+        MLSRegisterNotNewUserViewClickTypeMineLoginRightNow,
+        MLSRegisterNotNewUserViewClickTypeForgetPwdAndReset,
+        MLSRegisterNotNewUserViewClickTypeChangePhoneToRegister,
 };
-typedef void (^LNRegisterNotNewUserViewActionBlock)(LNRegisterNotNewUserViewClickType type);
+typedef void (^MLSRegisterNotNewUserViewActionBlock)(MLSRegisterNotNewUserViewClickType type);
 @interface MLSRegisterNotNewUserView : BaseControllerView
-@property(nonatomic, copy) LNRegisterNotNewUserViewActionBlock actionBlock;
+@property(nonatomic, copy) MLSRegisterNotNewUserViewActionBlock actionBlock;
 @end

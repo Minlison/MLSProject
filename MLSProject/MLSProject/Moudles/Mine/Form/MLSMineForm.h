@@ -12,10 +12,10 @@
 #import "MLSMineSettingViewController.h"
 
 
-FOUNDATION_EXTERN NSString *const LNMineFormOptionsObjectControllerKey;
-FOUNDATION_EXTERN NSString *const LNMineFormOptionsObjectImageKey;
-FOUNDATION_EXTERN NSString *const LNMineFormOptionsObjectTitleKey;
-FOUNDATION_EXTERN NSString *const LNMineFormRowDescriptorTypeCustom;
+FOUNDATION_EXTERN NSString *const MLSMineFormOptionsObjectControllerKey;
+FOUNDATION_EXTERN NSString *const MLSMineFormOptionsObjectImageKey;
+FOUNDATION_EXTERN NSString *const MLSMineFormOptionsObjectTitleKey;
+FOUNDATION_EXTERN NSString *const MLSMineFormRowDescriptorTypeCustom;
 @interface MLSMineForm : XLFormDescriptor
 
 @end

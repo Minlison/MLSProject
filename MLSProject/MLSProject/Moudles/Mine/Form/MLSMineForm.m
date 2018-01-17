@@ -7,10 +7,10 @@
 //
 
 #import "MLSMineForm.h"
-NSString *const LNMineFormRowDescriptorTypeCustom = @"LNMineFormRowDescriptorTypeCustom";
-NSString *const LNMineFormOptionsObjectControllerKey = @"LNMineFormOptionsObjectControllerKey";
-NSString *const LNMineFormOptionsObjectImageKey = @"LNMineFormOptionsObjectImageKey";
-NSString *const LNMineFormOptionsObjectTitleKey = @"LNMineFormOptionsObjectTitleKey";
+NSString *const MLSMineFormRowDescriptorTypeCustom = @"MLSMineFormRowDescriptorTypeCustom";
+NSString *const MLSMineFormOptionsObjectControllerKey = @"MLSMineFormOptionsObjectControllerKey";
+NSString *const MLSMineFormOptionsObjectImageKey = @"MLSMineFormOptionsObjectImageKey";
+NSString *const MLSMineFormOptionsObjectTitleKey = @"MLSMineFormOptionsObjectTitleKey";
 @implementation MLSMineForm
 - (instancetype)init
 {
@@ -28,7 +28,7 @@ NSString *const LNMineFormOptionsObjectTitleKey = @"LNMineFormOptionsObjectTitle
 //        // 顶部四个视图
 //        section = [XLFormSectionDescriptor formSectionWithTitle:@"Order"];
 //        [self addFormSection:section];
-//        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"order" rowType:LNMineFormRowDescriptorTypeCustom];
+//        row = [XLFormRowDescriptor formRowDescriptorWithTag:@"order" rowType:MLSMineFormRowDescriptorTypeCustom];
 //        row.cellClass = [MLSMineOrderCell class];
 //        row.height = __WGHeight(87);
 //        [section addFormRow:row];
@@ -42,7 +42,7 @@ NSString *const LNMineFormOptionsObjectTitleKey = @"LNMineFormOptionsObjectTitle
                                                   [MLSMineSettingViewController class]
                                                   ];
         [normalCellTitles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:LNMineFormRowDescriptorTypeCustom title:obj];
+                row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:MLSMineFormRowDescriptorTypeCustom title:obj];
                 row.cellClass = [MLSMineNormalCell class];
                 row.height = __WGHeight(51);
                 row.action.viewControllerPresentationMode = XLFormPresentationModePush;

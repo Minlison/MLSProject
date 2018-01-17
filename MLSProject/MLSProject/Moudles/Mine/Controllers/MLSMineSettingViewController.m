@@ -30,7 +30,7 @@
         @weakify(self);
         [self.controllerView.logoutButton.actionButton jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
-                [LNUserManager logOut:nil success:^(NSString * _Nonnull sms) {
+                [MLSUserManager logOut:nil success:^(NSString * _Nonnull sms) {
                         [MLSTipClass showText:sms];
                         [self.navigationController popToRootViewControllerAnimated:YES];
                 } failed:^(NSError * _Nonnull error) {

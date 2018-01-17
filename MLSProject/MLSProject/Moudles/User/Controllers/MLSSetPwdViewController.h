@@ -10,5 +10,5 @@
 #import "MLSSetPwdView.h"
 #import "MLSUserSetPwdForm.h"
 @interface MLSSetPwdViewController : BaseTableViewController <MLSSetPwdView *>
-@property(nonatomic, assign) LNSetPwdType type;
+@property(nonatomic, assign) MLSSetPwdType type;
 @end

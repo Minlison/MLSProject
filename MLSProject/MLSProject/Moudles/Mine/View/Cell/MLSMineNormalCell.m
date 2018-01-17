@@ -44,7 +44,7 @@
 }
 - (void)formDescriptorCellDidSelectedWithFormController:(XLFormViewController *)controller
 {
-        [LNUserManager pushOrPresentLoginIfNeed:YES inViewController:self.formViewController completion:^{
+        [MLSUserManager pushOrPresentLoginIfNeed:YES inViewController:self.formViewController completion:^{
                 
         } dismiss:^{
                 [super formDescriptorCellDidSelectedWithFormController:controller];

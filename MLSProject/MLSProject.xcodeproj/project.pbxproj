@@ -91,6 +91,8 @@
 		F32BE5441FAB39D80066CFB2 /* MLSGetPhoneSMSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F32BE5431FAB39D80066CFB2 /* MLSGetPhoneSMSRequest.m */; };
 		F337745C1FA1EA8B000B09C3 /* MLSUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F337745B1FA1EA8B000B09C3 /* MLSUserViewController.m */; };
 		F337745F1FA1EAA3000B09C3 /* MLSUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = F337745E1FA1EAA3000B09C3 /* MLSUserView.m */; };
+		F3380356200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3380354200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.m */; };
+		F3380359200EFB0500FD11A9 /* QMUIEmotionInputManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F3380358200EFB0500FD11A9 /* QMUIEmotionInputManager.m */; };
 		F338328D1FA9B0C500B090F0 /* MLSUserCenterPlistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F338328C1FA9B0C500B090F0 /* MLSUserCenterPlistModel.m */; };
 		F33832901FA9B36D00B090F0 /* MLSPlistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F338328F1FA9B36D00B090F0 /* MLSPlistModel.m */; };
 		F33832931FA9B75B00B090F0 /* MLSUserTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F33832921FA9B75B00B090F0 /* MLSUserTableFooterView.m */; };
@@ -145,7 +147,6 @@
 		F34552B21F90BDF70016A6E4 /* QMUIPieProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552181F90BDF60016A6E4 /* QMUIPieProgressView.m */; };
 		F34552B31F90BDF70016A6E4 /* QMUIPopupContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F345521A1F90BDF60016A6E4 /* QMUIPopupContainerView.m */; };
 		F34552B41F90BDF70016A6E4 /* QMUIPopupMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F345521C1F90BDF60016A6E4 /* QMUIPopupMenuView.m */; };
-		F34552B51F90BDF70016A6E4 /* QMUIQQEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F345521E1F90BDF60016A6E4 /* QMUIQQEmotionManager.m */; };
 		F34552B61F90BDF70016A6E4 /* QMUISearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552201F90BDF60016A6E4 /* QMUISearchBar.m */; };
 		F34552B71F90BDF70016A6E4 /* QMUISearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552221F90BDF60016A6E4 /* QMUISearchController.m */; };
 		F34552B81F90BDF70016A6E4 /* QMUISegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552241F90BDF60016A6E4 /* QMUISegmentedControl.m */; };
@@ -171,7 +172,6 @@
 		F34552CC1F90BDF70016A6E4 /* QMUICommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552551F90BDF60016A6E4 /* QMUICommonViewController.m */; };
 		F34552CD1F90BDF70016A6E4 /* QMUINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552571F90BDF60016A6E4 /* QMUINavigationController.m */; };
 		F34552CE1F90BDF70016A6E4 /* QMUITabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552591F90BDF60016A6E4 /* QMUITabBarViewController.m */; };
-		F34552CF1F90BDF70016A6E4 /* QMUI_QQEmotion.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F345525B1F90BDF60016A6E4 /* QMUI_QQEmotion.bundle */; };
 		F34552D01F90BDF70016A6E4 /* QMUIResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F345525C1F90BDF60016A6E4 /* QMUIResources.bundle */; };
 		F34552D11F90BDF70016A6E4 /* CALayer+QMUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F345525F1F90BDF60016A6E4 /* CALayer+QMUI.m */; };
 		F34552D21F90BDF70016A6E4 /* NSAttributedString+QMUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F34552611F90BDF60016A6E4 /* NSAttributedString+QMUI.m */; };
@@ -1038,6 +1038,10 @@
 		F337745B1FA1EA8B000B09C3 /* MLSUserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLSUserViewController.m; sourceTree = "<group>"; };
 		F337745D1FA1EAA3000B09C3 /* MLSUserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLSUserView.h; sourceTree = "<group>"; };
 		F337745E1FA1EAA3000B09C3 /* MLSUserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLSUserView.m; sourceTree = "<group>"; };
+		F3380354200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUITableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		F3380355200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUITableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		F3380357200EFB0500FD11A9 /* QMUIEmotionInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIEmotionInputManager.h; sourceTree = "<group>"; };
+		F3380358200EFB0500FD11A9 /* QMUIEmotionInputManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIEmotionInputManager.m; sourceTree = "<group>"; };
 		F338328B1FA9B0C500B090F0 /* MLSUserCenterPlistModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLSUserCenterPlistModel.h; sourceTree = "<group>"; };
 		F338328C1FA9B0C500B090F0 /* MLSUserCenterPlistModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLSUserCenterPlistModel.m; sourceTree = "<group>"; };
 		F338328E1FA9B36D00B090F0 /* MLSPlistModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLSPlistModel.h; sourceTree = "<group>"; };
@@ -1145,8 +1149,6 @@
 		F345521A1F90BDF60016A6E4 /* QMUIPopupContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIPopupContainerView.m; sourceTree = "<group>"; };
 		F345521B1F90BDF60016A6E4 /* QMUIPopupMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIPopupMenuView.h; sourceTree = "<group>"; };
 		F345521C1F90BDF60016A6E4 /* QMUIPopupMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIPopupMenuView.m; sourceTree = "<group>"; };
-		F345521D1F90BDF60016A6E4 /* QMUIQQEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUIQQEmotionManager.h; sourceTree = "<group>"; };
-		F345521E1F90BDF60016A6E4 /* QMUIQQEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUIQQEmotionManager.m; sourceTree = "<group>"; };
 		F345521F1F90BDF60016A6E4 /* QMUISearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUISearchBar.h; sourceTree = "<group>"; };
 		F34552201F90BDF60016A6E4 /* QMUISearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUISearchBar.m; sourceTree = "<group>"; };
 		F34552211F90BDF60016A6E4 /* QMUISearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUISearchController.h; sourceTree = "<group>"; };
@@ -1202,7 +1204,6 @@
 		F34552571F90BDF60016A6E4 /* QMUINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUINavigationController.m; sourceTree = "<group>"; };
 		F34552581F90BDF60016A6E4 /* QMUITabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMUITabBarViewController.h; sourceTree = "<group>"; };
 		F34552591F90BDF60016A6E4 /* QMUITabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMUITabBarViewController.m; sourceTree = "<group>"; };
-		F345525B1F90BDF60016A6E4 /* QMUI_QQEmotion.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUI_QQEmotion.bundle; sourceTree = "<group>"; };
 		F345525C1F90BDF60016A6E4 /* QMUIResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = QMUIResources.bundle; sourceTree = "<group>"; };
 		F345525E1F90BDF60016A6E4 /* CALayer+QMUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+QMUI.h"; sourceTree = "<group>"; };
 		F345525F1F90BDF60016A6E4 /* CALayer+QMUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+QMUI.m"; sourceTree = "<group>"; };
@@ -3094,9 +3095,9 @@
 		F34551DA1F90BDF60016A6E4 /* QMUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				F34552501F90BDF60016A6E4 /* QMUIKit.h */,
 				F34551DB1F90BDF60016A6E4 /* QMUIComponents */,
 				F34552481F90BDF60016A6E4 /* QMUICore */,
-				F34552501F90BDF60016A6E4 /* QMUIKit.h */,
 				F34552511F90BDF60016A6E4 /* QMUIMainFrame */,
 				F345525A1F90BDF60016A6E4 /* QMUIResources */,
 				F345525D1F90BDF60016A6E4 /* UIKitExtensions */,
@@ -3134,6 +3135,8 @@
 				F34552081F90BDF60016A6E4 /* QMUIImagePreviewViewController.m */,
 				F34552091F90BDF60016A6E4 /* QMUIKeyboardManager.h */,
 				F345520A1F90BDF60016A6E4 /* QMUIKeyboardManager.m */,
+				F3380355200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.h */,
+				F3380354200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.m */,
 				F345520B1F90BDF60016A6E4 /* QMUILabel.h */,
 				F345520C1F90BDF60016A6E4 /* QMUILabel.m */,
 				F345520D1F90BDF60016A6E4 /* QMUIMarqueeLabel.h */,
@@ -3152,8 +3155,8 @@
 				F345521A1F90BDF60016A6E4 /* QMUIPopupContainerView.m */,
 				F345521B1F90BDF60016A6E4 /* QMUIPopupMenuView.h */,
 				F345521C1F90BDF60016A6E4 /* QMUIPopupMenuView.m */,
-				F345521D1F90BDF60016A6E4 /* QMUIQQEmotionManager.h */,
-				F345521E1F90BDF60016A6E4 /* QMUIQQEmotionManager.m */,
+				F3380357200EFB0500FD11A9 /* QMUIEmotionInputManager.h */,
+				F3380358200EFB0500FD11A9 /* QMUIEmotionInputManager.m */,
 				F345521F1F90BDF60016A6E4 /* QMUISearchBar.h */,
 				F34552201F90BDF60016A6E4 /* QMUISearchBar.m */,
 				F34552211F90BDF60016A6E4 /* QMUISearchController.h */,
@@ -3286,7 +3289,6 @@
 		F345525A1F90BDF60016A6E4 /* QMUIResources */ = {
 			isa = PBXGroup;
 			children = (
-				F345525B1F90BDF60016A6E4 /* QMUI_QQEmotion.bundle */,
 				F345525C1F90BDF60016A6E4 /* QMUIResources.bundle */,
 			);
 			path = QMUIResources;
@@ -6471,7 +6473,6 @@
 				F38980C01F62990E0009F2EF /* AppConst.strings in Resources */,
 				F33832961FA9BCBB00B090F0 /* WGUserCenter.plist in Resources */,
 				242B1D9A1FBAED03003BEAB7 /* MJRefresh.bundle in Resources */,
-				F34552CF1F90BDF70016A6E4 /* QMUI_QQEmotion.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6740,6 +6741,7 @@
 				F34552B81F90BDF70016A6E4 /* QMUISegmentedControl.m in Sources */,
 				F329F5AD1F66AD2B00EE8D6C /* NSNumber+ObjectiveSugar.m in Sources */,
 				F3CF85471FB169610009631B /* US2Validator.m in Sources */,
+				F3380356200EFAD100FD11A9 /* QMUITableViewHeaderFooterView.m in Sources */,
 				F3DF6E8E1F5FD404009B593A /* RouterService.m in Sources */,
 				F3F20F631F57B62000B8EF16 /* UIViewController+JKBackButtonTouched.m in Sources */,
 				F3F20EC61F57B62000B8EF16 /* NSNotificationCenter+JKMainThread.m in Sources */,
@@ -6823,7 +6825,6 @@
 				F3F210E41F581AA400B8EF16 /* CEPanAnimationController.m in Sources */,
 				F3F20ED81F57B62000B8EF16 /* NSSet+JKBlock.m in Sources */,
 				F3F20F011F57B62000B8EF16 /* UIApplication+JKNetworkActivityIndicator.m in Sources */,
-				F34552B51F90BDF70016A6E4 /* QMUIQQEmotionManager.m in Sources */,
 				F3F20EB41F57B62000B8EF16 /* NSDate+JKInternetDateTime.m in Sources */,
 				F322684E1FBD9E7E003DF222 /* UIView+WZLBadge.m in Sources */,
 				F3422DF51FB311F1002BAF3D /* BaseCommentLoadingView.m in Sources */,
@@ -7217,6 +7218,7 @@
 				F345529B1F90BDF60016A6E4 /* QMUIImagePickerHelper.m in Sources */,
 				F34552E11F90BDF70016A6E4 /* UINavigationController+QMUI.m in Sources */,
 				F3D3995E1FEB8DA40050A8F2 /* UIView+PYSearchExtension.m in Sources */,
+				F3380359200EFB0500FD11A9 /* QMUIEmotionInputManager.m in Sources */,
 				F34552A71F90BDF70016A6E4 /* QMUIFloatLayoutView.m in Sources */,
 				F3CF81691FB166EB0009631B /* BaseCommentToolBar.m in Sources */,
 				F3F20F261F57B62000B8EF16 /* UIImage+JKFileName.m in Sources */,

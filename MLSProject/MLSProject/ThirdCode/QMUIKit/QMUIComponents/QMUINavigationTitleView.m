@@ -44,7 +44,7 @@
         }
         
         // iOS 11 之后（iOS 11 Beta 5 测试过） titleView 的布局发生了一些变化，如果不主动设置宽度，titleView 里的内容就可能无法完整展示
-        if (IOS_VERSION >= 11.0) {
+        if (@available(iOS 11, *)) {
             if (CGRectGetWidth(titleView.bounds) != titleViewSize.width) {
                 titleView.frame = CGRectSetWidth(titleView.frame, titleViewSize.width);
             }
@@ -107,6 +107,7 @@
         self.accessoryType = QMUINavigationTitleViewAccessoryTypeNone;
         
         QMUINavigationTitleView *appearance = [QMUINavigationTitleView appearance];
+        self.maximumWidth = appearance.maximumWidth;
         self.loadingViewSize = appearance.loadingViewSize;
         self.loadingViewMarginRight = appearance.loadingViewMarginRight;
         self.horizontalTitleFont = appearance.horizontalTitleFont;
@@ -223,6 +224,7 @@
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGSize resultSize = [self contentSize];
+    resultSize.width = fmin(resultSize.width, self.maximumWidth);
     return resultSize;
 }
 
@@ -333,6 +335,11 @@
 
 
 #pragma mark - setter / getter
+
+- (void)setMaximumWidth:(CGFloat)maximumWidth {
+    _maximumWidth = maximumWidth;
+    [self refreshLayout];
+}
 
 - (void)setContentHorizontalAlignment:(UIControlContentHorizontalAlignment)contentHorizontalAlignment {
     [super setContentHorizontalAlignment:contentHorizontalAlignment];
@@ -579,6 +586,7 @@
 
 + (void)setDefaultAppearance {
     QMUINavigationTitleView *appearance = [QMUINavigationTitleView appearance];
+    appearance.maximumWidth = CGFLOAT_MAX;
     appearance.loadingViewSize = CGSizeMake(18, 18);
     appearance.loadingViewMarginRight = 3;
     appearance.horizontalTitleFont = NavBarTitleFont;

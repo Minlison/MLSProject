@@ -15,5 +15,5 @@
 
  @param action 事件
  */
-- (void)setThirdLoginAction:(void (^)(LNLoginType type))action;
+- (void)setThirdLoginAction:(void (^)(MLSLoginType type))action;
 @end

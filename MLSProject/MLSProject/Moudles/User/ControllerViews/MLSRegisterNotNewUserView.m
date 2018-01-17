@@ -71,7 +71,7 @@
         
         [self updateContent];
         @weakify(self);
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,img) options:(NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,img) options:(NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 [self updateContent];
         }];
@@ -85,27 +85,27 @@
         [self.myAccountButton jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
                 if (self.actionBlock) {
-                        self.actionBlock(LNRegisterNotNewUserViewClickTypeMineLoginRightNow);
+                        self.actionBlock(MLSRegisterNotNewUserViewClickTypeMineLoginRightNow);
                 }
         }];
         
         [self.forgetPwdButton jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
                 if (self.actionBlock) {
-                        self.actionBlock(LNRegisterNotNewUserViewClickTypeForgetPwdAndReset);
+                        self.actionBlock(MLSRegisterNotNewUserViewClickTypeForgetPwdAndReset);
                 }
         }];
         
         [self.changePhoneForRegister jk_addActionHandler:^(NSInteger tag) {
                 @strongify(self);
                 if (self.actionBlock) {
-                        self.actionBlock(LNRegisterNotNewUserViewClickTypeChangePhoneToRegister);
+                        self.actionBlock(MLSRegisterNotNewUserViewClickTypeChangePhoneToRegister);
                 }
         }];
 }
 - (void)updateContent
 {
-        [self.headImgButton sd_setBackgroundImageWithURL:[NSURL URLWithString:NOT_NULL_STRING_DEFAULT_EMPTY(LNUserManager.img)] forState:(UIControlStateNormal) placeholderImage:[UIImage pic_default_avatar]];
+        [self.headImgButton sd_setBackgroundImageWithURL:[NSURL URLWithString:NOT_NULL_STRING_DEFAULT_EMPTY(MLSUserManager.img)] forState:(UIControlStateNormal) placeholderImage:[UIImage pic_default_avatar]];
         self.desLabel.text = @"该手机号注册过以上体育软件园账号 请确认是你的账号";
 }
 - (QMUIGhostButton *)headImgButton

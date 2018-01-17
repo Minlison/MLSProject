@@ -115,7 +115,7 @@
 }
 - (void)logout
 {
-        [LNUserManager logOut:nil success:nil failed:nil];
+        [MLSUserManager logOut:nil success:nil failed:nil];
         [MLSTipClass showText:@"退出登录成功"];
         id <MainServiceProtocol> mainService = [[BeeHive shareInstance] createService:@protocol(MainServiceProtocol)];
         [mainService closeMenu:YES completion:^(BOOL cancelled) {

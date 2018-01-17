@@ -9,6 +9,6 @@
 #import "BaseRequest.h"
 #import "MLSBannerListModel.h"
 @interface MLSBannerRequest : BaseRequest <MLSBannerListModel *>
-@property(nonatomic, assign) LNBannerRequestType type;
-+ (instancetype)requestWithType:(LNBannerRequestType)type;
+@property(nonatomic, assign) MLSBannerRequestType type;
++ (instancetype)requestWithType:(MLSBannerRequestType)type;
 @end

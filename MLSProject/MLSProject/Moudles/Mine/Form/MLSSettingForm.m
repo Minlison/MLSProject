@@ -30,7 +30,7 @@
         [self addFormSection:section];
         
         // 修改密码
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:LNMineFormRowDescriptorTypeCustom title:@"修改密码"];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:MLSMineFormRowDescriptorTypeCustom title:@"修改密码"];
         row.cellClass = [MLSMineNormalCell class];
         row.height = __WGHeight(51);
         [row.cellConfig setObject:@(UITableViewCellSelectionStyleNone) forKey:@keypath(cell,selectionStyle)];
@@ -38,16 +38,16 @@
         [section addFormRow:row];
         
         // 消息通知
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:LNMineFormRowDescriptorTypeCustom title:@"消息通知"];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:MLSMineFormRowDescriptorTypeCustom title:@"消息通知"];
         row.cellClass = [MLSMineSwitchCell class];
         row.height = __WGHeight(51);
-        row.value = @(LNUserManager.userSetting.enablePushNotifaction);
+        row.value = @(MLSUserManager.userSetting.enablePushNotifaction);
         [row.cellConfig setObject:@(UITableViewCellSelectionStyleNone) forKey:@keypath(cell,selectionStyle)];
         row.action.viewControllerClass = nil;
         [section addFormRow:row];
         
         // 广告招商
-        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:LNMineFormRowDescriptorTypeCustom title:@"广告招商"];
+        row = [XLFormRowDescriptor formRowDescriptorWithTag:nil rowType:MLSMineFormRowDescriptorTypeCustom title:@"广告招商"];
         row.cellClass = [MLSMineNormalCell class];
         row.height = __WGHeight(51);
         [row.cellConfig setObject:@(UITableViewCellSelectionStyleNone) forKey:@keypath(cell,selectionStyle)];

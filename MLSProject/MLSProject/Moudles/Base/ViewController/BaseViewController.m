@@ -18,7 +18,7 @@ static CGFloat const kEmotionViewHeight = 232;
 @property(nonatomic, strong, readwrite) UIView <BaseCommentToolBarProtocol> *commentToolBar;
 @property(nonatomic, strong) UIControl *maskControl;
 @property(nonatomic, strong) QMUIKeyboardManager *keyboardManager;
-@property(nonatomic, strong) QMUIQQEmotionManager *qqEmotionManager;
+@property(nonatomic, strong) QMUIEmotionInputManager *qqEmotionManager;
 @property(nonatomic, assign, readwrite, getter=isDataLoaded) BOOL dataLoaded;
 @end
 
@@ -515,7 +515,7 @@ static CGFloat const kEmotionViewHeight = 232;
         
         if (hasEmotion)
         {
-                self.qqEmotionManager = [[QMUIQQEmotionManager alloc] init];
+                self.qqEmotionManager = [[QMUIEmotionInputManager alloc] init];
                 if ([self.commentToolBar.realTextView isKindOfClass:[UITextField class]])
                 {
                         self.qqEmotionManager.boundTextField = (UITextField *)self.commentToolBar.realTextView;

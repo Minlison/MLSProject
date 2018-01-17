@@ -9,7 +9,7 @@
 #import "MLSBannerRequest.h"
 
 @implementation MLSBannerRequest
-+ (instancetype)requestWithType:(LNBannerRequestType)type
++ (instancetype)requestWithType:(MLSBannerRequestType)type
 {
         MLSBannerRequest *request = [super requestWithParams:nil];
         request.type = type;
@@ -20,10 +20,10 @@
 {
         switch (self.type)
         {
-                case LNArticleListRequestTypeHome:
+                case MLSArticleListRequestTypeHome:
                         return @"/api.php/index/banner";
                         break;
-                case LNArticleListRequestTypeSport:
+                case MLSArticleListRequestTypeSport:
                         return @"/api.php/sport/banner";
                         break;
                 default:

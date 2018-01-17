@@ -12,31 +12,31 @@
 #define MLSRouterURIConst_h
 
 /// 网页
-FOUNDATION_EXTERN NSString *const kLNWebViewControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSWebViewControllerURI;
 /// 运动馆
-FOUNDATION_EXTERN NSString *const kLNSportControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSSportControllerURI;
 /// 注册和充值
-FOUNDATION_EXTERN NSString *const KLNVipRegisterAndRecargeCardViewControllerURI;
+FOUNDATION_EXTERN NSString *const KMLSVipRegisterAndRecargeCardViewControllerURI;
 /// 更多文章
-FOUNDATION_EXTERN NSString *const kLNArticleMoreControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSArticleMoreControllerURI;
 /// 文章详情
-FOUNDATION_EXTERN NSString *const kLNArticleDetailControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSArticleDetailControllerURI;
 /// 订单
-FOUNDATION_EXTERN NSString *const kLNOrderControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSOrderControllerURI;
 /// 更新用户信息
-FOUNDATION_EXTERN NSString *const kLNUpdateUserInfoControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSUpdateUserInfoControllerURI;
 /// 场地预订
-FOUNDATION_EXTERN NSString *const kLNSiteBookingControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSSiteBookingControllerURI;
 /// 赛事活动
-FOUNDATION_EXTERN NSString *const kLNEventControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSEventControllerURI;
 /// 门票
-FOUNDATION_EXTERN NSString *const kLNBuyTicketsControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSBuyTicketsControllerURI;
 /// 培训班
-FOUNDATION_EXTERN NSString *const kLNTrainingClassControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSTrainingClassControllerURI;
 /// 运动商城
-FOUNDATION_EXTERN NSString *const kLNSportShopClassControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSSportShopClassControllerURI;
 /// 购物车
-FOUNDATION_EXTERN NSString *const kLNShopCartControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSShopCartControllerURI;
 /// 停车记录
-FOUNDATION_EXTERN NSString *const kLNParkingRecordControllerURI;
+FOUNDATION_EXTERN NSString *const kMLSParkingRecordControllerURI;
 #endif

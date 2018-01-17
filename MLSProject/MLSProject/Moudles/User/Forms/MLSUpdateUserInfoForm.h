@@ -7,27 +7,27 @@
 //
 
 #import "BaseModel.h"
-typedef NS_ENUM(NSInteger, LNUpdateUserInfoType)
+typedef NS_ENUM(NSInteger, MLSUpdateUserInfoType)
 {
-        LNUpdateUserInfoTypeNickName,
-        LNUpdateUserInfoTypeRealName,
-        LNUpdateUserInfoTypePhone,
-        LNUpdateUserInfoTypeIDNumber,
-        LNUpdateUserInfoTypeGender,
-        LNUpdateUserInfoTypeBirthday,
-        LNUpdateUserInfoTypeAddress,
-        LNUpdateUserInfoTypeEmail,
-        LNUpdateUserInfoTypeMax
+        MLSUpdateUserInfoTypeNickName,
+        MLSUpdateUserInfoTypeRealName,
+        MLSUpdateUserInfoTypePhone,
+        MLSUpdateUserInfoTypeIDNumber,
+        MLSUpdateUserInfoTypeGender,
+        MLSUpdateUserInfoTypeBirthday,
+        MLSUpdateUserInfoTypeAddress,
+        MLSUpdateUserInfoTypeEmail,
+        MLSUpdateUserInfoTypeMax
 };
 
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeNickName;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeRealName;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypePhone;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeIDNumber;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeGender;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeBirthday;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeAddress;
-//FOUNDATION_EXTERN NSString *const LNUpdateUserInfoRowDescriptorTypeEmail;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeNickName;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeRealName;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypePhone;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeIDNumber;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeGender;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeBirthday;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeAddress;
+//FOUNDATION_EXTERN NSString *const MLSUpdateUserInfoRowDescriptorTypeEmail;
 
 @interface MLSUpdateUserInfoForm : XLFormDescriptor
 @end

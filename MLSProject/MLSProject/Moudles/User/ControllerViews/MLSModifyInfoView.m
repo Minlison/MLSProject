@@ -73,43 +73,43 @@
 }
 - (void)updateValidator
 {
-        LNUpdateUserInfoType type = self.rowDescriptor.rowType.integerValue;
+        MLSUpdateUserInfoType type = self.rowDescriptor.rowType.integerValue;
         US2Validator *validator = [US2Validator validator];
         switch (type)
         {
-                case LNUpdateUserInfoTypeNickName:
+                case MLSUpdateUserInfoTypeNickName:
                 {
                         MLSNickNameCondition *nickName = [[MLSNickNameCondition alloc] init];
                         [validator addCondition:nickName];
                 }
                         break;
-                case LNUpdateUserInfoTypeRealName:
+                case MLSUpdateUserInfoTypeRealName:
                 {
                         US2ConditionRange *range = [[US2ConditionRange alloc] init];
                         range.range = NSMakeRange(1, 6);
                         [validator addCondition:range];
                 }
                         break;
-                case LNUpdateUserInfoTypePhone:
+                case MLSUpdateUserInfoTypePhone:
                 {
                         MLSPhoneCondition *mobile = [[MLSPhoneCondition alloc] init];
                         [validator addCondition:mobile];
                 }
                         break;
-                case LNUpdateUserInfoTypeIDNumber:
+                case MLSUpdateUserInfoTypeIDNumber:
                 {
                         MLSIDNumberCondation *condition = [[MLSIDNumberCondation alloc] init];
                         condition.shouldAllowViolation = YES;
                         [validator addCondition:condition];
                 }
                         break;
-                case LNUpdateUserInfoTypeGender:
-                case LNUpdateUserInfoTypeBirthday:
-                case LNUpdateUserInfoTypeAddress:
+                case MLSUpdateUserInfoTypeGender:
+                case MLSUpdateUserInfoTypeBirthday:
+                case MLSUpdateUserInfoTypeAddress:
                 {
                 }
                         break;
-                case LNUpdateUserInfoTypeEmail:
+                case MLSUpdateUserInfoTypeEmail:
                 {
                         US2ValidatorEmail *email = [[US2ValidatorEmail alloc] init];
                         validator = email;

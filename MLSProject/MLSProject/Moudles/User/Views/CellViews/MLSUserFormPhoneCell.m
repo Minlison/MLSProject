@@ -59,7 +59,7 @@
                 NBPhoneNumber *phoneNumber = [self.phoneNumUtil parseWithPhoneCarrierRegion:[NSString stringWithFormat:@"%@",self.textField.text] error:&error];
                 if (!NULLString(phoneNumber.countryCode.stringValue))
                 {
-                        LNUserManager.country_code = phoneNumber.countryCode.stringValue;
+                        MLSUserManager.country_code = phoneNumber.countryCode.stringValue;
                 }
                 self.field.value = self.textField.validatableText;
         }
@@ -104,9 +104,9 @@
 //- (void)configTimerLabel:(BOOL)force
 //{
 //
-//        if ( ![LNUserManager isLastSMSCountTimeCompletion] || force )
+//        if ( ![MLSUserManager isLastSMSCountTimeCompletion] || force )
 //        {
-//                NSInteger time = [LNUserManager getSMSResidueCountTime];
+//                NSInteger time = [MLSUserManager getSMSResidueCountTime];
 //                self.rightView.hidden = YES;
 //                NSString *text = @"(xxs)重新获取";
 //                NSRange r = [text rangeOfString:@"xx"];

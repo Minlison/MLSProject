@@ -35,14 +35,14 @@
 #import "UIImagePickerController+Block.h"
 #import "QDSingleImagePickerPreviewViewController.h"
 @interface MLSImagePickerViewController () <UIActionSheetDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate, UIImagePickerControllerDelegate,QMUIAlbumViewControllerDelegate,QMUIImagePickerViewControllerDelegate,QDSingleImagePickerPreviewViewControllerDelegate>
-@property(nonatomic, copy) LNImagePickerSuccessBlock successBlock;
-@property(nonatomic, copy) LNImagePickerFailedBlock failedBlock;
+@property(nonatomic, copy) MLSImagePickerSuccessBlock successBlock;
+@property(nonatomic, copy) MLSImagePickerFailedBlock failedBlock;
 @property(nonatomic, strong) UIPopoverController *popoverController;
 @property(nonatomic, strong) NSDictionary *photoPayload;
 @property(nonatomic, copy) NSString *rootImgPath;
 @property(nonatomic, strong) UIImage *editImage;
 @property(nonatomic, weak) UIViewController *parentVC;
-@property(nonatomic, assign) LNImagePickerType type;
+@property(nonatomic, assign) MLSImagePickerType type;
 @end
 
 @implementation MLSImagePickerViewController
@@ -74,7 +74,7 @@
                                        consumerSecret:nil];
 }
 
-+ (void)show:(LNImagePickerType)type inController:(nullable UIViewController *)vc editImage:(nullable UIImage *)editImage success:(LNImagePickerSuccessBlock)success failed:(LNImagePickerFailedBlock)failed
++ (void)show:(MLSImagePickerType)type inController:(nullable UIViewController *)vc editImage:(nullable UIImage *)editImage success:(MLSImagePickerSuccessBlock)success failed:(MLSImagePickerFailedBlock)failed
 {
         UIViewController *showVC = vc;
         if (showVC == nil)
@@ -84,7 +84,7 @@
         MLSImagePickerViewController *imagePicker = [[MLSImagePickerViewController alloc] init];
         [imagePicker show:type inController:showVC editImage:editImage success:success failed:failed];
 }
-- (void)show:(LNImagePickerType)type inController:(nullable UIViewController *)vc editImage:(nullable UIImage *)editImage success:(LNImagePickerSuccessBlock)success failed:(LNImagePickerFailedBlock)failed
+- (void)show:(MLSImagePickerType)type inController:(nullable UIViewController *)vc editImage:(nullable UIImage *)editImage success:(MLSImagePickerSuccessBlock)success failed:(MLSImagePickerFailedBlock)failed
 {
         [self willMoveToParentViewController:vc];
         [vc addChildViewController:self];
@@ -163,7 +163,7 @@
         typedef void (^AlertActionBlock)(void);
         
         AlertActionBlock alertActionBlock;
-        if (self.type & LNImagePickerTypeTakePhoto)
+        if (self.type & MLSImagePickerTypeTakePhoto)
         {
                 if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
                 {
@@ -176,7 +176,7 @@
                         };
                 }
         }
-        if (self.type & LNImagePickerTypeChoseImage)
+        if (self.type & MLSImagePickerTypeChoseImage)
         {
                 [alert addAction:[QMUIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"Choose Photo",@"DZNPhotoPickerController",[NSBundle mainBundle],nil,@"") style:QMUIAlertActionStyleDefault handler:^(QMUIAlertAction * action) {
                         [self presentImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -186,7 +186,7 @@
                         [self presentImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
                 };
         }
-        if (self.type & LNImagePickerTypeSearchImage)
+        if (self.type & MLSImagePickerTypeSearchImage)
         {
                 [alert addAction:[QMUIAlertAction actionWithTitle:NSLocalizedStringWithDefaultValue(@"Search Photo",@"DZNPhotoPickerController",[NSBundle mainBundle],nil,@"") style:QMUIAlertActionStyleDefault handler:^(QMUIAlertAction * action) {
                         [self presentPhotoSearch];

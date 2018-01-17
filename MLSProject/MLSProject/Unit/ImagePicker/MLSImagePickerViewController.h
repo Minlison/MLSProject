@@ -16,15 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
  @param localImgUrl 图片本地存储路径，当是删除图片的时候，回调图片为空
  @param image 选择的图片，当是删除图片的时候，回调图片为空
  */
-typedef void (^LNImagePickerSuccessBlock)( NSURL * _Nullable localImgUrl, UIImage *_Nullable image);
-typedef void (^LNImagePickerFailedBlock)(NSError *error);
+typedef void (^MLSImagePickerSuccessBlock)( NSURL * _Nullable localImgUrl, UIImage *_Nullable image);
+typedef void (^MLSImagePickerFailedBlock)(NSError *error);
 
-typedef NS_OPTIONS(NSInteger,LNImagePickerType)
+typedef NS_OPTIONS(NSInteger,MLSImagePickerType)
 {
-        LNImagePickerTypeTakePhoto = 1 << 0,
-        LNImagePickerTypeChoseImage = 1 << 1,
-        LNImagePickerTypeSearchImage = 1 << 2,
-        LNImagePickerTypeAll = LNImagePickerTypeTakePhoto | LNImagePickerTypeChoseImage | LNImagePickerTypeSearchImage,
+        MLSImagePickerTypeTakePhoto = 1 << 0,
+        MLSImagePickerTypeChoseImage = 1 << 1,
+        MLSImagePickerTypeSearchImage = 1 << 2,
+        MLSImagePickerTypeAll = MLSImagePickerTypeTakePhoto | MLSImagePickerTypeChoseImage | MLSImagePickerTypeSearchImage,
 };
 
 @interface MLSImagePickerViewController : BaseViewController
@@ -37,7 +37,7 @@ typedef NS_OPTIONS(NSInteger,LNImagePickerType)
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)show:(LNImagePickerType)type inController:(nullable UIViewController *)vc editImage:(nullable UIImage *)editImage success:(LNImagePickerSuccessBlock)success failed:(LNImagePickerFailedBlock)failed;
++ (void)show:(MLSImagePickerType)type inController:(nullable UIViewController *)vc editImage:(nullable UIImage *)editImage success:(MLSImagePickerSuccessBlock)success failed:(MLSImagePickerFailedBlock)failed;
 @end
 
 NS_ASSUME_NONNULL_END

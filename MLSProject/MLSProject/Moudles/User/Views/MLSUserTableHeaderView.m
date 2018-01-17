@@ -51,7 +51,7 @@
         }];
         
         @weakify(self);
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,img) options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,img) options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 NSString *newAvatar = [change objectForKey:NSKeyValueChangeNewKey];
                 [self.headButton sd_setImageWithURL:[NSURL URLWithString:NOT_NULL_STRING_DEFAULT_EMPTY(newAvatar)] forState:UIControlStateNormal placeholderImage:[UIImage pic_default_avatar] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -59,10 +59,10 @@
                 }];
         }];
         
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,nickname) options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,nickname) options:(NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 NSString *newNickName = [change objectForKey:NSKeyValueChangeNewKey];
-                if (!NULLString(newNickName) && LNUserManager.isLogin)
+                if (!NULLString(newNickName) && MLSUserManager.isLogin)
                 {
                         self.nickNameLabel.text = newNickName;
                 }
@@ -96,8 +96,8 @@
 }
 - (NSAttributedString *)getAttributeEmptyUserNickName
 {
-        if (LNUserManager.isLogin) {
-                return [[NSAttributedString alloc] initWithString:LNUserManager.nickname attributes:@{
+        if (MLSUserManager.isLogin) {
+                return [[NSAttributedString alloc] initWithString:MLSUserManager.nickname attributes:@{
                                                                                                        NSForegroundColorAttributeName : UIColorBlack,
                                                                                                        NSFontAttributeName : WGSystem16Font
                                                                                                        }];

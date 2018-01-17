@@ -13,7 +13,7 @@
 @property(nonatomic, strong) QMUIButton *qqView;
 @property(nonatomic, strong) QMUIButton *weiBoView;
 @property(nonatomic, strong) QMUIButton *phoneView;
-@property(nonatomic, copy) void (^LoginAction)(LNLoginType);
+@property(nonatomic, copy) void (^LoginAction)(MLSLoginType);
 @property(nonatomic, strong) TTTAttributedLabel *titleLabel;
 @end
 
@@ -26,7 +26,7 @@
         }
         return self;
 }
-- (void)setThirdLoginAction:(void (^)(LNLoginType))action
+- (void)setThirdLoginAction:(void (^)(MLSLoginType))action
 {
         self.LoginAction = action;
 }
@@ -89,7 +89,7 @@
                 _webCatView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
                 [_webCatView setImage:[UIImage login_icon_wechat] forState:(UIControlStateNormal)];
                 _webCatView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-                _webCatView.tag = LNLoginTypeWebchat;
+                _webCatView.tag = MLSLoginTypeWebchat;
                 [_webCatView addTarget:self action:@selector(threePartiesLogin:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         return _webCatView;
@@ -100,7 +100,7 @@
                 _qqView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
                 [_qqView setImage:[UIImage login_icon_qq] forState:(UIControlStateNormal)];
                 _qqView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-                _qqView.tag = LNLoginTypeQQ;
+                _qqView.tag = MLSLoginTypeQQ;
                 [_qqView addTarget:self action:@selector(threePartiesLogin:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         return _qqView;
@@ -111,7 +111,7 @@
                 _weiBoView = [QMUIButton buttonWithType:(UIButtonTypeCustom)];
                 [_weiBoView setImage:[UIImage login_icon_weibo] forState:(UIControlStateNormal)];
                 _weiBoView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-                _weiBoView.tag = LNLoginTypeWeibo;
+                _weiBoView.tag = MLSLoginTypeWeibo;
                 [_weiBoView addTarget:self action:@selector(threePartiesLogin:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         return _weiBoView;

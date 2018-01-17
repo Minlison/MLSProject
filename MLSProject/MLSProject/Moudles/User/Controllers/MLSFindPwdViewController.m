@@ -22,14 +22,14 @@
 {
         /// 跳转到设置密码
         MLSSetPwdViewController *vc = [[MLSSetPwdViewController alloc] init];
-        vc.type = LNSetPwdTypeFindPwd;
+        vc.type = MLSSetPwdTypeFindPwd;
         [self.navigationController pushViewController:vc animated:YES];
         
 }
 - (void)getSmsCode
 {
         @weakify(self);
-        [LNUserManager getSMSWithParam:nil success:^(NSString * _Nonnull sms) {
+        [MLSUserManager getSMSWithParam:nil success:^(NSString * _Nonnull sms) {
                 @strongify(self);
                 [MLSTipClass showText:sms inView:self.view];
         } failed:^(NSError * _Nonnull error) {

@@ -8,16 +8,16 @@
 
 #import "BaseView.h"
 
-typedef NS_ENUM(NSInteger, LNMineHeaderViewClickType)
+typedef NS_ENUM(NSInteger, MLSMineHeaderViewClickType)
 {
-        LNMineHeaderViewClickTypeUpdateUserInfo,
-        LNMineHeaderViewClickTypeHeadImgClick,
+        MLSMineHeaderViewClickTypeUpdateUserInfo,
+        MLSMineHeaderViewClickTypeHeadImgClick,
 };
 
-typedef void (^LNMineHeaderViewClickBlock)(LNMineHeaderViewClickType type);
+typedef void (^MLSMineHeaderViewClickBlock)(MLSMineHeaderViewClickType type);
 
 @interface MLSMineHeaderView : BaseView
 @property(nonatomic, strong, readonly) UIImageView *backGroundView;
 
-@property(nonatomic, copy) LNMineHeaderViewClickBlock actionBlock;
+@property(nonatomic, copy) MLSMineHeaderViewClickBlock actionBlock;
 @end

@@ -8,17 +8,17 @@
 
 #import "MLSRouterURIConst.h"
 /// MARK: - WGWebViewController
-NSString *const kLNWebViewControllerURI = @"ln_web";
-NSString *const kLNSportControllerURI = @"ln_sport";
-NSString *const KLNVipRegisterAndRecargeCardViewControllerURI = @"ln_vrarc";
-NSString *const kLNArticleMoreControllerURI = @"ln_article_more";
-NSString *const kLNArticleDetailControllerURI = @"ln_article_detail";
-NSString *const kLNOrderControllerURI = @"ln_order";
-NSString *const kLNUpdateUserInfoControllerURI = @"ln_update_user_info";
-NSString *const kLNSiteBookingControllerURI = @"ln_site_booking";
-NSString *const kLNEventControllerURI = @"ln_event";
-NSString *const kLNBuyTicketsControllerURI = @"ln_buy_tickets";
-NSString *const kLNTrainingClassControllerURI = @"ln_training_class";
-NSString *const kLNSportShopClassControllerURI = @"ln_sport_shop";
-NSString *const kLNShopCartControllerURI = @"ln_shop_cart";
-NSString *const kLNParkingRecordControllerURI = @"ln_parking_record";
+NSString *const kMLSWebViewControllerURI = @"mls_web";
+NSString *const kMLSSportControllerURI = @"mls_sport";
+NSString *const kMLSVipRegisterAndRecargeCardViewControllerURI = @"mls_vrarc";
+NSString *const kMLSArticleMoreControllerURI = @"mls_article_more";
+NSString *const kMLSArticleDetailControllerURI = @"mls_article_detail";
+NSString *const kMLSOrderControllerURI = @"mls_order";
+NSString *const kMLSUpdateUserInfoControllerURI = @"mls_update_user_info";
+NSString *const kMLSSiteBookingControllerURI = @"mls_site_booking";
+NSString *const kMLSEventControllerURI = @"mls_event";
+NSString *const kMLSBuyTicketsControllerURI = @"mls_buy_tickets";
+NSString *const kMLSTrainingClassControllerURI = @"mls_training_class";
+NSString *const kMLSSportShopClassControllerURI = @"mls_sport_shop";
+NSString *const kMLSShopCartControllerURI = @"mls_shop_cart";
+NSString *const kMLSParkingRecordControllerURI = @"mls_parking_record";

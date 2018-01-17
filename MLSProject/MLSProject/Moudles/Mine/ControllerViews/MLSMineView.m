@@ -47,11 +47,11 @@
         self.tableView.autoAdjustView = view.backGroundView;
         self.tableView.enableAutoAdjustHeader = YES;
         @weakify(self);
-        view.actionBlock = ^(LNMineHeaderViewClickType type) {
+        view.actionBlock = ^(MLSMineHeaderViewClickType type) {
                 @strongify(self);
                 if (self.actionBlock)
                 {
-                        self.actionBlock((LNMineViewClickType)type);
+                        self.actionBlock((MLSMineViewClickType)type);
                 }
         };
 }

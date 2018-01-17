@@ -12,7 +12,7 @@
 - (BOOL)check:(NSString *)string
 {
         self.currentCheckString = string.copy;
-        if (NULLString(string) || ![[MLSPhoneCondition condition] check:LNUserManager.mobile] || ![CoBaseUtils isNumber:string])
+        if (NULLString(string) || ![[MLSPhoneCondition condition] check:MLSUserManager.mobile] || ![CoBaseUtils isNumber:string])
         {
                 return NO;
         }
@@ -27,6 +27,6 @@
 
 - (BOOL)shouldAllowViolation
 {
-        return [[MLSPhoneCondition condition] check:LNUserManager.mobile] || [CoBaseUtils isNumber:self.currentCheckString];
+        return [[MLSPhoneCondition condition] check:MLSUserManager.mobile] || [CoBaseUtils isNumber:self.currentCheckString];
 }
 @end

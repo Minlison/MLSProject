@@ -7,9 +7,9 @@
 //
 
 #import "BaseControllerView.h"
-typedef void (^LNModifyValidatorBlock)(BOOL validator);
+typedef void (^MLSModifyValidatorBlock)(BOOL validator);
 @interface MLSModifyInfoView : BaseControllerView
 @property(nonatomic, strong) XLFormRowDescriptor *rowDescriptor;
-@property(nonatomic, copy) LNModifyValidatorBlock validatorAction;
+@property(nonatomic, copy) MLSModifyValidatorBlock validatorAction;
 @property(nonatomic, assign, readonly) BOOL isValidator;
 @end

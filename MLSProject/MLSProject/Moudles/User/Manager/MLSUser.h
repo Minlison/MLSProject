@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void (^WGUserLoginSuccessBlock)(MLSUserModel *user);
 typedef void (^WGUserStringSuccessBlock)(NSString *sms);
 typedef void (^WGUserFailedBlock)(NSError *error);
-#define LNUserManager [MLSUser shareUser]
+#define MLSUserManager [MLSUser shareUser]
 
 FOUNDATION_EXTERN NSInteger const kGetSMSCountTime;
 
@@ -52,7 +52,7 @@ FOUNDATION_EXTERN NSInteger const kGetSMSCountTime;
 /**
  登录类型
  */
-@property(nonatomic, assign) LNLoginType loginType;
+@property(nonatomic, assign) MLSLoginType loginType;
 
 /**
  短信校验码
@@ -189,7 +189,7 @@ FOUNDATION_EXTERN NSInteger const kGetSMSCountTime;
  @param success 成功回调
  @param failed 失败回调
  */
-- (void)loginType:(LNLoginType)type param:(nullable NSDictionary *)params success:(WGUserLoginSuccessBlock)success failed:(WGUserFailedBlock)failed;
+- (void)loginType:(MLSLoginType)type param:(nullable NSDictionary *)params success:(WGUserLoginSuccessBlock)success failed:(WGUserFailedBlock)failed;
 
 /**
  退出登录
@@ -280,5 +280,5 @@ FOUNDATION_EXTERN NSInteger const kGetSMSCountTime;
 - (void)uploadUserHeadFileUrl:(NSURL *)imgFileUrl completion:(nullable WGUserLoginSuccessBlock)completion failed:(WGUserFailedBlock)failed;
 @end
 
-FOUNDATION_EXTERN NSString *const LNUserInfoDidChangeNotifactionName;
+FOUNDATION_EXTERN NSString *const MLSUserInfoDidChangeNotifactionName;
 NS_ASSUME_NONNULL_END

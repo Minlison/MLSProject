@@ -11,9 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, UMLoginType)
 {
         UMLoginTypeUnkKnown = 0,
-        UMLoginTypeQQ       = LNLoginTypeQQ,
-        UMLoginTypeWeiXin   = LNLoginTypeWebchat,
-        UMLoginTypeWeiBo    = LNLoginTypeWeibo,
+        UMLoginTypeQQ       = MLSLoginTypeQQ,
+        UMLoginTypeWeiXin   = MLSLoginTypeWebchat,
+        UMLoginTypeWeiBo    = MLSLoginTypeWeibo,
 };
 typedef void(^UMLoginCompletionBlock)(BOOL success, NSError * _Nullable error, NSDictionary * _Nullable response);
 @interface UMLogin : NSObject

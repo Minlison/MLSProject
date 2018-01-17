@@ -2,7 +2,7 @@
 //  QMUITextView.m
 //  qmui
 //
-//  Created by QQMail on 14-8-5.
+//  Created by QMUI Team on 14-8-5.
 //  Copyright (c) 2014年 QMUI Team. All rights reserved.
 //
 #import "QMUITextView.h"
@@ -183,6 +183,16 @@ const UIEdgeInsets kSystemTextViewFixTextInsets = {0, 5, 0, 5};
     [super setTextAlignment:textAlignment];
     [self updatePlaceholderStyle];
 }
+
+- (void)setTextContainerInset:(UIEdgeInsets)textContainerInset {
+    [super setTextContainerInset:textContainerInset];
+    if (@available(iOS 11, *)) {
+    } else {
+        // iOS 11 以下修改 textContainerInset 的时候无法自动触发 layoutSubview，导致 placeholderLabel 无法更新布局
+        [self setNeedsLayout];
+    }
+}
+
 
 - (void)setPlaceholder:(NSString *)placeholder {
     _placeholder = placeholder;

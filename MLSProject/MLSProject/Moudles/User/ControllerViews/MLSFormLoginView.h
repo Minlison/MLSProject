@@ -8,21 +8,21 @@
 
 #import "BaseTableControllerView.h"
 
-typedef NS_ENUM(NSInteger, LNFormLoginViewClickType)
+typedef NS_ENUM(NSInteger, MLSFormLoginViewClickType)
 {
-        LNFormLoginViewClickTypeGetSmsCode,
-        LNFormLoginViewClickTypeLoginClick,
-        LNFormLoginViewClickTypeThirdLoginClick,
-        LNFormLoginViewClickTypeGetCountryCode,
-        LNFormLoginViewClickTypeFindPwd,
+        MLSFormLoginViewClickTypeGetSmsCode,
+        MLSFormLoginViewClickTypeLoginClick,
+        MLSFormLoginViewClickTypeThirdLoginClick,
+        MLSFormLoginViewClickTypeGetCountryCode,
+        MLSFormLoginViewClickTypeFindPwd,
 };
-typedef void (^LNUserStringActionBlock)(NSString * _Nullable str);
-typedef void (^LNFormLoginViewClickActionBlock)(LNFormLoginViewClickType clickType, LNLoginType type, NSDictionary * _Nullable param, LNUserStringActionBlock _Nullable contryCode);
+typedef void (^MLSUserStringActionBlock)(NSString * _Nullable str);
+typedef void (^MLSFormLoginViewClickActionBlock)(MLSFormLoginViewClickType clickType, MLSLoginType type, NSDictionary * _Nullable param, MLSUserStringActionBlock _Nullable contryCode);
 
 @interface MLSFormLoginView : BaseTableControllerView
 @property (nonatomic, strong, readonly) FXFormController *formController;
 /**
  事件点击回调
  */
-@property(nonatomic, copy, nullable) LNFormLoginViewClickActionBlock actionBlock;
+@property(nonatomic, copy, nullable) MLSFormLoginViewClickActionBlock actionBlock;
 @end

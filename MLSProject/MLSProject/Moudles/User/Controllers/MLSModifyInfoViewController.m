@@ -57,7 +57,7 @@
 {
         [MLSTipClass showLoadingInView:self.view];
         @weakify(self);
-        [LNUserManager updateUserInfoWithParam:@{
+        [MLSUserManager updateUserInfoWithParam:@{
                                                  self.rowDescriptor.tag : self.rowDescriptor.value,
                                                  } success:^(NSString * _Nonnull sms) {
                                                          @strongify(self);

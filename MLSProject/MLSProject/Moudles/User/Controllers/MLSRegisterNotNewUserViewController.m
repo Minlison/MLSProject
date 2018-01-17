@@ -20,23 +20,23 @@
         [super viewDidLoad];
         
         @weakify(self);
-        self.controllerView.actionBlock = ^(LNRegisterNotNewUserViewClickType type) {
+        self.controllerView.actionBlock = ^(MLSRegisterNotNewUserViewClickType type) {
                 @strongify(self);
                 switch (type)
                 {
-                        case LNRegisterNotNewUserViewClickTypeMineLoginRightNow:
+                        case MLSRegisterNotNewUserViewClickTypeMineLoginRightNow:
                         {
                                 [self loginRightNow];
                         }
                                 break;
                                 
-                        case LNRegisterNotNewUserViewClickTypeForgetPwdAndReset:
+                        case MLSRegisterNotNewUserViewClickTypeForgetPwdAndReset:
                         {
                                 [self forgetPwdAndReset];
                         }
                                 break;
                                 
-                        case LNRegisterNotNewUserViewClickTypeChangePhoneToRegister:
+                        case MLSRegisterNotNewUserViewClickTypeChangePhoneToRegister:
                         {
                                 [self changePhoneToRegister];
                         }

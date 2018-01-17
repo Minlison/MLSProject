@@ -15,15 +15,15 @@
         [super setUp];
         [self adjustButtonEnable];
         @weakify(self);
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,canRegister) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,canRegister) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 [self adjustButtonEnable];
         }];
 }
 - (void)adjustButtonEnable
 {
-        if (self.button.isEnabled != LNUserManager.canRegister) {
-                self.button.enabled = LNUserManager.canRegister;
+        if (self.button.isEnabled != MLSUserManager.canRegister) {
+                self.button.enabled = MLSUserManager.canRegister;
         }
         
 }

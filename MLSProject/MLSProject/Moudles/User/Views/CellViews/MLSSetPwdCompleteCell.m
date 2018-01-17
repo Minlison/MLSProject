@@ -14,18 +14,18 @@
         [super setUp];
         @weakify(self);
         [self adjustButtonEnable];
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,password) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,password) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 [self adjustButtonEnable];
         }];
-        [self.KVOController observe:LNUserManager keyPath:@keypath(LNUserManager,repeat_password) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
+        [self.KVOController observe:MLSUserManager keyPath:@keypath(MLSUserManager,repeat_password) options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionOld) block:^(id  _Nullable observer, id  _Nonnull object, NSDictionary<NSString *,id> * _Nonnull change) {
                 @strongify(self);
                 [self adjustButtonEnable];
         }];
 }
 - (void)adjustButtonEnable
 {
-        BOOL res = (!NULLString(LNUserManager.password) && !NULLString(LNUserManager.repeat_password) &&  [LNUserManager.password isEqualToString:LNUserManager.repeat_password]);
+        BOOL res = (!NULLString(MLSUserManager.password) && !NULLString(MLSUserManager.repeat_password) &&  [MLSUserManager.password isEqualToString:MLSUserManager.repeat_password]);
         if (self.button.isEnabled != res) {
                 self.button.enabled = res;
         }

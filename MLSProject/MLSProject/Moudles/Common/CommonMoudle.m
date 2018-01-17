@@ -16,6 +16,6 @@
         [NSURLProtocol registerClass:[TURLSessionProtocol class]];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         config.protocolClasses = @[[TURLSessionProtocol class]];
-        [AppShareRouterService addRoute:AppRoutePatternStringWithURI(kLNWebViewControllerURI) handlerClass:[MLSWebViewController class]];
+        [AppShareRouterService addRoute:AppRoutePatternStringWithURI(kMLSWebViewControllerURI) handlerClass:[MLSWebViewController class]];
 }
 @end

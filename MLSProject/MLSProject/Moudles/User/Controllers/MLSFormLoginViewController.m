@@ -35,31 +35,31 @@
 - (void)viewDidLoad
 {
         [super viewDidLoad];
-        LNUserManager.country_code = @"86";
+        MLSUserManager.country_code = @"86";
         @weakify(self);
         
-        self.controllerView.actionBlock = ^(LNFormLoginViewClickType clickType, LNLoginType type, NSDictionary * _Nullable param, LNUserStringActionBlock  _Nullable contryCode) {
+        self.controllerView.actionBlock = ^(MLSFormLoginViewClickType clickType, MLSLoginType type, NSDictionary * _Nullable param, MLSUserStringActionBlock  _Nullable contryCode) {
                 @strongify(self);
                 switch (clickType)
                 {
-                        case LNFormLoginViewClickTypeGetSmsCode:
+                        case MLSFormLoginViewClickTypeGetSmsCode:
                         {
                                 [self getSMSCodeParams:param];
                         }
                                 break;
-                        case LNFormLoginViewClickTypeLoginClick:
-                        case LNFormLoginViewClickTypeThirdLoginClick:
+                        case MLSFormLoginViewClickTypeLoginClick:
+                        case MLSFormLoginViewClickTypeThirdLoginClick:
                         {
                                 [self loginType:type params:param];
                         }
                                 break;
                         
-                        case LNFormLoginViewClickTypeGetCountryCode:
+                        case MLSFormLoginViewClickTypeGetCountryCode:
                         {
                                 [self getCountryCode:contryCode];
                         }
                                 break;
-                        case LNFormLoginViewClickTypeFindPwd:
+                        case MLSFormLoginViewClickTypeFindPwd:
                         {
                                 [self findPwd];
                         }
@@ -100,9 +100,9 @@
         return _rightNavButton;
 }
 /// MARK: - Form
-- (void)loginType:(LNLoginType)type params:(NSDictionary *)params
+- (void)loginType:(MLSLoginType)type params:(NSDictionary *)params
 {
-        [LNUserManager loginType:type param:params success:^(MLSUserModel * _Nonnull user) {
+        [MLSUserManager loginType:type param:params success:^(MLSUserModel * _Nonnull user) {
                 [MLSTipClass showText:[NSString aPP_LoginSuccess]];
                 [self loginSuccess];
         } failed:^(NSError * _Nonnull error) {
@@ -111,10 +111,10 @@
 }
 - (void)loginSuccess
 {
-        if (!LNUserManager.isUserInfoComplete)
+        if (!MLSUserManager.isUserInfoComplete)
         {
                 @weakify(self);
-                [self routeUrl:kLNUpdateUserInfoControllerURI param:nil handler:^(NSDictionary<NSString *,id> * _Nullable parameters, UIViewController<JLRRouteDefinitionTargetController> * _Nullable targetVC) {
+                [self routeUrl:kMLSUpdateUserInfoControllerURI param:nil handler:^(NSDictionary<NSString *,id> * _Nullable parameters, UIViewController<JLRRouteDefinitionTargetController> * _Nullable targetVC) {
                         @strongify(self);
                         NSMutableArray *array = [NSMutableArray array];
                         [array addObject:self.navigationController.viewControllers.firstObject];
@@ -137,7 +137,7 @@
 }
 - (void)getSMSCodeParams:(NSDictionary *)params
 {
-        [LNUserManager getSMSWithParam:params success:^(NSString * _Nonnull sms) {
+        [MLSUserManager getSMSWithParam:params success:^(NSString * _Nonnull sms) {
                 
                 [MLSTipClass showText:sms inView:self.view];
                 
@@ -145,7 +145,7 @@
                 [MLSTipClass showText:error.localizedDescription inView:self.view];
         }];
 }
-- (void)getCountryCode:(LNUserStringActionBlock)contryCodeBlock
+- (void)getCountryCode:(MLSUserStringActionBlock)contryCodeBlock
 {
         MLSGetCountryCodeViewController *vc = [[MLSGetCountryCodeViewController alloc] init];
         [vc setGetCountryCodeBlock:^(NSString *countryCode) {

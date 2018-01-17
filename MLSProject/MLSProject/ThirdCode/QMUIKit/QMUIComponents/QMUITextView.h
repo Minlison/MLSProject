@@ -2,7 +2,7 @@
 //  QMUITextView.h
 //  qmui
 //
-//  Created by QQMail on 14-8-5.
+//  Created by QMUI Team on 14-8-5.
 //  Copyright (c) 2014年 QMUI Team. All rights reserved.
 //
 

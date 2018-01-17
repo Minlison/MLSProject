@@ -12,6 +12,7 @@
 #import "QMUITableView.h"
 
 @class QMUIButton;
+@class QMUILabel;
 @class QMUITextField;
 @class QMUITableViewCell;
 
@@ -27,19 +28,24 @@
 @interface QMUIDialogViewController : QMUICommonViewController<QMUIModalPresentationContentViewControllerProtocol>
 
 @property(nonatomic, assign) CGFloat        cornerRadius UI_APPEARANCE_SELECTOR;
-@property(nonatomic, assign) UIEdgeInsets   contentViewMargins UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) UIEdgeInsets   dialogViewMargins UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat        maximumContentViewWidth UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor        *backgroundColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *titleTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIFont         *titleLabelFont UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *titleLabelTextColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIFont         *subTitleLabelFont UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *subTitleLabelTextColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) UIColor        *headerFooterSeparatorColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor        *headerSeparatorColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, assign) CGFloat        headerViewHeight UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *headerViewBackgroundColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) UIEdgeInsets   contentViewMargins UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor        *footerSeparatorColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, assign) CGFloat        footerViewHeight UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *footerViewBackgroundColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic, strong) NSDictionary<NSString *, id> *buttonTitleAttributes UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor        *buttonBackgroundColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor        *buttonHighlightedBackgroundColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) NSDictionary<NSString *, id> *buttonTitleAttributes UI_APPEARANCE_SELECTOR;
 
 @property(nonatomic, strong, readonly) UIView *headerView;
 @property(nonatomic, strong, readonly) CALayer *headerViewSeparatorLayer;
@@ -104,7 +110,9 @@ extern const NSInteger QMUIDialogSelectionViewControllerSelectedItemIndexNone;
  * 可通过`enablesSubmitButtonAutomatically`来自动设置`submitButton.enabled`的状态
  */
 @interface QMUIDialogTextFieldViewController : QMUIDialogViewController
-
+@property(nonatomic, copy) NSString *textFieldTitle; // 输入框的标题
+@property(nonatomic, strong, readonly) QMUILabel *textFieldLabel;
+@property(nonatomic, strong, readonly) CALayer *textFieldSeparatorLayer;
 @property(nonatomic, strong, readonly) QMUITextField *textField;
 
 /// 是否自动控制提交按钮的enabled状态，默认为YES，则当输入框内容为空时禁用提交按钮

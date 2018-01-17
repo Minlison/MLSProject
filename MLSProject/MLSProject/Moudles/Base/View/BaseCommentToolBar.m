@@ -29,7 +29,7 @@
 @property(nonatomic, strong) QMUIButton *sendButton;
 @property(nonatomic, strong) QMUIButton *emotionButton;
 @property(nonatomic, assign, getter=isHasEmotion) BOOL hasEmotion;
-@property(nonatomic, weak) QMUIQQEmotionManager *qqEmotionManager;
+@property(nonatomic, weak) QMUIEmotionInputManager *qqEmotionManager;
 @property(nonatomic, assign) BOOL autoResizeble;
 @property(nonatomic, strong) UIView *textViewContainer;
 @property(nonatomic, strong) UIView *bottomLineView;
@@ -265,7 +265,7 @@
 {
         self.actionBlock = actionBlock;
 }
-- (void)setEmotionManager:(QMUIQQEmotionManager *)emotionManager
+- (void)setEmotionManager:(QMUIEmotionInputManager *)emotionManager
 {
         self.qqEmotionManager = emotionManager;
 }

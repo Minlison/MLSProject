@@ -24,8 +24,8 @@
 /**
  内容类型
  */
-@property (nonatomic,assign) LNArticleContentType type;
+@property (nonatomic,assign) MLSArticleContentType type;
 
 
-+ (instancetype)commentModelWith:(LNArticleContentType)type pId:(NSString *)pid itemID:(NSString *)itemid ;
++ (instancetype)commentModelWith:(MLSArticleContentType)type pId:(NSString *)pid itemID:(NSString *)itemid ;
 @end

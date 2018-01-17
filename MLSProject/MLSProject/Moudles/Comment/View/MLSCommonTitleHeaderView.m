@@ -1,5 +1,5 @@
 //
-//  LNEventTitleHeaderView.m
+//  MLSEventTitleHeaderView.m
 //  MLSProject
 //
 //  Created by MinLison on 2017/12/14.

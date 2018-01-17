@@ -35,12 +35,12 @@
         self.titleView.titleLabel.textColor = [UIColor whiteColor];
         switch (self.type)
         {
-                case LNSetPwdTypeRegister:
+                case MLSSetPwdTypeRegister:
                 {
                         self.title = @"注册";
                 }
                         break;
-                case LNSetPwdTypeFindPwd:
+                case MLSSetPwdTypeFindPwd:
                 {
                         self.title = @"忘记密码";
                 }
@@ -61,12 +61,12 @@
 {
         switch (self.type)
         {
-                case LNSetPwdTypeRegister:
+                case MLSSetPwdTypeRegister:
                 {
                         [self registerToSetPwd];
                 }
                         break;
-                case LNSetPwdTypeFindPwd:
+                case MLSSetPwdTypeFindPwd:
                 {
                         [self findPwdToSetPwd];
                 }
@@ -79,7 +79,7 @@
 }
 - (void)registerToSetPwd
 {
-        [LNUserManager registerWithParam:@{
+        [MLSUserManager registerWithParam:@{
                                            kRequestKeyPassword : self.form.password
                                            } success:^(MLSUserModel * _Nonnull user) {
                  [self successSetPwd];
@@ -90,7 +90,7 @@
 
 - (void)findPwdToSetPwd
 {
-        [LNUserManager findPwd:nil success:^(MLSUserModel * _Nonnull user) {
+        [MLSUserManager findPwd:nil success:^(MLSUserModel * _Nonnull user) {
                 [self successSetPwd];
         } failed:^(NSError * _Nonnull error) {
                 [self failedSetPwd:error];
@@ -98,10 +98,10 @@
 }
 - (void)successSetPwd
 {
-        if (!LNUserManager.isUserInfoComplete)
+        if (!MLSUserManager.isUserInfoComplete)
         {
                 @weakify(self);
-                [self routeUrl:kLNUpdateUserInfoControllerURI param:nil handler:^(NSDictionary<NSString *,id> * _Nullable parameters, UIViewController<JLRRouteDefinitionTargetController> * _Nullable targetVC) {
+                [self routeUrl:kMLSUpdateUserInfoControllerURI param:nil handler:^(NSDictionary<NSString *,id> * _Nullable parameters, UIViewController<JLRRouteDefinitionTargetController> * _Nullable targetVC) {
                         @strongify(self);
                         NSMutableArray *array = [NSMutableArray array];
                         [array addObject:self.navigationController.viewControllers.firstObject];

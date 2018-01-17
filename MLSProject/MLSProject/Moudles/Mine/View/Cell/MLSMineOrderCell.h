@@ -8,20 +8,20 @@
 
 #import "BaseTableViewCell.h"
 
-typedef NS_ENUM(NSInteger,LNMineOrderCellClickType)
+typedef NS_ENUM(NSInteger,MLSMineOrderCellClickType)
 {
-        LNMineOrderCellClickTypeWaitingPay,
-        LNMineOrderCellClickTypePayed,
-        LNMineOrderCellClickTypeCanceled,
-        LNMineOrderCellClickTypeComplete,
+        MLSMineOrderCellClickTypeWaitingPay,
+        MLSMineOrderCellClickTypePayed,
+        MLSMineOrderCellClickTypeCanceled,
+        MLSMineOrderCellClickTypeComplete,
 };
 
-typedef void (^LNMineOrderCellClickBlock)(LNMineOrderCellClickType clickType);
+typedef void (^MLSMineOrderCellClickBlock)(MLSMineOrderCellClickType clickType);
 
 @interface MLSMineOrderCell : XLFormBaseCell
 
 /**
  事件回调
  */
-@property(nonatomic, copy) LNMineOrderCellClickBlock actionBlock;
+@property(nonatomic, copy) MLSMineOrderCellClickBlock actionBlock;
 @end

@@ -41,25 +41,25 @@
 {
         BOOL automatic;
 
-        if ([theKey isEqualToString:@keypath(LNUserManager,uid)]) {
+        if ([theKey isEqualToString:@keypath(MLSUserManager,uid)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,mobile)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,mobile)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,nickname)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,nickname)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,img)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,img)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,role)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,role)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,token)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,token)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,refresh_token)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,refresh_token)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,country_code)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,country_code)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,id_number)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,id_number)]) {
                 automatic = NO;
-        } else if ([theKey isEqualToString:@keypath(LNUserManager,date)]) {
+        } else if ([theKey isEqualToString:@keypath(MLSUserManager,date)]) {
                 automatic = NO;
         } else {
                 automatic = [super automaticallyNotifiesObserversForKey:theKey];
@@ -70,18 +70,18 @@
 - (void)setId_number:(NSString *)id_number
 {
         if (_id_number != id_number) {
-                [self willChangeValueForKey:@keypath(LNUserManager,id_number)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,id_number)];
                 _id_number = [id_number copy];
                 self.date = [CoBaseUtils isIDNumber:id_number withDateFmt:@"yyyy-MM-dd"];
-                [self didChangeValueForKey:@keypath(LNUserManager,id_number)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,id_number)];
         }
 }
 - (void)setDate:(NSString *)date
 {
         if (_date != date) {
-                [self willChangeValueForKey:@keypath(LNUserManager,date)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,date)];
                 _date = [date copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,date)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,date)];
         }
 }
 //===========================================================
@@ -90,9 +90,9 @@
 - (void)setUid:(NSString *)uid
 {
         if (_uid != uid) {
-                [self willChangeValueForKey:@keypath(LNUserManager,uid)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,uid)];
                 _uid = [uid copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,uid)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,uid)];
         }
 }
 //===========================================================
@@ -101,9 +101,9 @@
 - (void)setMobile:(NSString *)mobile
 {
         if (_mobile != mobile) {
-                [self willChangeValueForKey:@keypath(LNUserManager,mobile)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,mobile)];
                 _mobile = [mobile copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,mobile)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,mobile)];
         }
 }
 
@@ -113,9 +113,9 @@
 - (void)setNick_name:(NSString *)aNick_name
 {
         if (_nickname != aNick_name) {
-                [self willChangeValueForKey:@keypath(LNUserManager,nickname)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,nickname)];
                 _nickname = [aNick_name copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,nickname)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,nickname)];
         }
 }
 
@@ -125,9 +125,9 @@
 - (void)setAvatar:(NSString *)anAvatar
 {
         if (_img != anAvatar) {
-                [self willChangeValueForKey:@keypath(LNUserManager,img)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,img)];
                 _img = [anAvatar copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,img)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,img)];
         }
 }
 
@@ -137,9 +137,9 @@
 - (void)setRole:(NSString *)aRole
 {
         if (_role != aRole) {
-                [self willChangeValueForKey:@keypath(LNUserManager,role)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,role)];
                 _role = [aRole copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,role)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,role)];
         }
 }
 //===========================================================
@@ -148,9 +148,9 @@
 - (void)setToken:(NSString *)aToken
 {
         if (_token != aToken) {
-                [self willChangeValueForKey:@keypath(LNUserManager,token)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,token)];
                 _token = [aToken copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,token)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,token)];
         }
 }
 //===========================================================
@@ -159,9 +159,9 @@
 - (void)setRefresh_token:(NSString *)aRefresh_token
 {
         if (_refresh_token != aRefresh_token) {
-                [self willChangeValueForKey:@keypath(LNUserManager,refresh_token)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,refresh_token)];
                 _refresh_token = [aRefresh_token copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,refresh_token)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,refresh_token)];
         }
 }
 //===========================================================
@@ -170,9 +170,9 @@
 - (void)setCountry_code:(NSString *)aCountry_code
 {
         if (_country_code != aCountry_code) {
-                [self willChangeValueForKey:@keypath(LNUserManager,country_code)];
+                [self willChangeValueForKey:@keypath(MLSUserManager,country_code)];
                 _country_code = [aCountry_code copy];
-                [self didChangeValueForKey:@keypath(LNUserManager,country_code)];
+                [self didChangeValueForKey:@keypath(MLSUserManager,country_code)];
         }
 }
 

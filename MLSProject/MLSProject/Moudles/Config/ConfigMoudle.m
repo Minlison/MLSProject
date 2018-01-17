@@ -221,7 +221,7 @@
         [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:UMENG_WEBCATAPPID appSecret:UMENG_WEBCATAPPKEY redirectURL:UMENG_REDIRECT_URL];
         [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:UMENG_WEBCATAPPID appSecret:UMENG_WEBCATAPPKEY redirectURL:UMENG_REDIRECT_URL];
         [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:UMENG_QQAPPID appSecret:UMENG_QQAPPKEY redirectURL:UMENG_REDIRECT_URL];
-        [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:UMENG_XINLNAGAPPKEY appSecret:UMENG_XINLANGAPPSECRET redirectURL:UMENG_XINLANG_REDIRECT];
+        [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:UMENG_XINLANGAPPKEY appSecret:UMENG_XINLANGAPPSECRET redirectURL:UMENG_XINLANG_REDIRECT];
 }
 - (void)_SetupUmengNotification:(NSDictionary *)launchOptions
 {
@@ -305,30 +305,30 @@
 }
 - (void)_SetUmengAlias
 {
-        if (LNUserManager.isLogin)
+        if (MLSUserManager.isLogin)
         {
-                if (LNUserManager.uid)
+                if (MLSUserManager.uid)
                 {
-                        [UMessage setAlias:LNUserManager.uid type:@"USERID" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+                        [UMessage setAlias:MLSUserManager.uid type:@"USERID" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
                                 if (!error) {
-                                        NSLogInfo(@"设置自定义alias成功  userID == %@",LNUserManager.uid);
+                                        NSLogInfo(@"设置自定义alias成功  userID == %@",MLSUserManager.uid);
                                 }
                                 else
                                 {
-                                        NSLogInfo(@"设置自定义alias失败 %@ userID == %@",error,LNUserManager.uid);
+                                        NSLogInfo(@"设置自定义alias失败 %@ userID == %@",error,MLSUserManager.uid);
                                 }
                         }];
                 }
                 
-                if (LNUserManager.mobile)
+                if (MLSUserManager.mobile)
                 {
-                        [UMessage setAlias:LNUserManager.mobile type:@"PHONENUM" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+                        [UMessage setAlias:MLSUserManager.mobile type:@"PHONENUM" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
                                 if (!error) {
-                                        NSLogInfo(@"设置自定义alias成功 phoneNum == %@",LNUserManager.mobile);
+                                        NSLogInfo(@"设置自定义alias成功 phoneNum == %@",MLSUserManager.mobile);
                                 }
                                 else
                                 {
-                                        NSLogInfo(@"设置自定义alias失败%@ phoneNum == %@",error,LNUserManager.mobile);
+                                        NSLogInfo(@"设置自定义alias失败%@ phoneNum == %@",error,MLSUserManager.mobile);
                                 }
                         }];
                 }
